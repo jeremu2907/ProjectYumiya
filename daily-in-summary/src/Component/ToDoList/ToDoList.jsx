@@ -5,7 +5,7 @@ import ToDoItems from './ToDoItems.jsx'
 class ToDoList extends Component{
     styles = {
         height: "45vh",
-        width: "48vw",
+        width: "48vw - 20px",
         backgroundColor: "#262524",
         borderRadius: "30px",
         margin: "20px"

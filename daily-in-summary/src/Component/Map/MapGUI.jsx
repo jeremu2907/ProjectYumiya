@@ -7,7 +7,7 @@ class MapGUI extends Component{
         width: "48vw - 20px",
         backgroundColor: "white",
         borderRadius: "30px",
-        border: "solid 20px #262524",
+        border: "solid 2px #262524",
         margin: "20px",
         display: "flex",
         flexDirection: "column"
