@@ -4,20 +4,20 @@
     align-items: flex-start;
 }
 
-.content-area-right{
+.content-area-left{
     position: relative;
-    height : calc(100vh - 40px);
-    width: calc(50vw - 20px);
+    height : calc(100vh - 80px);
+    width: 50vw;
     background-color: aqua;
-    padding-top:20px;
-    padding-bottom: 20px;
+    padding:40px
 }
 
-.content-area-left{
+.content-area-right{
     display:flex;
     flex-direction: column;
     align-content: space-evenly;
     position:relative;
+    height : 100vh;
 }
 
 .noteArea{

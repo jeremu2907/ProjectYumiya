@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import ItemTitle from './ItemTitle.jsx'
+import ItemTitle from '../ItemTitle.jsx'
 import ToDoItems from './ToDoItems.jsx'
 
 class ToDoList extends Component{

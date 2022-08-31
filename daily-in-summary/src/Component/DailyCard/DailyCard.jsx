@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import ItemTitle from "./ItemTitle.jsx"
+import ItemTitle from "../ItemTitle.jsx"
 
 class DailyCard extends Component{
     styles = {
