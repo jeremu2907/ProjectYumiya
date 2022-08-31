@@ -1,13 +1,25 @@
 .content-area{
     display:flex;
+    flex-direction:row;
+    align-items: flex-start;
+}
+
+.content-area-right{
+    position: relative;
+    height : calc(100vh - 40px);
+    width: calc(50vw - 20px);
+    background-color: aqua;
+    padding-top:20px;
+    padding-bottom: 20px;
+}
+
+.content-area-left{
+    display:flex;
     flex-direction: column;
     align-content: space-evenly;
-    position:absolute;
-    left: 50%;
-    transform: translate(-50%)
+    position:relative;
 }
 
 .noteArea{
     position: absolute;
-    align-self:flex-end;
 }
