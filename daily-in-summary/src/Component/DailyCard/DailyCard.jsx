@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import ItemTitle from "../ItemTitle.jsx"
+import CalendarItem from "./CalendarItem.jsx"
 import './DailyCard.css'
 
 class DailyCard extends Component{
@@ -16,22 +17,26 @@ class DailyCard extends Component{
         position: "relative",
         height: "85%",
         width: "calc(100%-20px)",
-        border: "solid 2px #262524",
+        border: "solid 1px #262524",
         borderRadius: "30px",
         display: "flex",
         flexDirection: "column",
-        alignItems: "flexStart"
+        alignItems: "flexStart",
+        overflowY: "hidden",
     }
 
     render(){
         const d = new Date();
-        let cardTitle = "Today   " + (d.getMonth() + 1) + "/" + d.getDate();
+        let cardTitle = "Today    " + (d.getMonth() + 1) + "/" + d.getDate();
         return(
             <div style = {this.styles}>
                 <ItemTitle color="black" text= {cardTitle} />
+                <button><img src="daily-in-summary\src\ButtonSet\addButton.png" alt="add button"/></button>
+                <button></button>
                 <div style = {this.flexBoxStyle} className="flexBoxStyle">
-                    <div>Hello</div>
-                    <div>Hi</div>
+                    <CalendarItem text={"First Event"}/>
+                    <CalendarItem text={"Second Event"}/>
+                    <CalendarItem text={"Third Event"}/>
                 </div>
             </div>
         )

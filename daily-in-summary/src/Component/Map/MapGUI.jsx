@@ -3,12 +3,11 @@ import MapInfo from './MapInfo.jsx'
 
 class MapGUI extends Component{
     styles = {
-        height: "42vh",
-        width: "48vw - 20px",
+        height: "45vh",
+        width: "calc(48vw - 4px)",
         backgroundColor: "white",
         borderRadius: "30px",
         border: "solid 2px #262524",
-        margin: "20px",
         display: "flex",
         flexDirection: "column"
     }
