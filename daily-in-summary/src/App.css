@@ -8,11 +8,10 @@
     position: relative;
     height : calc(100vh - 40px);
     width: 50vw;
-    /* background-color: aqua; */
     padding:20px;
     display:flex;
     flex-direction:row;
-    align-items: flex-start;
+    align-items: center;
     justify-content: center;
 }
 

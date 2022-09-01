@@ -2,4 +2,6 @@ body {
     margin: 0;
     overflow-x: hidden;
     /* overflow-y:hidden; */
+    min-height: calc(100vh - 0px);
+
 }

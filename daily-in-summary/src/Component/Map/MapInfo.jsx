@@ -7,12 +7,13 @@ class MapInfo extends Component{
         width: "30%",
         height: "100%",
         alignSelf: "flex-end",
-        borderLeft: "solid 2px #262524"
+        borderLeft: "solid 2px white",
+        
     }
     render(){
         return(
             <div style={this.styles}>
-                <ItemTitle color={"#262524"} text={'Map Info'} />
+                <ItemTitle color={"white"} text={'Map Info'} />
             </div>
         )
     }
