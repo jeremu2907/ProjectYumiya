@@ -17,11 +17,11 @@ textarea {
 
 textarea::-webkit-scrollbar{
     width: 8px;
-    background-color: white;
+    background-color: rgba(255, 255, 255, 0.05);
     border-radius: 4px;
 }
 
 textarea::-webkit-scrollbar-thumb{
-    background-color:rgb(224, 96, 49);
+    background-color:#870c20da;
     border-radius: 4px;
 }

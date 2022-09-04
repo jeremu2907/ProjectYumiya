@@ -2,13 +2,23 @@ import React, {Component} from 'react';
 import './TextArea.css'
 
 class ToDoItems extends Component{
+    constructor(props) {
+        super(props);
+
+        this.state = JSON.parse(window.localStorage.getItem('state')) || {
+            lines : "Your notes here"
+        }
+    
+        this.textChange = this.textChange.bind(this);
+    }
+
     styles = {
         position: "relative",
         width: "95%",
         height: "calc(80% - 45px)",
         border: "none",
         color: "white",
-        backgroundColor: "#262524",
+        backgroundColor: "rgba(0,0,0,0)",
         fontSize: "20px",
         top: "30px",
         left: "50%",
@@ -16,14 +26,25 @@ class ToDoItems extends Component{
         marginBottom: "30px"
     }
 
-    state = {
-        lines: ["Email boss", "Buy gifts", "Meet Josh", "Fix Deprecated methods"]
+    //Used to persist state of what is written in Note area
+    setState(state){
+        window.localStorage.setItem('state', JSON.stringify(state));
+        super.setState(state)
+    }
+
+    textChange(event) {
+        if(event.target.value === ''){
+            this.setState({lines: "Your notes here"})
+        }
+        else{
+            this.setState({lines: event.target.value})
+        }
+        console.log(this.state.lines)
     }
 
     render(){
         return(
-            <textarea style={this.styles}>
-                - Some text here
+            <textarea style={this.styles} value={this.state.lines} onChange={this.textChange}>
             </textarea>
         )
     }

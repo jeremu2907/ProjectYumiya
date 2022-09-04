@@ -7,8 +7,7 @@ class ToDoList extends Component{
     styles = {
         height: "48vh",
         width: "48vw",
-        backgroundColor: "#262524",
-        borderRadius: "30px",
+        backgroundColor: "rgba(20, 20, 20, 0.77)",
     }
 
     title = {
@@ -29,9 +28,13 @@ class ToDoList extends Component{
         return(
             <div style={this.styles}>
                 <div style={this.title}>
-                    <ItemTitle color="white" text={"My To-Do List today"} />
-                    <img src={require("../ButtonSet/addButton.png")} alt="add button" style={{marginLeft:"auto", marginRight:"10px"}} onClick={this.eventModifyAdd}/>
-                    <img src={require("../ButtonSet/subButton.png")} alt="sub button"  onClick={this.eventModifySub}/>
+                    <ItemTitle color="#03d3fc" text={"My To-Do List today"} />
+                    <img src={require("../ButtonSet/subButton.png")} alt="sub button"  
+                            style={{marginLeft:"auto", marginRight:"10px",scale: "0.5"}}
+                            onClick={this.eventModifySub}/>
+                    <img src={require("../ButtonSet/addButton.png")} alt="add button" 
+                            style={{scale: "0.5"}} 
+                            onClick={this.eventModifyAdd}/>
                 </div>
                 <ToDoItems />
                 <NotePage />

@@ -7,7 +7,7 @@ class NotePage extends Component{
 
     pageCircle = {
         position: "relative",
-        backgroundColor : "rgb(224, 96, 49)",
+        backgroundColor : "rgba(255, 255, 255, 0.05)",
         height: "20px",
         width: "20px",
         borderRadius: "10px",

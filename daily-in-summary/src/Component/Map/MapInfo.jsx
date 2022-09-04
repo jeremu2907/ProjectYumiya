@@ -12,7 +12,7 @@ class MapInfo extends Component{
     render(){
         return(
             <div style={this.styles}>
-                <ItemTitle color={"white"} text={'Map Info'} />
+                <ItemTitle color={"#03d3fc"} text={'Map Info'} />
             </div>
         )
     }

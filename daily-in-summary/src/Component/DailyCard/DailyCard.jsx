@@ -7,8 +7,7 @@ class DailyCard extends Component{
     styles = {
         height: "94%",
         width: "45%",
-        backgroundColor: "#262524",
-        borderRadius: "30px",
+        backgroundColor: "rgba(20, 20, 20, 0.77)",
         border: "solid 2px #262524",
         padding: "10px"
     }
@@ -18,18 +17,14 @@ class DailyCard extends Component{
         height: "calc(90% - 60px)",
         width: "calc(100%-20px)",
         overflow: "auto",
-        // border: "solid 1px white",
-        // borderRadius: "30px",
-        // display: "flex",
-        // flexDirection: "column",
-        // alignItems: "flexStart",
     }
 
     title = {
         display: "flex",
         flexDirection: "row",
         alignItems: "flexStart",
-        marginBottom: "50px"
+        marginBottom: "30px",
+        marginTop: "30px"
     }
 
     eventModifyAdd = () => {
@@ -47,9 +42,13 @@ class DailyCard extends Component{
         return(
             <div style = {this.styles}>
                 <div style = {this.title}>
-                    <ItemTitle color="white" text= {cardTitle} />
-                    <img src={require("../ButtonSet/addButton.png")} alt="add button" style={{marginLeft:"auto", marginRight:"10px"}} onClick={this.eventModifyAdd}/>
-                    <img src={require("../ButtonSet/subButton.png")} alt="sub button"  onClick={this.eventModifySub}/>
+                    <ItemTitle color="#03d3fc" text= {cardTitle} />
+                    <img src={require("../ButtonSet/subButton.png")} alt="sub button"  
+                            style={{marginLeft:"auto", marginRight:"10px",scale: "0.5"}}
+                            onClick={this.eventModifySub}/>
+                    <img src={require("../ButtonSet/addButton.png")} alt="add button" 
+                            style={{scale: "0.5"}} 
+                            onClick={this.eventModifyAdd}/>
                 </div>
 
                 <div style = {this.flexBoxStyle} className="flexBoxStyle">

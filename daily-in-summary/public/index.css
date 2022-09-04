@@ -1,17 +1,18 @@
 body {
     margin: 0;
-    /* height: 500px; */
     overflow-x: hidden;
-    overflow-y:scroll;
+    overflow-y: hidden;
     min-height: calc(100vh - 0px);
-
+    background-image: linear-gradient(45deg,#03d3fc,#870c21);
+    /* animation: start 3s infinite */
 }
 
-body::-webkit-scrollbar{
-    width: 3px;
-    background-color: rgb(23,23,23);
+@keyframes start {
+    0% {
+        background-image: linear-gradient(-45deg,#03fc9d,#740c87)
+    }
+    100% {
+        background-image: linear-gradient(45deg,#03d3fc,#870c21)
+    }
 }
 
-body::-webkit-scrollbar-thumb{
-    background-color:rgb(224, 96, 49);
-}

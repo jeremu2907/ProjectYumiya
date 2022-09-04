@@ -10,7 +10,6 @@ function App() {
     <div className = "content-area">
       <div className = "content-area-left">
         <DailyCard />
-        <DailyCard />
       </div>
       <div className = "content-area-right">
         <ToDoList className="noteArea"/>

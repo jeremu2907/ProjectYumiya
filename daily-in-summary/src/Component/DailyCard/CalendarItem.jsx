@@ -5,10 +5,11 @@ class CalendarItem extends Component{
         position: "relative",
         height: "180px",
         width: "97%",
-        backgroundColor: "orange",
+        backgroundColor: "rgba(255, 255, 255, 0.05)",
         borderRadius: "30px",
         marginBottom: "10px",
-        overflowX: "hidden"
+        overflowX: "hidden",
+        color: "white"
     }
 
     title = {
@@ -25,7 +26,7 @@ class CalendarItem extends Component{
         return(
             <div style = {this.styles}>
                 <h3 style = {this.title} className = "globalFont">{this.props.text}</h3>
-                <ul>
+                <ul className = "globalFont">
                     <li>Time</li>
                     <li>Place</li>
                     <li>Link</li>

@@ -5,9 +5,7 @@ class MapGUI extends Component{
     styles = {
         height: "48vh",
         width: "calc(48vw)",
-        backgroundColor: "#262524",
-        borderRadius: "30px",
-        // border: "solid 2px #white",
+        backgroundColor: "rgba(20, 20, 20, 0.77)",
         display: "flex",
         flexDirection: "column",
     }
