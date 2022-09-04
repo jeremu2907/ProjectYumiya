@@ -8,7 +8,6 @@ class ToDoList extends Component{
         width: "48vw",
         backgroundColor: "#262524",
         borderRadius: "30px",
-
     }
 
     title = {

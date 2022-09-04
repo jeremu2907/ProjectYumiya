@@ -1,21 +1,24 @@
 import React, {Component} from 'react';
+import './TextArea.css'
 
 class ToDoItems extends Component{
     styles = {
         position: "relative",
+        width: "95%",
+        height: "calc(80% - 45px)",
+        border: "none",
         color: "white",
+        backgroundColor: "#262524",
         fontSize: "20px",
         top: "30px",
-        left: "40px"
+        left: "50%",
+        transform: "translate(-50%)"
     }
 
     render(){
         return(
-            <ul style = {this.styles}>
-                <li>First thing</li>
-                <li>Second thing</li>
-                <li>Third thing</li>
-            </ul>
+            <textarea style={this.styles}>
+            </textarea>
         )
     }
 }

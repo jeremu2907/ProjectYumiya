@@ -1,0 +1,22 @@
+textarea { 
+    resize: none; 
+    border: none;
+    overflow: auto;
+    outline: none;
+
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+
+}
+
+textarea::-webkit-scrollbar{
+    width: 8px;
+    background-color: white;
+    border-radius: 4px;
+}
+
+textarea::-webkit-scrollbar-thumb{
+    background-color:rgb(224, 96, 49);
+    border-radius: 4px;
+}
