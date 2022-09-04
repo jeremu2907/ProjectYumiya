@@ -16,7 +16,7 @@ class ToDoList extends Component{
         display: "flex",
         flexDirection: "row",
         alignItems: "flexStart",
-        width:"90%"
+        width:"100%"
     }
 
     state = {
@@ -28,7 +28,7 @@ class ToDoList extends Component{
         return(
             <div style={this.styles}>
                 <div style={this.title}>
-                    <ItemTitle color="#03d3fc" text={"My To-Do List today"} />
+                    <ItemTitle styleChoice={0} color="#03d3fc" text={"My Notes today"}/>
                     <img src={require("../ButtonSet/subButton.png")} alt="sub button"  
                             style={{marginLeft:"auto", marginRight:"10px",scale: "0.5"}}
                             onClick={this.eventModifySub}/>

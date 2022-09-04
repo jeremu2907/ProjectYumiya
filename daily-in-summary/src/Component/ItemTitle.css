@@ -3,3 +3,8 @@
 .globalFont{
     font-family: 'Montserrat', sans-serif;
 }
+
+.editableTitle{
+    width:20ch;
+    height:40px;
+}

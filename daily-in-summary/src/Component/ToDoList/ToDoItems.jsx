@@ -33,12 +33,7 @@ class ToDoItems extends Component{
     }
 
     textChange(event) {
-        if(event.target.value === ''){
-            this.setState({lines: "Your notes here"})
-        }
-        else{
-            this.setState({lines: event.target.value})
-        }
+        this.setState({lines: event.target.value})
         console.log(this.state.lines)
     }
 
