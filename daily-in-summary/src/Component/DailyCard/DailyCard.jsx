@@ -5,8 +5,8 @@ import './DailyCard.css'
 
 class DailyCard extends Component{
     styles = {
-        height: "calc(100% - 10px)",
-        width: "50%",
+        height: "94%",
+        width: "45%",
         backgroundColor: "#262524",
         borderRadius: "30px",
         border: "solid 2px #262524",

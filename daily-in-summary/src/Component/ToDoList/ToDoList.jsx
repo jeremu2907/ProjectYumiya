@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import ItemTitle from '../ItemTitle.jsx'
 import ToDoItems from './ToDoItems.jsx'
+import NotePage from './NotePage'
 
 class ToDoList extends Component{
     styles = {
@@ -18,6 +19,12 @@ class ToDoList extends Component{
         alignItems: "flexStart",
         width:"90%"
     }
+
+    state = {
+        pages: 1,
+        currentPage: 1,
+    }
+
     render(){
         return(
             <div style={this.styles}>
@@ -27,8 +34,19 @@ class ToDoList extends Component{
                     <img src={require("../ButtonSet/subButton.png")} alt="sub button"  onClick={this.eventModifySub}/>
                 </div>
                 <ToDoItems />
+                <NotePage />
             </div>
         );
+    }
+
+    eventModifyAdd = () => {
+        this.setState({pages: this.state.pages + 1});
+        console.log(this.state.pages)
+    }
+
+    eventModifySub = () => {
+        this.setState({pages: this.state.pages - 1});
+        console.log(this.state.pages)
     }
 }
 

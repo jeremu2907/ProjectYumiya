@@ -1,4 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200&display=swap');
+
 textarea { 
+    font-family: 'Montserrat', sans-serif;
+    font-size: '12px';
+    
     resize: none; 
     border: none;
     overflow: auto;

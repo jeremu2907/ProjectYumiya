@@ -12,12 +12,18 @@ class ToDoItems extends Component{
         fontSize: "20px",
         top: "30px",
         left: "50%",
-        transform: "translate(-50%)"
+        transform: "translate(-50%)",
+        marginBottom: "30px"
+    }
+
+    state = {
+        lines: ["Email boss", "Buy gifts", "Meet Josh", "Fix Deprecated methods"]
     }
 
     render(){
         return(
             <textarea style={this.styles}>
+                - Some text here
             </textarea>
         )
     }
