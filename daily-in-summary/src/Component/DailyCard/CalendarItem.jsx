@@ -3,11 +3,11 @@ import '../ItemTitle.css'
 class CalendarItem extends Component{
     styles = {
         position: "relative",
-        height: "auto",
-        width: "100%",
+        height: "180px",
+        width: "97%",
         backgroundColor: "orange",
         borderRadius: "30px",
-        marginBottom: "5px",
+        marginBottom: "10px",
         overflowX: "hidden"
     }
 

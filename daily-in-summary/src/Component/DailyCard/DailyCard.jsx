@@ -5,8 +5,8 @@ import './DailyCard.css'
 
 class DailyCard extends Component{
     styles = {
-        height: "calc(100% - 40px)",
-        width: "90%",
+        height: "calc(100% - 10px)",
+        width: "50%",
         backgroundColor: "#262524",
         borderRadius: "30px",
         border: "solid 2px #262524",
@@ -15,14 +15,21 @@ class DailyCard extends Component{
 
     flexBoxStyle = {
         position: "relative",
-        height: "80%",
+        height: "calc(90% - 60px)",
         width: "calc(100%-20px)",
-        border: "solid 1px #262524",
-        borderRadius: "30px",
+        overflow: "auto",
+        // border: "solid 1px white",
+        // borderRadius: "30px",
+        // display: "flex",
+        // flexDirection: "column",
+        // alignItems: "flexStart",
+    }
+
+    title = {
         display: "flex",
-        flexDirection: "column",
+        flexDirection: "row",
         alignItems: "flexStart",
-        overflowY: "auto",
+        marginBottom: "50px"
     }
 
     eventModifyAdd = () => {
@@ -36,16 +43,21 @@ class DailyCard extends Component{
 
     render(){
         const d = new Date();
-        let cardTitle = "Today ____________________________________ " + (d.getMonth() + 1) + " | " + d.getDate();
+        let cardTitle = "Today " + (d.getMonth() + 1) + " | " + d.getDate();
         return(
             <div style = {this.styles}>
-                <ItemTitle color="white" text= {cardTitle} />
-                <img src={require("./addButton.png")} alt="add button" onClick={this.eventModifyAdd}/>
-                <img src={require("./subButton.png")} alt="sub button" onClick={this.eventModifySub}/>
+                <div style = {this.title}>
+                    <ItemTitle color="white" text= {cardTitle} />
+                    <img src={require("../ButtonSet/addButton.png")} alt="add button" style={{marginLeft:"auto", marginRight:"10px"}} onClick={this.eventModifyAdd}/>
+                    <img src={require("../ButtonSet/subButton.png")} alt="sub button"  onClick={this.eventModifySub}/>
+                </div>
+
                 <div style = {this.flexBoxStyle} className="flexBoxStyle">
                     <CalendarItem text={"First Event"}/>
-                    <CalendarItem text={"Second Event"}/>
-                    <CalendarItem text={"Third Event"}/>
+                    <CalendarItem text={"First Event"}/>
+                    <CalendarItem text={"First Event"}/>
+                    <CalendarItem text={"First Event"}/>
+                    <CalendarItem text={"First Event"}/>
                 </div>
             </div>
         )

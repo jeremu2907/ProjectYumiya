@@ -8,7 +8,6 @@ function ItemTitle(props){
         fontWeight: "bold",
         position: "relative",
         left: "20px",
-        top: "20px",
         writable: true
     }
     return(

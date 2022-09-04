@@ -5,10 +5,9 @@ class MapInfo extends Component{
     styles={
         position: 'relative',
         width: "30%",
-        height: "100%",
+        height: "calc(100% - 30px)",
         alignSelf: "flex-end",
-        borderLeft: "solid 2px white",
-        
+        top:"30px"
     }
     render(){
         return(
