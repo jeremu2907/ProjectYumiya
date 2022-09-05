@@ -43,13 +43,11 @@ class ToDoList extends Component{
     }
 
     eventModifyAdd = () => {
-        this.setState({pages: this.state.pages + 1});
-        console.log(this.state.pages)
+        this.setState({pages: this.state.pages + 1})
     }
 
     eventModifySub = () => {
         this.setState({pages: this.state.pages - 1});
-        console.log(this.state.pages)
     }
 }
 

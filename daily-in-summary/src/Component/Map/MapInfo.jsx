@@ -7,12 +7,21 @@ class MapInfo extends Component{
         width: "30%",
         height: "calc(100% - 30px)",
         alignSelf: "flex-end",
-        top:"30px"
     }
     render(){
         return(
             <div style={this.styles}>
                 <ItemTitle color={"#03d3fc"} text={'Map Info'} />
+                <div style={{justifyContent:"center"}}>
+                    <ul style={{color:"white"}} className = "globalFont">
+                        <li>Place</li>
+                        <li>ETA</li>
+                        <li>Distance</li>
+                        <li>Duration</li>
+                        <li>Traffic Condition</li>
+                        <li>Weather Condition</li>
+                    </ul>
+                </div>
             </div>
         )
     }

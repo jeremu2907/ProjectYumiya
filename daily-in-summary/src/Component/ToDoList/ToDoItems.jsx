@@ -34,12 +34,11 @@ class ToDoItems extends Component{
 
     textChange(event) {
         this.setState({lines: event.target.value})
-        console.log(this.state.lines)
     }
 
     render(){
         return(
-            <textarea style={this.styles} defaultValue={this.state.lines} onChange={this.textChange} />
+            <textarea style={this.styles} value={this.state.lines} onChange={this.textChange} />
         )
     }
 }
