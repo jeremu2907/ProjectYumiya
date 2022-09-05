@@ -39,8 +39,7 @@ class ToDoItems extends Component{
 
     render(){
         return(
-            <textarea style={this.styles} value={this.state.lines} onChange={this.textChange}>
-            </textarea>
+            <textarea style={this.styles} defaultValue={this.state.lines} onChange={this.textChange} />
         )
     }
 }
