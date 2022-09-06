@@ -35,6 +35,7 @@ class ToDoList extends Component{
     render(){
         return(
             <div style={this.styles}>
+                {/* Title and add, subtract page */}
                 <div style={this.title}>
                     <ItemTitle styleChoice={0} color="#03d3fc" text={"My Notes today"}/>
                     <img src={require("../ButtonSet/subButton.png")} alt="sub button"  
@@ -45,8 +46,10 @@ class ToDoList extends Component{
                             onClick={this.eventModifyAdd}/>
                 </div>
 
+                {/* Note display screen */}
                 <ToDoItems text = {this.state.noteContent[this.state.currentPage-1]}/>
 
+                {/* Note navigation */}
                 <div style={this.pageSelector}>
                     <NotePage />
                     <img src={require("./leftButton.png")} alt="move to left button"  
@@ -54,7 +57,7 @@ class ToDoList extends Component{
                                 onClick={this.moveleft}/>
                     <img src={require("./rightButton.png")} alt="move to right button" 
                                 style={{width:"23px", height:"23px"}} 
-                                onClick={this.moveright}/>
+                                onClick={this.moveright}/> 
                 </div>
             </div>
         );

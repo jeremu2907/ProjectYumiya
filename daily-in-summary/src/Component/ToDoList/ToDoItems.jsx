@@ -25,7 +25,7 @@ class ToDoItems extends Component{
         transform: "translate(-50%)",
         marginBottom: "30px"
     }
-
+                                
     //Used to persist state of what is written in Note area
     setState(state){
         window.localStorage.setItem('state', JSON.stringify(state));
