@@ -37,10 +37,13 @@ class ToDoItems extends Component{
     }
 
     textChange(event) {
-        this.setState({noteContent: this.noteContent[this.props.currentPage - 1]event.target.value})
+        const temp = this.state.noteContent;
+        temp[this.props.currentPage - 1] = event.target.value;
+        this.setState({noteContent: temp})
     }
 
     render(){
+        console.log(this.state)
         return(
             <textarea style={this.styles} value={this.state.noteContent[this.props.currentPage - 1]} 
             onChange={this.textChange} />
