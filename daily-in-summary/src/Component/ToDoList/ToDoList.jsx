@@ -20,8 +20,16 @@ class ToDoList extends Component{
     }
 
     state = {
-        pages: 1,
+        pages: 3,
         currentPage: 1,
+        noteContent: ["There is something", "Else in here", "what?"],
+    }
+
+    pageSelector = {
+        display: "flex",
+        flexDirection: "row",
+        justifyContent: "center",
+        alignItems: "center"
     }
 
     render(){
@@ -36,8 +44,18 @@ class ToDoList extends Component{
                             style={{scale: "0.5"}} 
                             onClick={this.eventModifyAdd}/>
                 </div>
-                <ToDoItems />
-                <NotePage />
+
+                <ToDoItems text = {this.state.noteContent[this.state.currentPage-1]}/>
+
+                <div style={this.pageSelector}>
+                    <NotePage />
+                    <img src={require("./leftButton.png")} alt="move to left button"  
+                                style={{ width:"23px", height:"23px",marginRight:"10px"}}
+                                onClick={this.moveleft}/>
+                    <img src={require("./rightButton.png")} alt="move to right button" 
+                                style={{width:"23px", height:"23px"}} 
+                                onClick={this.moveright}/>
+                </div>
             </div>
         );
     }
@@ -48,6 +66,20 @@ class ToDoList extends Component{
 
     eventModifySub = () => {
         this.setState({pages: this.state.pages - 1});
+    }
+
+    moveleft = () => {
+        if(this.state.currentPage > 1){
+            this.setState({currentPage: this.state.currentPage - 1})
+            console.log(this.state.currentPage)
+        }
+    }
+
+    moveright = () => {
+        if(this.state.currentPage < this.state.pages){
+            this.setState({currentPage: this.state.currentPage + 1})
+            console.log(this.state.currentPage)
+        }
     }
 }
 

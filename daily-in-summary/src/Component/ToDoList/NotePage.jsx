@@ -11,7 +11,6 @@ class NotePage extends Component{
         height: "20px",
         width: "20px",
         borderRadius: "10px",
-        left: "50%",
         marginLeft: "10px"
     }
 

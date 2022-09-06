@@ -6,7 +6,7 @@ class ToDoItems extends Component{
         super(props);
 
         this.state = JSON.parse(window.localStorage.getItem('state')) || {
-            lines : "Your notes here"
+            lines : "New Note"
         }
     
         this.textChange = this.textChange.bind(this);
