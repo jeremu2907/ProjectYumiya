@@ -6,7 +6,7 @@ class ToDoItems extends Component{
         super(props);
 
         this.state = JSON.parse(window.localStorage.getItem('state')) || {
-            lines : "New Note"
+            noteContent: ["There is something", "Else in here", "what?"],
         }
     
         this.textChange = this.textChange.bind(this);
@@ -25,6 +25,10 @@ class ToDoItems extends Component{
         transform: "translate(-50%)",
         marginBottom: "30px"
     }
+
+    // state = {
+    //     noteContent: ["There is something", "Else in here", "what?"],
+    // }
                                 
     //Used to persist state of what is written in Note area
     setState(state){
@@ -33,12 +37,13 @@ class ToDoItems extends Component{
     }
 
     textChange(event) {
-        this.setState({lines: event.target.value})
+        this.setState({noteContent: this.noteContent[this.props.currentPage - 1]event.target.value})
     }
 
     render(){
         return(
-            <textarea style={this.styles} value={this.state.lines} onChange={this.textChange} />
+            <textarea style={this.styles} value={this.state.noteContent[this.props.currentPage - 1]} 
+            onChange={this.textChange} />
         )
     }
 }

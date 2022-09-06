@@ -22,7 +22,6 @@ class ToDoList extends Component{
     state = {
         pages: 3,
         currentPage: 1,
-        noteContent: ["There is something", "Else in here", "what?"],
     }
 
     pageSelector = {
@@ -47,7 +46,7 @@ class ToDoList extends Component{
                 </div>
 
                 {/* Note display screen */}
-                <ToDoItems text = {this.state.noteContent[this.state.currentPage-1]}/>
+                <ToDoItems currentPage={this.state.currentPage}/>
 
                 {/* Note navigation */}
                 <div style={this.pageSelector}>
