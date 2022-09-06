@@ -1,9 +1,19 @@
 import React, {Component} from 'react';
 import ItemTitle from '../ItemTitle.jsx'
 import ToDoItems from './ToDoItems.jsx'
-import NotePage from './NotePage'
 
 class ToDoList extends Component{
+    constructor(){
+        super();
+        this.state = {
+            pages: 3,
+            currentPage: 1,
+            navigateStatus: []
+        }
+        this.state.navigateStatus = Array(this.state.pages)
+        this.state.navigateStatus.fill("rgba(255, 255, 255, 0.05)");
+        this.state.navigateStatus[this.state.currentPage - 1] = "#870c20da"
+    }
     styles = {
         height: "48vh",
         width: "48vw",
@@ -19,16 +29,19 @@ class ToDoList extends Component{
         width:"100%"
     }
 
-    state = {
-        pages: 3,
-        currentPage: 1,
-    }
-
     pageSelector = {
         display: "flex",
         flexDirection: "row",
         justifyContent: "center",
         alignItems: "center"
+    }
+
+    pageCircle = {
+        position: "relative",
+        height: "20px",
+        width: "20px",
+        borderRadius: "10px",
+        marginLeft: "10px",
     }
 
     render(){
@@ -50,7 +63,12 @@ class ToDoList extends Component{
 
                 {/* Note navigation */}
                 <div style={this.pageSelector}>
-                    <NotePage />
+                    {/* Note navigation */}
+                    <div style = {{display: "flex", flexDirection: "row", alignItems: "flexStart"}}>
+                        {this.state.navigateStatus.map(navigateStatus => <div key={Math.random()} style={{...this.pageCircle, backgroundColor: navigateStatus}}></div>)}
+                    </div>
+
+                    {/* Left right navigation */}
                     <img src={require("./leftButton.png")} alt="move to left button"  
                                 style={{ width:"23px", height:"23px",marginRight:"10px"}}
                                 onClick={this.moveleft}/>
@@ -62,26 +80,36 @@ class ToDoList extends Component{
         );
     }
 
+    // Function to add page
     eventModifyAdd = () => {
         this.setState({pages: this.state.pages + 1})
     }
 
+    // Function to remove current page
     eventModifySub = () => {
         this.setState({pages: this.state.pages - 1});
     }
 
+    //Function to move page left
     moveleft = () => {
         if(this.state.currentPage > 1){
-            this.setState({currentPage: this.state.currentPage - 1})
-            console.log(this.state.currentPage)
+            this.setState({currentPage: this.state.currentPage - 1}, this.navBar)
         }
     }
 
+    //Function to move page right
     moveright = () => {
         if(this.state.currentPage < this.state.pages){
-            this.setState({currentPage: this.state.currentPage + 1})
-            console.log(this.state.currentPage)
+            this.setState({currentPage: this.state.currentPage + 1}, this.navBar)
         }
+    }
+
+    // Function to update nav bar
+    navBar = () => {
+        const temp = Array(this.state.pages)
+        temp.fill("rgba(255, 255, 255, 0.05)")
+        temp[this.state.currentPage - 1] = "#870c20da"
+        this.setState({navigateStatus: temp})
     }
 }
 

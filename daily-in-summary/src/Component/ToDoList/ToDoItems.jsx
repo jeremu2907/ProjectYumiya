@@ -25,10 +25,6 @@ class ToDoItems extends Component{
         transform: "translate(-50%)",
         marginBottom: "30px"
     }
-
-    // state = {
-    //     noteContent: ["There is something", "Else in here", "what?"],
-    // }
                                 
     //Used to persist state of what is written in Note area
     setState(state){
@@ -37,13 +33,15 @@ class ToDoItems extends Component{
     }
 
     textChange(event) {
+        //Make a copy of noteContent
+        //Change what is edited
+        //Save to localStorage
         const temp = this.state.noteContent;
         temp[this.props.currentPage - 1] = event.target.value;
         this.setState({noteContent: temp})
     }
 
     render(){
-        console.log(this.state)
         return(
             <textarea style={this.styles} value={this.state.noteContent[this.props.currentPage - 1]} 
             onChange={this.textChange} />
