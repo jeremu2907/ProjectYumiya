@@ -13,6 +13,11 @@ class ToDoList extends Component{
         this.state.navigateStatus = Array(this.state.pages)
         this.state.navigateStatus.fill("rgba(255, 255, 255, 0.05)");
         this.state.navigateStatus[this.state.currentPage - 1] = "#870c20da"
+
+        // this.moveleft = this.moveleft.bind(this);
+        // this.moveright = this.moveright.bind(this);
+        // this.eventModifyAdd = this.eventModifyAdd.bind(this);
+        // this.eventModifySub = this.moveleft.bind(this);
     }
     styles = {
         height: "48vh",
@@ -33,7 +38,8 @@ class ToDoList extends Component{
         display: "flex",
         flexDirection: "row",
         justifyContent: "center",
-        alignItems: "center"
+        alignItems: "center",
+        overflowX: "hidden"
     }
 
     pageCircle = {
@@ -59,7 +65,7 @@ class ToDoList extends Component{
                 </div>
 
                 {/* Note display screen */}
-                <ToDoItems currentPage={this.state.currentPage}/>
+                <ToDoItems pages={this.state.pages} currentPage={this.state.currentPage}/>
 
                 {/* Note navigation */}
                 <div style={this.pageSelector}>
@@ -80,15 +86,20 @@ class ToDoList extends Component{
         );
     }
 
+    // setState(state){
+    //     window.localStorage.setItem('pages', JSON.stringify(state));
+    //     super.setState(state)
+    // }
+
     // Function to add page
-    eventModifyAdd = () => {
-        this.setState({pages: this.state.pages + 1})
-    }
+    // eventModifyAdd = () => {
+    //     this.setState({pages: this.state.pages + 1}, this.moveright)
+    // }
 
     // Function to remove current page
-    eventModifySub = () => {
-        this.setState({pages: this.state.pages - 1});
-    }
+    // eventModifySub = () => {
+    //     this.setState({pages: this.state.pages - 1});
+    // }
 
     //Function to move page left
     moveleft = () => {
