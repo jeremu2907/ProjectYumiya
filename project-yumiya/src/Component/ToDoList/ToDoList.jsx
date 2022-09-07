@@ -92,14 +92,14 @@ class ToDoList extends Component{
     // }
 
     // Function to add page
-    eventModifyAdd = () => {
-        this.setState({pages: this.state.pages + 1}, this.moveright)
-    }
+    // eventModifyAdd = () => {
+    //     this.setState({pages: this.state.pages + 1}, this.moveright)
+    // }
 
     // Function to remove current page
-    eventModifySub = () => {
-        this.setState({pages: this.state.pages - 1});
-    }
+    // eventModifySub = () => {
+    //     this.setState({pages: this.state.pages - 1});
+    // }
 
     //Function to move page left
     moveleft = () => {
