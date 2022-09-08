@@ -5,7 +5,7 @@ import ToDoItems from './ToDoItems.jsx'
 class ToDoList extends Component{
     constructor(){
         super();
-        this.state = {
+        this.state = JSON.parse(window.localStorage.getItem('ToDoList')) || {
             pages: 3,
             currentPage: 1,
             navigateStatus: []
@@ -14,8 +14,8 @@ class ToDoList extends Component{
         this.state.navigateStatus.fill("rgba(255, 255, 255, 0.05)");
         this.state.navigateStatus[this.state.currentPage - 1] = "#870c20da"
 
-        // this.moveleft = this.moveleft.bind(this);
-        // this.moveright = this.moveright.bind(this);
+        this.moveleft = this.moveleft.bind(this);
+        this.moveright = this.moveright.bind(this);
         // this.eventModifyAdd = this.eventModifyAdd.bind(this);
         // this.eventModifySub = this.moveleft.bind(this);
     }
@@ -86,14 +86,16 @@ class ToDoList extends Component{
         );
     }
 
-    // setState(state){
-    //     window.localStorage.setItem('pages', JSON.stringify(state));
-    //     super.setState(state)
-    // }
+    setStorage(){
+        window.localStorage.setItem('ToDoList', JSON.stringify(this.state));
+        // super.setState(this.state)
+    }
 
     // Function to add page
     // eventModifyAdd = () => {
-    //     this.setState({pages: this.state.pages + 1}, this.moveright)
+    //     this.setState({pages: this.state.pages + 1}, () => {
+    //         this.setState({currentPage: this.state.pages}, this.navBar)
+    //     })
     // }
 
     // Function to remove current page
@@ -106,6 +108,7 @@ class ToDoList extends Component{
         if(this.state.currentPage > 1){
             this.setState({currentPage: this.state.currentPage - 1}, this.navBar)
         }
+        this.setStorage()
     }
 
     //Function to move page right
@@ -113,6 +116,7 @@ class ToDoList extends Component{
         if(this.state.currentPage < this.state.pages){
             this.setState({currentPage: this.state.currentPage + 1}, this.navBar)
         }
+        this.setStorage()
     }
 
     // Function to update nav bar
@@ -121,6 +125,7 @@ class ToDoList extends Component{
         temp.fill("rgba(255, 255, 255, 0.05)")
         temp[this.state.currentPage - 1] = "#870c20da"
         this.setState({navigateStatus: temp})
+        this.setStorage()
     }
 }
 
