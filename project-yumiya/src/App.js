@@ -8,6 +8,7 @@ import DailyCard from './Component/DailyCard/DailyCard.jsx'
 function App() {
   return (
     <div className = "content-area">
+      <img src={require("./icon.png")} className="logo" alt="logo"></img>
       <div className = "content-area-left">
         <DailyCard />
       </div>
