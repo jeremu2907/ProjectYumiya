@@ -1,12 +1,13 @@
 import React, {Component} from 'react';
 import ItemTitle from '../ItemTitle.jsx'
 import ToDoItems from './ToDoItems.jsx'
+import './TextArea.css'
 
 class ToDoList extends Component{
     constructor(){
         super();
-        this.state = {
-            pages: 3,
+        this.state = JSON.parse(window.localStorage.getItem('ToDoList')) || {
+            pages: 1,
             currentPage: 1,
             navigateStatus: []
         }
@@ -14,9 +15,9 @@ class ToDoList extends Component{
         this.state.navigateStatus.fill("rgba(255, 255, 255, 0.05)");
         this.state.navigateStatus[this.state.currentPage - 1] = "#870c20da"
 
-        // this.moveleft = this.moveleft.bind(this);
-        // this.moveright = this.moveright.bind(this);
-        // this.eventModifyAdd = this.eventModifyAdd.bind(this);
+        this.moveleft = this.moveleft.bind(this);
+        this.moveright = this.moveright.bind(this);
+        this.eventModifyAdd = this.eventModifyAdd.bind(this);
         // this.eventModifySub = this.moveleft.bind(this);
     }
     styles = {
@@ -39,7 +40,7 @@ class ToDoList extends Component{
         flexDirection: "row",
         justifyContent: "center",
         alignItems: "center",
-        overflowX: "hidden"
+        overflowX: "hidden",
     }
 
     pageCircle = {
@@ -57,10 +58,11 @@ class ToDoList extends Component{
                 <div style={this.title}>
                     <ItemTitle styleChoice={0} color="#03d3fc" text={"My Notes today"}/>
                     <img src={require("../ButtonSet/subButton.png")} alt="sub button"  
-                            style={{marginLeft:"auto", marginRight:"10px",scale: "0.5"}}
+                            style={{marginLeft:"auto", marginRight:"10px"}}
+                            className='AddSubButton'
                             onClick={this.eventModifySub}/>
                     <img src={require("../ButtonSet/addButton.png")} alt="add button" 
-                            style={{scale: "0.5"}} 
+                            className='AddSubButton'
                             onClick={this.eventModifyAdd}/>
                 </div>
 
@@ -86,15 +88,17 @@ class ToDoList extends Component{
         );
     }
 
-    // setState(state){
-    //     window.localStorage.setItem('pages', JSON.stringify(state));
-    //     super.setState(state)
-    // }
+    setStorage(){
+        window.localStorage.setItem('ToDoList', JSON.stringify(this.state));
+        // super.setState(this.state)
+    }
 
-    // Function to add page
-    // eventModifyAdd = () => {
-    //     this.setState({pages: this.state.pages + 1}, this.moveright)
-    // }
+    // Function to add page another page to the back
+    eventModifyAdd = () => {
+        this.setState({pages: this.state.pages + 1}, () => {    
+            this.setState({currentPage: this.state.pages}, this.navBar)
+        })
+    }
 
     // Function to remove current page
     // eventModifySub = () => {
@@ -115,12 +119,13 @@ class ToDoList extends Component{
         }
     }
 
-    // Function to update nav bar
+    // Function to update nav bar to highlight currentPage
     navBar = () => {
         const temp = Array(this.state.pages)
         temp.fill("rgba(255, 255, 255, 0.05)")
         temp[this.state.currentPage - 1] = "#870c20da"
         this.setState({navigateStatus: temp})
+        this.setStorage()
     }
 }
 
