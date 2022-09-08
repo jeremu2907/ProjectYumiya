@@ -1,12 +1,13 @@
 import React, {Component} from 'react';
 import ItemTitle from '../ItemTitle.jsx'
 import ToDoItems from './ToDoItems.jsx'
+import './TextArea.css'
 
 class ToDoList extends Component{
     constructor(){
         super();
         this.state = JSON.parse(window.localStorage.getItem('ToDoList')) || {
-            pages: 3,
+            pages: 1,
             currentPage: 1,
             navigateStatus: []
         }
@@ -39,7 +40,7 @@ class ToDoList extends Component{
         flexDirection: "row",
         justifyContent: "center",
         alignItems: "center",
-        overflowX: "hidden"
+        overflowX: "hidden",
     }
 
     pageCircle = {
@@ -57,10 +58,11 @@ class ToDoList extends Component{
                 <div style={this.title}>
                     <ItemTitle styleChoice={0} color="#03d3fc" text={"My Notes today"}/>
                     <img src={require("../ButtonSet/subButton.png")} alt="sub button"  
-                            style={{marginLeft:"auto", marginRight:"10px",scale: "0.5"}}
+                            style={{marginLeft:"auto", marginRight:"10px"}}
+                            className='AddSubButton'
                             onClick={this.eventModifySub}/>
                     <img src={require("../ButtonSet/addButton.png")} alt="add button" 
-                            style={{scale: "0.5"}} 
+                            className='AddSubButton'
                             onClick={this.eventModifyAdd}/>
                 </div>
 
@@ -93,7 +95,7 @@ class ToDoList extends Component{
 
     // Function to add page another page to the back
     eventModifyAdd = () => {
-        this.setState({pages: this.state.pages + 1}, () => {
+        this.setState({pages: this.state.pages + 1}, () => {    
             this.setState({currentPage: this.state.pages}, this.navBar)
         })
     }
