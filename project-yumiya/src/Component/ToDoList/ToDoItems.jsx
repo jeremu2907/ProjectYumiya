@@ -8,6 +8,7 @@ class ToDoItems extends Component{
         this.state = JSON.parse(window.localStorage.getItem('state')) || {
             noteContent: Array(props.pages).fill("")
         }
+
         this.textChange = this.textChange.bind(this);
     }
 
@@ -35,15 +36,22 @@ class ToDoItems extends Component{
         //Make a copy of noteContent
         //Change what is edited
         //Save to localStorage
-        const temp = this.state.noteContent;
-        temp[this.props.currentPage - 1] = event.target.value;
+        let temp = this.state.noteContent;
+
+        //If added a new page, push a nother element to array
+        //Else simply update the current array
+        if(this.props.currentPage > this.state.noteContent.length)
+            temp.push(event.target.value);
+        else
+            temp[this.props.currentPage - 1] = event.target.value;
         this.setState({noteContent: temp})
     }
 
     render(){
         return(
-            <textarea style={this.styles} value={this.state.noteContent[this.props.currentPage - 1]} 
-            onChange={this.textChange} />
+            <textarea style={this.styles} value={ (this.props.currentPage <= this.state.noteContent.length)?
+                this.state.noteContent[this.props.currentPage - 1] : "New Note"} 
+                onChange={this.textChange}/>
         )
     }
 }

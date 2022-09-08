@@ -16,7 +16,7 @@ class ToDoList extends Component{
 
         this.moveleft = this.moveleft.bind(this);
         this.moveright = this.moveright.bind(this);
-        // this.eventModifyAdd = this.eventModifyAdd.bind(this);
+        this.eventModifyAdd = this.eventModifyAdd.bind(this);
         // this.eventModifySub = this.moveleft.bind(this);
     }
     styles = {
@@ -91,12 +91,12 @@ class ToDoList extends Component{
         // super.setState(this.state)
     }
 
-    // Function to add page
-    // eventModifyAdd = () => {
-    //     this.setState({pages: this.state.pages + 1}, () => {
-    //         this.setState({currentPage: this.state.pages}, this.navBar)
-    //     })
-    // }
+    // Function to add page another page to the back
+    eventModifyAdd = () => {
+        this.setState({pages: this.state.pages + 1}, () => {
+            this.setState({currentPage: this.state.pages}, this.navBar)
+        })
+    }
 
     // Function to remove current page
     // eventModifySub = () => {
@@ -108,7 +108,6 @@ class ToDoList extends Component{
         if(this.state.currentPage > 1){
             this.setState({currentPage: this.state.currentPage - 1}, this.navBar)
         }
-        this.setStorage()
     }
 
     //Function to move page right
@@ -116,10 +115,9 @@ class ToDoList extends Component{
         if(this.state.currentPage < this.state.pages){
             this.setState({currentPage: this.state.currentPage + 1}, this.navBar)
         }
-        this.setStorage()
     }
 
-    // Function to update nav bar
+    // Function to update nav bar to highlight currentPage
     navBar = () => {
         const temp = Array(this.state.pages)
         temp.fill("rgba(255, 255, 255, 0.05)")
