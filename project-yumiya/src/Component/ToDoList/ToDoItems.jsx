@@ -47,7 +47,18 @@ class ToDoItems extends Component{
         this.setState({noteContent: temp})
     }
 
+    deletePage(){
+        if(this.props.pages < this.state.noteContent.length){
+            this.state.noteContent.splice(this.props.currentPage - 1, 1)
+            this.setState({noteContent: this.state.noteContent})
+        }
+    }
+
     render(){
+        this.deletePage();
+        if(this.props.pages < this.state.noteContent.length){
+            this.setState(this.state.noteContent.splice(this.props.currentPage - 1, 1))
+        }
         return(
             <textarea style={this.styles} value={ (this.props.currentPage <= this.state.noteContent.length)?
                 this.state.noteContent[this.props.currentPage - 1] : "New Note"} 

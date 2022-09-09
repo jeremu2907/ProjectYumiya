@@ -18,7 +18,7 @@ class ToDoList extends Component{
         this.moveleft = this.moveleft.bind(this);
         this.moveright = this.moveright.bind(this);
         this.eventModifyAdd = this.eventModifyAdd.bind(this);
-        // this.eventModifySub = this.moveleft.bind(this);
+        this.eventModifySub = this.eventModifySub.bind(this);
     }
     styles = {
         height: "48vh",
@@ -101,9 +101,16 @@ class ToDoList extends Component{
     }
 
     // Function to remove current page
-    // eventModifySub = () => {
-    //     this.setState({pages: this.state.pages - 1});
-    // }
+    eventModifySub = () => {
+        if(this.state.pages > 1){
+            this.setState({pages: this.state.pages - 1}, () => {
+                if(this.state.currentPage > 1)  
+                    this.setState({currentPage: this.state.currentPage - 1}, this.navBar)
+                else
+                    this.setState({currentPage: 1}, this.navBar)
+            })
+        }
+    }
 
     //Function to move page left
     moveleft = () => {
