@@ -18,6 +18,7 @@ function App() {
         <MapGUI className="noteArea"/>
       </div>
     </div>
+    
   );
 }
 

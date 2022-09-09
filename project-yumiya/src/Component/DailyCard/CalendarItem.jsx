@@ -1,6 +1,19 @@
 import React, {Component} from 'react'
 import '../ItemTitle.css'
+import './CalendarItem.css'
 class CalendarItem extends Component{
+    constructor(props){
+        super(props);
+
+        this.state = {
+            EventID: Math.random(),
+            Time: "10:00am",
+            Place: "1234 N Road, City, State Zip",
+            Link: "somewhere.com",
+            Note: "This is a test",
+        }
+    }
+
     styles = {
         position: "relative",
         height: "180px",
@@ -9,7 +22,7 @@ class CalendarItem extends Component{
         borderRadius: "30px",
         marginBottom: "10px",
         overflowX: "hidden",
-        color: "white"
+        color: "white",
     }
 
     title = {
@@ -24,16 +37,20 @@ class CalendarItem extends Component{
 
     render(){
         return(
-            <div style = {this.styles}>
+            <div style = {this.styles} className="box" onClick={this.selectItem}>
                 <h3 style = {this.title} className = "globalFont">{this.props.text}</h3>
                 <ul className = "globalFont">
-                    <li>Time</li>
-                    <li>Place</li>
-                    <li>Link</li>
-                    <li>Note</li>
+                    <li>{this.state.Time}</li>
+                    <li>{this.state.Place}</li>
+                    <li>{this.state.Link}</li>
+                    <li>{this.state.Note}</li>
                 </ul>
             </div>
         )
+    }
+
+    selectItem = () => {
+        this.props.parentCallback(this.state.EventID)
     }
 }
 

@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
 body {
     margin: 0;
     overflow-x: hidden;
@@ -21,4 +23,34 @@ body {
     /* left: 5px; */
     top: 0px;
     scale: 0.05
+}
+
+.googleSignInOut{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white; 
+    border: none;
+    background-color: rgba(0,0,0,0.3);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 40px;
+    padding: 30px;
+
+}
+
+.googleSignInOut:hover{
+    animation: signIn 3s infinite;
+}
+
+@keyframes signIn {
+    0%{
+        background-color: rgba(0,0,0,0.3)
+    }
+    50%{
+        background-color: rgba(255,255,255,0.3)
+    }
+    100%{
+        background-color: rgba(0,0,0,0.3)
+    }
 }

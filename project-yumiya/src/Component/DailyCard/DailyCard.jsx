@@ -4,6 +4,14 @@ import CalendarItem from "./CalendarItem.jsx"
 import './DailyCard.css'
 
 class DailyCard extends Component{
+    constructor(props){
+        super(props)
+
+        this.state = {
+            selectedEvents: new Set()
+        }
+    }
+
     styles = {
         height: "94%",
         width: "45%",
@@ -52,14 +60,22 @@ class DailyCard extends Component{
                 </div>
 
                 <div style = {this.flexBoxStyle} className="flexBoxStyle">
-                    <CalendarItem text={"First Event"}/>
-                    <CalendarItem text={"First Event"}/>
-                    <CalendarItem text={"First Event"}/>
-                    <CalendarItem text={"First Event"}/>
-                    <CalendarItem text={"First Event"}/>
+                    <CalendarItem parentCallback={this.handleUserSelection} text={"First Event"}/>
+                    <CalendarItem parentCallback={this.handleUserSelection} text={"First Event"}/>
+                    <CalendarItem parentCallback={this.handleUserSelection} text={"First Event"}/>
+                    <CalendarItem parentCallback={this.handleUserSelection} text={"First Event"}/>
+                    <CalendarItem parentCallback={this.handleUserSelection} text={"First Event"}/>
+                    <CalendarItem parentCallback={this.handleUserSelection} text={"First Event"}/>
+                    <CalendarItem parentCallback={this.handleUserSelection} text={"First Event"}/>
+                    <CalendarItem parentCallback={this.handleUserSelection} text={"First Event"}/>
                 </div>
             </div>
         )
+    }
+
+    handleUserSelection = (selected) => {
+        this.state.selectedEvents.add(selected)
+        this.setState({selectedEvents: this.state.selectedEvents})
     }
 }
 
