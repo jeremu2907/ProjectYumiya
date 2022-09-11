@@ -18,7 +18,7 @@ class DailyCard extends Component{
 
     styles = {
         height: "94%",
-        width: "45%",
+        width: "60%",
         backgroundColor: "rgba(20, 20, 20, 0.77)",
         border: "solid 2px #262524",
         padding: "10px",
@@ -92,7 +92,7 @@ class DailyCard extends Component{
         setInterval(() => {
             listUpcomingEvents()
             this.forceUpdate()
-        },2000)
+        },5000)
     }
     handleUserSelection = (selected) => {
         this.state.selectedEvents.add(selected)
