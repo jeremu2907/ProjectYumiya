@@ -21,7 +21,8 @@ class DailyCard extends Component{
         width: "45%",
         backgroundColor: "rgba(20, 20, 20, 0.77)",
         border: "solid 2px #262524",
-        padding: "10px"
+        padding: "10px",
+        minWidth: "189px"
     }
 
     flexBoxStyle = {
@@ -29,12 +30,15 @@ class DailyCard extends Component{
         height: "calc(90% - 60px)",
         width: "calc(100%-20px)",
         overflow: "auto",
+        borderTopLeftRadius: "30px",
+        borderBottomLeftRadius: "30px",
     }
 
     title = {
         display: "flex",
         flexDirection: "row",
-        alignItems: "flexStart",
+        alignItems: "center",
+        justifyContent:"center",
         marginBottom: "30px",
         marginTop: "30px"
     }
@@ -50,12 +54,13 @@ class DailyCard extends Component{
     
 
     render(){
-        const d = new Date();
-        let cardTitle = "Today " + (d.getMonth() + 1) + " | " + d.getDate();
+        // const d = new Date();
+        // let cardTitle = "Today " + (d.getMonth() + 1) + " | " + d.getDate();
+        let cardTitle = "Upcoming events";
         return(
             <div style = {this.styles}>
                 <div style = {this.title}>
-                    <ItemTitle color="#03d3fc" text= {cardTitle} />
+                    <ItemTitle color="#03d3fc" text= {cardTitle}/>
                     <img src={require("../ButtonSet/subButton.png")} alt="sub button"  
                             style={{marginLeft:"auto", marginRight:"10px",scale: "0.5"}}
                             onClick={this.eventModifySub}/>
@@ -69,8 +74,13 @@ class DailyCard extends Component{
                     user log in) */}
                     {   !JSON.parse(window.localStorage.getItem("eventList")) ||
                         JSON.parse(window.localStorage.getItem("eventList"))   
-                            .map(event => <CalendarItem key={event.eventID} time={event.eventTime} 
-                                text={event.eventName}/>)
+                            .map(event => <CalendarItem key={event.eventID} 
+                                name={event.name}
+                                time={event.dateTime}
+                                location={event.location}
+                                description={event.description}
+                                id={event.id}
+                                />)
                     }
                 </div>
             </div>

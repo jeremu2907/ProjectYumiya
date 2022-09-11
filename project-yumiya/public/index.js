@@ -142,9 +142,11 @@ async function listUpcomingEvents() {
   let eventList = Array()
   for(let i = 0; i < events.length; i++){
       const event = {
-          eventName : events[i].summary,
-          eventTime : events[i].start.dateTime,
-          eventID : events[i].id
+          name : events[i].summary,
+          dateTime : events[i].start.dateTime,
+          id : events[i].id,
+          location: events[i].location,
+          description: events[i].description
       }
 
       eventList.push(event)

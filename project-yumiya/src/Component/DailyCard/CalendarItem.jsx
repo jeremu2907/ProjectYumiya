@@ -3,49 +3,53 @@ import '../ItemTitle.css'
 import './CalendarItem.css'
 
 class CalendarItem extends Component{
-    constructor(props){
-        super(props);
+    // constructor(props){
+    //     super(props);
 
-        this.state = {
-            // EventID: Math.random(),
-            Time: props.time,
-            // Place: "1234 N Road, City, State Zip",
-            // Link: "somewhere.com",
-            // Note: "This is a test",
-        }
-    }
+    //     // this.state = {
+    //     //     id: props.id,
+    //     //     time: props.time,
+    //     //     location: props.location,
+    //     //     description: props.description,
+    //     //     name: props.name
+    //     //     // Place: "1234 N Road, City, State Zip",
+    //     //     // Link: "somewhere.com",
+    //     //     // Note: "This is a test",
+    //     // }
+    // }
 
     styles = {
         position: "relative",
-        height: "180px",
-        width: "97%",
+        height: "auto",
+        width: "calc(97% - 30px)",
         backgroundColor: "rgba(255, 255, 255, 0.05)",
         borderRadius: "30px",
         marginBottom: "10px",
         overflowX: "hidden",
         color: "white",
+        padding: "15px"
     }
 
     title = {
         position: "relative",
-        left: "10px"
+        
     }
 
     eventDetail = {
         position: "relative",
-        left: "10px"
+        
     }
 
     render(){
         return(
             <div style = {this.styles} className="box" onClick={this.selectItem}>
-                <h3 style = {this.title} className = "globalFont">{this.props.text}</h3>
-                <ul className = "globalFont">
-                    <li>{this.state.Time}</li>
-                    {/* <li>{this.state.Place}</li>
-                    <li>{this.state.Link}</li>
-                    <li>{this.state.Note}</li> */}
-                </ul>
+                <h3 style = {this.title} className = "globalFont">{this.props.name}</h3>
+                <div className = "globalFont" style={{paddingLeft: "10px"}}>
+                    {(this.props.time === "")? "" : <p>{this.props.time.substr(0, this.props.time.indexOf("T"))}</p>}
+                    {(this.props.time === "")? "" : <p>{this.props.time.substr(this.props.time.indexOf("T") + 1, this.props.time.length)}</p>}
+                    {(this.props.location === "")? "" : <p>{this.props.location}</p>}
+                    {(this.props.description === "")? "" : <p>{this.props.description}</p>}
+                </div>
             </div>
         )
     }
