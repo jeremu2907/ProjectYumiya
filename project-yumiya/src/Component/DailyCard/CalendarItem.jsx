@@ -1,16 +1,17 @@
 import React, {Component} from 'react'
 import '../ItemTitle.css'
 import './CalendarItem.css'
+
 class CalendarItem extends Component{
     constructor(props){
         super(props);
 
         this.state = {
-            EventID: Math.random(),
-            Time: "10:00am",
-            Place: "1234 N Road, City, State Zip",
-            Link: "somewhere.com",
-            Note: "This is a test",
+            // EventID: Math.random(),
+            Time: props.time,
+            // Place: "1234 N Road, City, State Zip",
+            // Link: "somewhere.com",
+            // Note: "This is a test",
         }
     }
 
@@ -41,9 +42,9 @@ class CalendarItem extends Component{
                 <h3 style = {this.title} className = "globalFont">{this.props.text}</h3>
                 <ul className = "globalFont">
                     <li>{this.state.Time}</li>
-                    <li>{this.state.Place}</li>
+                    {/* <li>{this.state.Place}</li>
                     <li>{this.state.Link}</li>
-                    <li>{this.state.Note}</li>
+                    <li>{this.state.Note}</li> */}
                 </ul>
             </div>
         )
@@ -51,6 +52,7 @@ class CalendarItem extends Component{
 
     selectItem = () => {
         this.props.parentCallback(this.state.EventID)
+        // listUpcomingEvents()
     }
 }
 

@@ -23,28 +23,34 @@ let gisInited = false;
 
 // Signs user in
 function handleAuthClick() {
-    tokenClient.callback = async (resp) => {
-      if (resp.error !== undefined) {
-        throw (resp);
-      }
-    //   document.getElementById('signout_button').style.visibility = 'visible';
-      document.getElementById('authorize_button').innerText = 'Refresh';
-      document.getElementById('authorize_button').style.top = "0px";
-      document.getElementById('authorize_button').style.left = "0px";
-      document.getElementById('authorize_button').style.transform = "translate(0,0)"
-      document.getElementById('authorize_button').style.fontSize = "20px"
-      document.getElementById('authorize_button').style.padding = "5px"
-      await listUpcomingEvents();
-    };
-
-    if (gapi.client.getToken() === null) {
-      // Prompt the user to select a Google Account and ask for consent to share their data
-      // when establishing a new session.
-      tokenClient.requestAccessToken({prompt: 'consent'});
-    } else {
-      // Skip display of account chooser and consent dialog for an existing session.
-      tokenClient.requestAccessToken({prompt: ''});
+  tokenClient.callback = async (resp) => {
+    if (resp.error !== undefined) {
+      throw (resp);
     }
+    //document.getElementById('signout_button').style.visibility = 'visible';
+    unlockPage();
+    document.getElementById("root").style.visibility = "visible";
+    // window.localStorage.removeItem("eventList")
+    window.localStorage.setItem("eventList",JSON.stringify(await listUpcomingEvents()));
+  };
+
+  if (gapi.client.getToken() === null) {
+    // Prompt the user to select a Google Account and ask for consent to share their data
+    // when establishing a new session.
+    tokenClient.requestAccessToken({prompt: 'consent'});
+  } else {
+    // Skip display of account chooser and consent dialog for an existing session.
+    tokenClient.requestAccessToken({prompt: ''});
+  }
+}
+
+function unlockPage(){
+  document.getElementById('authorize_button').innerText = 'Refresh';
+  document.getElementById('authorize_button').style.top = "0px";
+  document.getElementById('authorize_button').style.left = "0px";
+  document.getElementById('authorize_button').style.transform = "translate(0,0)"
+  document.getElementById('authorize_button').style.fontSize = "20px"
+  document.getElementById('authorize_button').style.padding = "5px"
 }
 
 
@@ -110,33 +116,39 @@ function maybeEnableButtons() {
 * appropriate message is printed.
 */
 async function listUpcomingEvents() {
-    let response;
-    try {
-    const request = {
-        'calendarId': 'c15306c1epdedq0ag8rgci6i8s@group.calendar.google.com',
-        'timeMin': (new Date()).toISOString(),
-        'showDeleted': false,
-        'singleEvents': true,
-        'maxResults': 10,
-        'orderBy': 'startTime',
-    };
-    response = await gapi.client.calendar.events.list(request);
-    } catch (err) {
-    document.getElementById('content').innerText = err.message;
-    return;
-    }
+  /* global gapi */
+  let response;
+  try {
+  const request = {
+      'calendarId': 'c15306c1epdedq0ag8rgci6i8s@group.calendar.google.com',
+      'timeMin': (new Date()).toISOString(),
+      'showDeleted': false,
+      'singleEvents': true,
+      'maxResults': 10,
+      'orderBy': 'startTime',
+  };
+  response = await gapi.client.calendar.events.list(request);
+  } catch (err) {
+      console.log(err.message);
+      return;
+  }
 
-    const events = response.result.items;
-    if (!events || events.length == 0) {
-    document.getElementById('content').innerText = 'No events found.';
-    return;
-    }
-    // Flatten to string to display
-    const output = events.reduce(
-        (str, event) => `${str}${event.summary} (${event.start.dateTime || event.start.date})\n`,
-        'Events:\n');
-    // document.getElementById('content').innerText = output;
-    console.log(output)
+  const events = response.result.items;
+  if (!events || events.length === 0) {
+      console.log( 'No events found.');
+      return;
+  }
+  
+  let eventList = Array()
+  for(let i = 0; i < events.length; i++){
+      const event = {
+          eventName : events[i].summary,
+          eventTime : events[i].start.dateTime,
+          eventID : events[i].id
+      }
 
-    document.getElementById("root").style.visibility = "visible";
+      eventList.push(event)
+  }
+
+  return eventList;
 }

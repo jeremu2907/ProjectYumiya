@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import ItemTitle from "../ItemTitle.jsx"
 import CalendarItem from "./CalendarItem.jsx"
+import {listUpcomingEvents} from "./updateEvent.js"
 import './DailyCard.css'
 
 class DailyCard extends Component{
@@ -8,8 +9,11 @@ class DailyCard extends Component{
         super(props)
 
         this.state = {
-            selectedEvents: new Set()
+            selectedEvents: new Set(),
+            eventList: {}
         }
+
+        
     }
 
     styles = {
@@ -43,6 +47,7 @@ class DailyCard extends Component{
         console.log("Button sub clicked")
     }
 
+    
 
     render(){
         const d = new Date();
@@ -60,22 +65,31 @@ class DailyCard extends Component{
                 </div>
 
                 <div style = {this.flexBoxStyle} className="flexBoxStyle">
-                    <CalendarItem parentCallback={this.handleUserSelection} text={"First Event"}/>
-                    <CalendarItem parentCallback={this.handleUserSelection} text={"First Event"}/>
-                    <CalendarItem parentCallback={this.handleUserSelection} text={"First Event"}/>
-                    <CalendarItem parentCallback={this.handleUserSelection} text={"First Event"}/>
-                    <CalendarItem parentCallback={this.handleUserSelection} text={"First Event"}/>
-                    <CalendarItem parentCallback={this.handleUserSelection} text={"First Event"}/>
-                    <CalendarItem parentCallback={this.handleUserSelection} text={"First Event"}/>
-                    <CalendarItem parentCallback={this.handleUserSelection} text={"First Event"}/>
+                    {/* This will keep updating if there promise is not resolved (called at ../../public/index.js when
+                    user log in) */}
+                    {   !JSON.parse(window.localStorage.getItem("eventList")) ||
+                        JSON.parse(window.localStorage.getItem("eventList"))   
+                            .map(event => <CalendarItem key={event.eventID} time={event.eventTime} 
+                                text={event.eventName}/>)
+                    }
                 </div>
             </div>
         )
     }
 
+    //This funciton is for updating the calendar automatically 
+    componentDidMount(){
+        setInterval(() => {
+            listUpcomingEvents()
+            this.forceUpdate()
+        },2000)
+    }
     handleUserSelection = (selected) => {
         this.state.selectedEvents.add(selected)
         this.setState({selectedEvents: this.state.selectedEvents})
+        // listUpcomingEvents().then(events => {
+        //     this.setState({eventList: events})
+        // })
     }
 }
 
