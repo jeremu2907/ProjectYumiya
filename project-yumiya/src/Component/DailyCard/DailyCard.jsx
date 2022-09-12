@@ -51,6 +51,7 @@ class DailyCard extends Component{
     eventModifySub = () => {
         /* global gapi */
         let a = Array.from(this.state.selectedEvents)
+        //Perform delete on every event that is selected
         for(let i = 0; i < a.length; i++){
             console.log(a[i]);
             var request = gapi.client.calendar.events.delete({
@@ -64,6 +65,7 @@ class DailyCard extends Component{
             });
         };
         
+        //Reset selected events to 0
         this.setState({selectedEvents: new Set()});
     }
 
@@ -94,7 +96,6 @@ class DailyCard extends Component{
                         JSON.parse(window.localStorage.getItem("eventList"))   
                             .map(event => <CalendarItem 
                                 key={event.id} 
-                                // key={Math.random()}
                                 name={event.name}
                                 date={event.date}
                                 time={event.dateTime}
@@ -109,7 +110,7 @@ class DailyCard extends Component{
         )
     }
 
-    //This funciton is for updating the calendar automatically 
+    //This funciton is for updating the calendar automatically every 1s
     componentDidMount(){
         setInterval(() => {
             listUpcomingEvents()

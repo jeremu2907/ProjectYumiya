@@ -1,4 +1,4 @@
-// This function updates every 2 seconds once the calendar is loaded
+// This function invoked seconds once the calendar is loaded
 
 export async function listUpcomingEvents() {
     /* global gapi */
