@@ -14,24 +14,28 @@ body {
     0% {
         transform: rotate(0deg)
     }
-    /* 50% {
+    50% {
         transform: rotate(180deg)
-    } */
+    }
     100% {
         transform: rotate(360deg)
     }
 }
 
 .logo{
-    position:relative;
-    /* left: 5px; */
-    top: 0px;
-    scale: 0.05
+    position:absolute; 
+    height: 300px; 
+    width: 300px; 
+    top: 30%; 
+    left: calc(50% - 150px); 
+    /* transform: translate(-50%); */
+    opacity: 0.5;
+    animation: start 4s infinite
 }
 
 .googleSignInOut{
     position: fixed;
-    top: 50%;
+    top: 70%;
     left: 50%;
     transform: translate(-50%, -50%);
     color: white; 

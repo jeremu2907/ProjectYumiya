@@ -30,6 +30,7 @@ function handleAuthClick() {
     //document.getElementById('signout_button').style.visibility = 'visible';
     unlockPage();
     document.getElementById("root").style.visibility = "visible";
+    document.getElementById("logo").style.visibility = "hidden"
     // window.localStorage.removeItem("eventList")
     window.localStorage.setItem("eventList",JSON.stringify(await listUpcomingEvents()));
   };
