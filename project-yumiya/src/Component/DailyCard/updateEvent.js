@@ -29,6 +29,7 @@ export async function listUpcomingEvents() {
         const event = {
             name : events[i].summary,
             dateTime : events[i].start.dateTime,
+            date : events[i].start.date,
             id : events[i].id,
             location: events[i].location,
             description: events[i].description

@@ -59,13 +59,11 @@ class DailyCard extends Component{
             });
             request.execute(function(response) {
                 if(response.error || response === false){
-                    alert('Error');
-                }
-                else{
-                    alert('Success');               
+                    alert("Failed to delete one or more events")
                 }
             });
         };
+        
         this.setState({selectedEvents: new Set()});
     }
 
@@ -94,8 +92,11 @@ class DailyCard extends Component{
                     user log in) */}
                     {   !JSON.parse(window.localStorage.getItem("eventList")) ||
                         JSON.parse(window.localStorage.getItem("eventList"))   
-                            .map(event => <CalendarItem key={event.eventID} 
+                            .map(event => <CalendarItem 
+                                key={event.id} 
+                                // key={Math.random()}
                                 name={event.name}
+                                date={event.date}
                                 time={event.dateTime}
                                 location={event.location}
                                 description={event.description}
