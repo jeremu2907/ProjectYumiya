@@ -2,7 +2,7 @@
 
 textarea { 
     font-family: 'Montserrat', sans-serif;
-    font-size: '12px';
+    font-size: 24px;
     
     resize: none; 
     border: none;
@@ -13,6 +13,17 @@ textarea {
     -moz-box-shadow: none;
     box-shadow: none;
 
+}
+
+input {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 24px;
+    height: 30px;
+    
+    resize: none; 
+    border: none;
+    overflow: auto;
+    outline: none;
 }
 
 textarea::-webkit-scrollbar{

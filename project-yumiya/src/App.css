@@ -4,16 +4,6 @@
     align-items: flex-start;
 }
 
-.logo{
-    position:absolute;
-    left: 5px;
-    top: 5px;
-    scale: 1;
-    height: 30px;
-    width: 30px;
-
-}
-
 .content-area-left{
     position: relative;
     height : 100vh;
@@ -37,4 +27,23 @@
 
 .noteArea{
     position: absolute;
+}
+
+textarea,button,input { 
+    font-family: 'Montserrat', sans-serif;
+    font-size: 24px;
+    
+    resize: none; 
+    border: none;
+    overflow: auto;
+    outline: none;
+
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+
+}
+button {
+    background-color: rgba(0,0,0,0);
+    margin-top: 30px
 }

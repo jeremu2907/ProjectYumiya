@@ -14,10 +14,10 @@ class ItemTitle extends Component{
 
     styles={
         color: this.props.color,
-        fontSize: "20px",
+        fontSize: "30px",
         fontWeight: "bold",
         position: "relative",
-        height: "25px",
+        height: "40px",
         backgroundColor: 'rgba(0,0,0,0)'
     }
 

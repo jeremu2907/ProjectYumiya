@@ -55,7 +55,7 @@ class CalendarItem extends Component{
     }
 
     selectItem = () => {
-        this.props.parentCallback(this.state.EventID)
+        this.props.parentCallback(this.props.id)
         // listUpcomingEvents()
     }
 }

@@ -2,6 +2,8 @@ import React, {Component} from 'react'
 import ItemTitle from "../ItemTitle.jsx"
 import CalendarItem from "./CalendarItem.jsx"
 import {listUpcomingEvents} from "./updateEvent.js"
+import {addEvent} from "../../App.js"
+import "../ToDoList/TextArea.css"
 import './DailyCard.css'
 
 class DailyCard extends Component{
@@ -44,7 +46,7 @@ class DailyCard extends Component{
     }
 
     eventModifyAdd = () => {
-        console.log("Button add clicked")
+        addEvent()
     }
 
     eventModifySub = () => {
@@ -63,10 +65,12 @@ class DailyCard extends Component{
                     <ItemTitle color="#03d3fc" text= {cardTitle}/>
                     <img src={require("../ButtonSet/subButton.png")} alt="sub button"  
                             style={{marginLeft:"auto", marginRight:"10px",scale: "0.5"}}
-                            onClick={this.eventModifySub}/>
+                            onClick={this.eventModifySub}
+                            className = "AddSubButton"/>
                     <img src={require("../ButtonSet/addButton.png")} alt="add button" 
                             style={{scale: "0.5"}} 
-                            onClick={this.eventModifyAdd}/>
+                            onClick={this.eventModifyAdd}
+                            className = "AddSubButton"/>
                 </div>
 
                 <div style = {this.flexBoxStyle} className="flexBoxStyle">
@@ -80,6 +84,7 @@ class DailyCard extends Component{
                                 location={event.location}
                                 description={event.description}
                                 id={event.id}
+                                parentCallback = {this.handleUserSelection}
                                 />)
                     }
                 </div>
