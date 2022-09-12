@@ -55,7 +55,7 @@ class DailyCard extends Component{
         for(let i = 0; i < a.length; i++){
             console.log(a[i]);
             var request = gapi.client.calendar.events.delete({
-                'calendarId': 'c15306c1epdedq0ag8rgci6i8s@group.calendar.google.com',
+                'calendarId': 'primary',
                 'eventId': a[i]
             });
             request.execute(function(response) {
@@ -117,12 +117,14 @@ class DailyCard extends Component{
             this.forceUpdate()
         },1000)
     }
-    handleUserSelection = (selected) => {
-        this.state.selectedEvents.add(selected)
-        this.setState({selectedEvents: this.state.selectedEvents})
-        // listUpcomingEvents().then(events => {
-        //     this.setState({eventList: events})
-        // })
+    handleUserSelection = (selected, status) => {
+        if(!status)
+            this.state.selectedEvents.add(selected)
+            // console.log("add")
+        else
+            this.state.selectedEvents.delete(selected)
+            // console.log("sub")
+        // this.setState({selectedEvents: new Set(this.state.selectedEvents)})
     }
 }
 

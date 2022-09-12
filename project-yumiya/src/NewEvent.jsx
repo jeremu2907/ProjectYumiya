@@ -24,15 +24,15 @@ export function NewEvent() {
     return(
             <div style = {styles} className="globalFont">
                 <ItemTitlte color="#01b1da" text="Create New Event" />
-                <h1>Name</h1>
+                <h5>Name</h5>
                 <input type="text"></input>
-                <h1>Date and Time</h1>
+                <h5>Date and Time</h5>
                 <DatePicker style = {{border: "0", width: "auto"}} selected={startDate} onChange={(date) => setStartDate(date)} showTimeSelect dateFormat="Pp"/>
-                <h1>Location</h1>
+                <h5>Location</h5>
                 <input type="text"></input>
-                <h1>Notes</h1>
+                <h5>Notes</h5>
                 <textarea style = {{height: "100px"}}></textarea>
-                <div style={{display: 'flex', flexDirection: 'row', justifyContent: "space-evenly"}}>
+                <div style={{display: 'flex', flexDirection: 'row', justifyContent: "space-evenly", marginTop: "10px"}}>
                     <button>Add Event</button>
                     <button onClick={() => {document.getElementById("addEvent").style.visibility = "hidden"}}>Cancel</button>
                 </div>

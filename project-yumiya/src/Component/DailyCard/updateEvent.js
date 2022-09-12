@@ -5,7 +5,7 @@ export async function listUpcomingEvents() {
     let response;
     try {
     const request = {
-        'calendarId': 'c15306c1epdedq0ag8rgci6i8s@group.calendar.google.com',
+        'calendarId': 'primary',
         'timeMin': (new Date()).toISOString(),
         'showDeleted': false,
         'singleEvents': true,

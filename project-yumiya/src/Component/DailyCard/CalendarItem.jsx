@@ -18,6 +18,10 @@ class CalendarItem extends Component{
     //     // }
     // }
 
+    state = {
+        status : false
+    }
+
     styles = {
         position: "relative",
         height: "auto",
@@ -43,6 +47,8 @@ class CalendarItem extends Component{
     render(){
         return(
             <div style = {this.styles} className="box" onClick={this.selectItem}>
+                {/* Selection indicator */}
+                <div id = {this.props.id} style = {{height: "20px", width: "20px", borderRadius: "10px",backgroundColor: "rgba(255, 255, 255, 0.05)"}}></div>
                 <h3 style = {this.title} className = "globalFont">{this.props.name}</h3>
                 {/* Props passed in from DailyCard.jsx */}
                 <div className = "globalFont" style={{paddingLeft: "10px"}}>
@@ -51,16 +57,19 @@ class CalendarItem extends Component{
                     {(this.props.location === "")? "" : <p>{this.props.location}</p>}
                     {(this.props.description === "")? "" : <p>{this.props.description}</p>}
                 </div>
-                {/* Selection indicator */}
-                <div id = {this.props.id} style = {{height: "20px", width: "20px", borderRadius: "10px",backgroundColor: "rgba(255, 255, 255, 0.05)"}}></div>
             </div>
         )
     }
 
     // When the event is clicked mark the event and pass signal to DailyCard, waiting to be removed
     selectItem = () => {
-        this.props.parentCallback(this.props.id)
-        document.getElementById(this.props.id).style.backgroundColor = "#03d3fc"
+        this.props.parentCallback(this.props.id, this.state.status)
+        if(!this.state.status)
+            document.getElementById(this.props.id).style.backgroundColor = "#03d3fc"
+        else
+            document.getElementById(this.props.id).style.backgroundColor = "rgba(255, 255, 255, 0.05)"
+        
+        this.setState({status: !this.state.status})
     }
 }
 
