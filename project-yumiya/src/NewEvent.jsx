@@ -24,13 +24,13 @@ export function NewEvent() {
     return(
             <div style = {styles} className="globalFont">
                 <ItemTitlte color="#01b1da" text="Create New Event" />
-                <h>Name</h>
+                <h1>Name</h1>
                 <input type="text"></input>
-                <h>Date and Time</h>
+                <h1>Date and Time</h1>
                 <DatePicker style = {{border: "0", width: "auto"}} selected={startDate} onChange={(date) => setStartDate(date)} showTimeSelect dateFormat="Pp"/>
-                <h>Location</h>
+                <h1>Location</h1>
                 <input type="text"></input>
-                <h>Notes</h>
+                <h1>Notes</h1>
                 <textarea style = {{height: "100px"}}></textarea>
                 <div style={{display: 'flex', flexDirection: 'row', justifyContent: "space-evenly"}}>
                     <button>Add Event</button>

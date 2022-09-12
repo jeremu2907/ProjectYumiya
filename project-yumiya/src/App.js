@@ -5,10 +5,6 @@ import MapGUI from './Component/Map/MapGUI.jsx'
 import DailyCard from './Component/DailyCard/DailyCard.jsx'
 import {NewEvent} from "./NewEvent.jsx"
 
-export function addEvent(){
-  document.getElementById("addEvent").style.visibility = "visible"
-}
-
 function App() {
   return (
     <div>

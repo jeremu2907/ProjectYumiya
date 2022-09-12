@@ -2,7 +2,6 @@ import React, {Component} from 'react'
 import ItemTitle from "../ItemTitle.jsx"
 import CalendarItem from "./CalendarItem.jsx"
 import {listUpcomingEvents} from "./updateEvent.js"
-import {addEvent} from "../../App.js"
 import "../ToDoList/TextArea.css"
 import './DailyCard.css'
 
@@ -46,11 +45,28 @@ class DailyCard extends Component{
     }
 
     eventModifyAdd = () => {
-        addEvent()
+        document.getElementById("addEvent").style.visibility = "visible"
     }
 
     eventModifySub = () => {
-        console.log("Button sub clicked")
+        /* global gapi */
+        let a = Array.from(this.state.selectedEvents)
+        for(let i = 0; i < a.length; i++){
+            console.log(a[i]);
+            var request = gapi.client.calendar.events.delete({
+                'calendarId': 'c15306c1epdedq0ag8rgci6i8s@group.calendar.google.com',
+                'eventId': a[i]
+            });
+            request.execute(function(response) {
+                if(response.error || response === false){
+                    alert('Error');
+                }
+                else{
+                    alert('Success');               
+                }
+            });
+        };
+        this.setState({selectedEvents: new Set()});
     }
 
     
@@ -97,7 +113,7 @@ class DailyCard extends Component{
         setInterval(() => {
             listUpcomingEvents()
             this.forceUpdate()
-        },5000)
+        },1000)
     }
     handleUserSelection = (selected) => {
         this.state.selectedEvents.add(selected)
