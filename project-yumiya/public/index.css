@@ -34,44 +34,43 @@ body {
 }
 
 .logo{
-    position:absolute; 
-    height: 300px; 
-    width: 300px; 
-    top: 30%; 
-    left: calc(50% - 150px); 
-    /* scale: calc(20vh); */
+    position:fixed; 
+    height: 400px; 
+    width: 400px; 
+    top: calc(30% - 200px); 
+    left: calc(20% - 200px); 
+    filter: blur(3px);
     opacity: 0.5;
     animation: start 8s linear infinite
 }
 
 .googleSignInOut{
     position: fixed;
-    top: 0;
-    left: 0;
-    /* transform: translate(-50%, -50%); */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     color: white; 
     border: none;
-    background-color: rgba(0,0,0,0.4);
+    background-color: rgba(0,0,0,0.7);
     font-family: 'Montserrat', sans-serif;
-    font-size: 30px;
-    padding: 20px;
-    /* padding-top: 15px;
-    padding-bottom: 15px; */
+    font-size: 40px;
+    padding: 30px;
 }
 
 .googleSignInOut:hover{
-    animation: signIn 3s infinite;
+    animation: signIn 1s ease-in-out forwards;
+    /* background-color: rgba(255,255,255,0.6) */
 }
 
 @keyframes signIn {
     0%{
-        background-color: rgba(0,0,0,0.3)
+        background-color: rgba(0,0,0,0.7)
     }
-    50%{
-        background-color: rgba(255,255,255,0.3)
-    }
+    /* 50%{
+        background-color: rgba(255,255,255,0.6)
+    } */
     100%{
-        background-color: rgba(0,0,0,0.3)
+        background-color: rgba(230,230,230,0.3)
     }
 }
 

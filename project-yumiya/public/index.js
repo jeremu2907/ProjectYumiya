@@ -12,7 +12,7 @@ const DISCOVERY_DOC = 'https://www.googleapis.com/discovery/v1/apis/calendar/v3/
 
 // Authorization scopes required by the API; multiple scopes can be
 // included, separated by spaces.
-const SCOPES = 'https://www.googleapis.com/auth/calendar';
+const SCOPES = 'https://www.googleapis.com/auth/calendar https://www.googleapis.com/auth/calendar.events';
 
 let tokenClient;
 let gapiInited = false;
@@ -59,7 +59,11 @@ function unlockPage(){
 * Callback after api.js is loaded.
 */
 function gapiLoaded() {
-    gapi.load('client', intializeGapiClient);
+    try{
+      gapi.load('client', intializeGapiClient);
+    } catch {
+      console.log("Not Logged in");
+    }
 }
 
 /**
@@ -130,8 +134,8 @@ async function listUpcomingEvents() {
   };
   response = await gapi.client.calendar.events.list(request);
   } catch (err) {
-      console.log(err.message);
-      return;
+    console.log("Not Logged in");
+    return;
   }
 
   const events = response.result.items;

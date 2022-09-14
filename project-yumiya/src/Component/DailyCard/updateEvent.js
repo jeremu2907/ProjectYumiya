@@ -14,7 +14,7 @@ export async function listUpcomingEvents() {
     };
     response = await gapi.client.calendar.events.list(request);
     } catch (err) {
-        console.log(err.message);
+        console.log("Not Logged in");
         return;
     }
   
