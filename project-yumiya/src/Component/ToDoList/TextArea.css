@@ -2,7 +2,7 @@
 
 textarea { 
     font-family: 'Montserrat', sans-serif;
-    font-size: '12px';
+    font-size: 24px;
     
     resize: none; 
     border: none;
@@ -13,6 +13,17 @@ textarea {
     -moz-box-shadow: none;
     box-shadow: none;
 
+}
+
+input {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 24px;
+    height: 30px;
+    
+    resize: none; 
+    border: none;
+    overflow: auto;
+    outline: none;
 }
 
 textarea::-webkit-scrollbar{
@@ -26,7 +37,7 @@ textarea::-webkit-scrollbar-thumb{
     border-radius: 4px;
 }
 
-.AddSubButton{
+/* .AddSubButton{
     scale: .5;
     border-radius: 20%;
     border: solid 5px rgba(0,0,0,0);
@@ -47,4 +58,4 @@ textarea::-webkit-scrollbar-thumb{
     100%{
         background-color: rgba(0,0,0,0);
     }
-}
+} */

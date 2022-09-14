@@ -15,15 +15,14 @@ class ToDoItems extends Component{
     styles = {
         position: "relative",
         width: "95%",
-        height: "calc(80% - 45px)",
+        height: "calc(70%)",
         border: "none",
         color: "white",
         backgroundColor: "rgba(0,0,0,0)",
         fontSize: "20px",
-        top: "30px",
         left: "50%",
         transform: "translate(-50%)",
-        marginBottom: "30px"
+        // marginBottom: "30px"
     }
                                 
     //Used to persist state of what is written in Note area
@@ -47,7 +46,15 @@ class ToDoItems extends Component{
         this.setState({noteContent: temp})
     }
 
+    deletePage(){
+        if(this.props.pages < this.state.noteContent.length){
+            this.state.noteContent.splice(this.props.currentPage - 1, 1)
+            this.setState({noteContent: this.state.noteContent})
+        }
+    }
+
     render(){
+        this.deletePage();
         return(
             <textarea style={this.styles} value={ (this.props.currentPage <= this.state.noteContent.length)?
                 this.state.noteContent[this.props.currentPage - 1] : "New Note"} 

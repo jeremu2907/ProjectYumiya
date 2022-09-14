@@ -1,18 +1,84 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
 body {
     margin: 0;
     overflow-x: hidden;
     overflow-y: hidden;
     min-height: calc(100vh - 0px);
-    background-image: linear-gradient(45deg,#03d3fc,#870c21);
-    /* animation: start 3s infinite */
+    background-image: linear-gradient(-45deg,#03fc9d,#740c87);
+    /* background-image: linear-gradient(45deg,#03d3fc,#870c21) */
+    /* animation: start 3s infinite linear */
 }
 
 @keyframes start {
     0% {
-        background-image: linear-gradient(-45deg,#03fc9d,#740c87)
+        transform: rotate(0deg);
+        opacity: 0
+    }
+    25% {
+        transform: rotate(90deg);
+        opacity: 0.5
+    }
+    50% {
+        transform: rotate(180deg);
+        opacity: 0
+    }
+    75% {
+        transform: rotate(270deg);
+        opacity: 0.5
     }
     100% {
-        background-image: linear-gradient(45deg,#03d3fc,#870c21)
+        transform: rotate(360deg);
+        opacity: 0
     }
 }
 
+.logo{
+    position:fixed; 
+    height: 400px; 
+    width: 400px; 
+    top: calc(30% - 200px); 
+    left: calc(20% - 200px); 
+    filter: blur(3px);
+    opacity: 0.5;
+    animation: start 8s linear infinite
+}
+
+.googleSignInOut{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white; 
+    border: none;
+    background-color: rgba(0,0,0,0.7);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 40px;
+    padding: 30px;
+    border-radius: 10px;
+}
+
+.googleSignInOut:hover{
+    animation: signIn 1s ease-in-out forwards;
+    /* background-color: rgba(255,255,255,0.6) */
+}
+
+@keyframes signIn {
+    0%{
+        background-color: rgba(0,0,0,0.7)
+    }
+    /* 50%{
+        background-color: rgba(255,255,255,0.6)
+    } */
+    100%{
+        background-color: rgba(230,230,230,0.3)
+    }
+}
+
+.changeTheme{
+    position: fixed;
+    height: 40px;
+    width: 20ch;
+    top: calc(100% - 40px);
+    font-size: 20px;
+}

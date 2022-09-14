@@ -17,7 +17,7 @@ class ItemTitle extends Component{
         fontSize: "30px",
         fontWeight: "bold",
         position: "relative",
-        left: "20px",
+        height: "40px",
         backgroundColor: 'rgba(0,0,0,0)'
     }
 

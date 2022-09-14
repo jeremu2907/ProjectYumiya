@@ -10,7 +10,8 @@ class MapGUI extends Component{
         display: "flex",
         flexDirection: "row",
         alignItems: "center",
-        justifyContent: "space-evenly"
+        justifyContent: "space-evenly",
+        borderRadius: "10px"
     }
     render(){
         return(

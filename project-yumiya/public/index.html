@@ -5,11 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
     <link rel="stylesheet" href="./index.css">
-    <link rel="icon" type="image/x-icon" href="./icon.jpeg">
+    <link rel="icon" type="image/x-icon" href="./icon.png">
     <title>yumiya</title>
+
+    <script  defer src="https://apis.google.com/js/api.js" onload="gapiLoaded()"></script>
+    <script  defer src="https://accounts.google.com/gsi/client" onload="gisLoaded()"></script>
+    <script src="./index.js"></script>
   </head>
-  <body>
+  <body id="body">
+
     <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
+
+    <div id="root" style="visibility: hidden"></div>
+    <img id="logo" src="./iconLogin.png" class="logo">
+    <button  id="authorize_button" class="googleSignInOut" onclick="handleAuthClick()">
+      Connect to Google
+      <img src="googleIcon.png" alt="Google Icon" style="height: 25px;width: 25px; margin-left:20px">
+    </button>
+    <!-- <button id="changeTheme" class="changeTheme" onclick="changeTheme()">Change Theme</button> -->
+    
+    
   </body>
 </html>

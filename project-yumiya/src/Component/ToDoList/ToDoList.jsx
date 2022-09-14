@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import ItemTitle from '../ItemTitle.jsx'
 import ToDoItems from './ToDoItems.jsx'
 import './TextArea.css'
+import '../ButtonSet/button.css'
 
 class ToDoList extends Component{
     constructor(){
@@ -18,29 +19,38 @@ class ToDoList extends Component{
         this.moveleft = this.moveleft.bind(this);
         this.moveright = this.moveright.bind(this);
         this.eventModifyAdd = this.eventModifyAdd.bind(this);
-        // this.eventModifySub = this.moveleft.bind(this);
+        this.eventModifySub = this.eventModifySub.bind(this);
     }
     styles = {
-        height: "48vh",
-        width: "48vw",
+        height: "calc(48vh - 10px)",
+        width: "calc(48vw - 10px)",
         backgroundColor: "rgba(20, 20, 20, 0.77)",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "space-between",
+        padding: "5px",
+        borderRadius: "10px"
     }
 
     title = {
         position:"relative",
-        top: "30px",
+        // top: "30px",
+        left: "20px",
         display: "flex",
         flexDirection: "row",
-        alignItems: "flexStart",
-        width:"100%"
+        alignItems: "center",
+        justifyContent:"center",
+        width:"calc(100% - 40px)"
     }
 
     pageSelector = {
+        position: "relative",
         display: "flex",
         flexDirection: "row",
         justifyContent: "center",
         alignItems: "center",
         overflowX: "hidden",
+        overflowY: "hidden"
     }
 
     pageCircle = {
@@ -95,15 +105,26 @@ class ToDoList extends Component{
 
     // Function to add page another page to the back
     eventModifyAdd = () => {
-        this.setState({pages: this.state.pages + 1}, () => {    
-            this.setState({currentPage: this.state.pages}, this.navBar)
-        })
+        if(this.state.pages <= 15)
+            this.setState({pages: this.state.pages + 1}, () => {    
+                this.setState({currentPage: this.state.pages}, this.navBar)
+            })
+        else{
+            window.alert("Number of note pages is at limit!")
+        }
     }
 
     // Function to remove current page
-    // eventModifySub = () => {
-    //     this.setState({pages: this.state.pages - 1});
-    // }
+    eventModifySub = () => {
+        if(this.state.pages > 1){
+            this.setState({pages: this.state.pages - 1}, () => {
+                if(this.state.currentPage > 1)  
+                    this.setState({currentPage: this.state.currentPage - 1}, this.navBar)
+                else
+                    this.setState({currentPage: 1}, this.navBar)
+            })
+        }
+    }
 
     //Function to move page left
     moveleft = () => {
