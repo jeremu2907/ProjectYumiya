@@ -1,23 +1,27 @@
 // This function invoked seconds once the calendar is loaded
 
+import { clear } from "@testing-library/user-event/dist/clear";
+
 export async function listUpcomingEvents() {
     /* global gapi */
     let response;
     try {
-    const request = {
-        'calendarId': 'primary',
-        'timeMin': (new Date()).toISOString(),
-        'showDeleted': false,
-        'singleEvents': true,
-        'maxResults': 10,
-        'orderBy': 'startTime',
-    };
-    response = await gapi.client.calendar.events.list(request);
-    } catch (err) {
-        console.log("Not Logged in");
+        const request = {
+            'calendarId': 'primary',
+            'timeMin': (new Date()).toISOString(),
+            'showDeleted': false,
+            'singleEvents': true,
+            'maxResults': 10,
+            'orderBy': 'startTime',
+        };
+        
+        response = await gapi.client.calendar.events.list(request);
+        
+    } catch {
+        console.clear()
         return;
     }
-  
+
     const events = response.result.items;
     if (!events || events.length === 0) {
         console.log( 'No events found.');
@@ -34,7 +38,7 @@ export async function listUpcomingEvents() {
             location: events[i].location,
             description: events[i].description
         }
-  
+
         eventList.push(event)
         // console.log(event)
     }

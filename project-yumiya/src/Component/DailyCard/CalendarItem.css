@@ -1,3 +1,13 @@
 .box:hover{
-    border: solid 2px white
+    border: solid 2px rgba(0,0,0,0);
+    animation: boxHover 0.3s forwards ease-in-out
+}
+
+@keyframes boxHover {
+    0% {
+        border-color: rgba(0,0,0,0)
+    }
+    100%{
+        border-color: white
+    }
 }

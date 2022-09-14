@@ -55,6 +55,7 @@ body {
     font-family: 'Montserrat', sans-serif;
     font-size: 40px;
     padding: 30px;
+    border-radius: 10px;
 }
 
 .googleSignInOut:hover{

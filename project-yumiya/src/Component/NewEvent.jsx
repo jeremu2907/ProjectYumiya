@@ -6,6 +6,8 @@ import './NewEvent.css'
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
+//Function will be called everytime user create new event
+//Used to add local GMT to fit api time format
 function appendTimeZone(){
   let offset = new Date().getTimezoneOffset()
   offset = offset / 60
@@ -42,82 +44,75 @@ export function NewEvent() {
 
     // function to put all details to localStorage to be included in http request
     const setEventInfo = () => {
-        /* global gapi*/
-        let name = document.getElementsByName("createEventName")[0].value
-        let dateTime = document.getElementsByName("createEventDateTime")[0].value
-        let location = document.getElementsByName("createEventLocation")[0].value
-        let notes = document.getElementsByName("createEventNotes")[0].value
+      /* global gapi*/
+      let name = document.getElementsByName("createEventName")[0].value
+      let dateTime = document.getElementsByName("createEventDateTime")[0].value
+      let location = document.getElementsByName("createEventLocation")[0].value
+      let notes = document.getElementsByName("createEventNotes")[0].value
 
-        //Time formatting///////////////////////////////////////////////////
-        dateTime = dateTime.replace("  ","T")
-        //add the current timezone to dateTime string ex: -05:00
-        dateTime += appendTimeZone();
-        let dateTimeEnd = (parseInt(dateTime.substr(11, 2)) + 1)
-        if(Math.log10(dateTimeEnd) < 1)
-        dateTimeEnd = '0' + dateTimeEnd
-        // console.log(dateTime)
-        // console.log(dateTimeEnd)
-        dateTimeEnd = dateTime.substr(0,11) + dateTimeEnd + dateTime.substr(13,12)
-        // console.log(dateTimeEnd)
-        var event = {
-            'summary': name,
-            'location': location,
-            'description': notes,
-            'start': {
-                'dateTime': dateTime,
-            },
-            'end': {
-              'dateTime': dateTimeEnd
-            },
-          };
-          
-          var request = gapi.client.calendar.events.insert({
-            'calendarId': 'primary',
-            'resource': event
-          });
-          
-          request.execute(function(event) {
-            if(event.error || event === false){
-                        alert("Failed to add event")
-                    }
-          });
+      //Time formatting///////////////////////////////////////////////////
+      //Format reference 	yyyy-mm-ddTHH:mm:ss+00:00
+      dateTime = dateTime.replace("  ","T")
+      //add the current timezone to dateTime string ex: -05:00
+      dateTime += appendTimeZone();
+      let dateTimeEnd = (parseInt(dateTime.substr(11, 2)) + 1) % 24
+      //If end date is a new day, add day
+      let temp
+      if(dateTimeEnd == 0){
+        temp = dateTime.substr(0,8) + (parseInt(dateTime.substr(8, 2)) + 1) % 31 + dateTime.substr(10,15)
+      }
+      if(Math.log10(dateTimeEnd) < 1)
+      dateTimeEnd = '0' + dateTimeEnd
+      // console.log(dateTime)
+      // console.log(dateTimeEnd)
+      dateTimeEnd = temp.substr(0,11) + dateTimeEnd + temp.substr(13,12)
+      // console.log(dateTimeEnd)
 
-        // const eventDetail = {
-        //     "summary": name,
-        //     "start":{
-        //         "dateTime": dateTime.substr(0, dateTime.indexOf(',')).replace('/','-'),
-        //     },
-        //     // "eventTime": dateTime.substr(dateTime.indexOf(',') + 2, dateTime.length - dateTime.indexOf(',')),
-        //     "location": location,
-        //     "description": notes
-        // }
-        // // console.log(eventDetail)
-        document.getElementById("addEvent").style.visibility = "hidden"
-        // // window.localStorage.setItem("createNewEvent",JSON.stringify(eventDetail))
-        // // const event = JSON.parse(window.localStorage.getItem("createNewEvent"));
-        // /* global gapi*/
-        // var request = gapi.client.calendar.events.insert({
-        //     'calendarId': 'primary',
-        //     'resource': eventDetail
-        // });
-        // request.execute(function(response) {
-        //     if(response.error || response === false){
-        //         alert("Failed to add event")
-        //     }
-        // });
+
+      var event = {
+          'summary': name,
+          'location': location,
+          'description': notes,
+          'start': {
+              'dateTime': dateTime,
+          },
+          'end': {
+            'dateTime': dateTimeEnd
+          },
+        };
+        
+        var request = gapi.client.calendar.events.insert({
+          'calendarId': 'primary',
+          'resource': event
+        });
+        
+        request.execute(function(event) {
+          if(event.error || event === false){
+            alert("Failed to add event")
+          }
+        });
+      
+      //Close NewEvent componenet
+      document.getElementById("addEvent").style.visibility = "hidden"
+        
     }
     const [startDate, setStartDate] = useState(new Date());
     return(
             <div style = {styles} className="globalFont">
                 <ItemTitlte color="#01b1da" text="Create New Event" />
+
                 <h5>Name</h5>
                 <input name="createEventName" type="text" className = "newEventBox"></input>
+
                 <h5>Date and Time</h5>
-                <DatePicker dateFormat = "yyyy-MM-dd'  'hh:mm:ss" className = "newEventBox" name="createEventDateTime" style = {{border: "0", width: "auto"}} selected={startDate} onChange={(date) => setStartDate(date)} showTimeSelect/>
+                <DatePicker dateFormat = "yyyy-MM-dd'  'HH:mm:ss" className = "newEventBox" name="createEventDateTime" style = {{border: "0", width: "auto"}} selected={startDate} onChange={(date) => setStartDate(date)} showTimeSelect/>
+                
                 <h5>Location</h5>
                 <input name="createEventLocation" type="text" className = "newEventBox"></input>
+                
                 <h5>Notes</h5>
                 <textarea name="createEventNotes" style = {{height: "200px"}} className = "newEventBox"></textarea>
+                
                 <div style={{display: 'flex', flexDirection: 'row', justifyContent: "space-evenly", marginTop: "10px"}}>
                     <button onClick={setEventInfo}>Add Event</button>
                     <button onClick={() => {document.getElementById("addEvent").style.visibility = "hidden"}}>Cancel</button>

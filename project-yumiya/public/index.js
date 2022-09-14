@@ -31,7 +31,6 @@ function handleAuthClick() {
     unlockPage();
     document.getElementById("root").style.visibility = "visible";
     document.getElementById("logo").style.visibility = "hidden"
-    // window.localStorage.removeItem("eventList")
     window.localStorage.setItem("eventList",JSON.stringify(await listUpcomingEvents()));
   };
 
@@ -71,18 +70,23 @@ function gapiLoaded() {
 * discovery doc to initialize the API.
 */
 async function intializeGapiClient() {
+  try{
     await gapi.client.init({
     apiKey: API_KEY,
     discoveryDocs: [DISCOVERY_DOC],
     });
     gapiInited = true;
     maybeEnableButtons();
+  } catch {
+    console.log("User not logged in")
+  }
 }
 
 /**
 * Callback after Google Identity Services are loaded.
 */
 function gisLoaded() {
+  try {
     tokenClient = google.accounts.oauth2.initTokenClient({
     client_id: CLIENT_ID,
     scope: SCOPES,
@@ -90,6 +94,9 @@ function gisLoaded() {
     });
     gisInited = true;
     maybeEnableButtons();
+  } catch {
+
+  }
 }
 
 /**

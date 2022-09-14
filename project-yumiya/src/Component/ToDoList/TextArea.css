@@ -37,7 +37,7 @@ textarea::-webkit-scrollbar-thumb{
     border-radius: 4px;
 }
 
-.AddSubButton{
+/* .AddSubButton{
     scale: .5;
     border-radius: 20%;
     border: solid 5px rgba(0,0,0,0);
@@ -58,4 +58,4 @@ textarea::-webkit-scrollbar-thumb{
     100%{
         background-color: rgba(0,0,0,0);
     }
-}
+} */

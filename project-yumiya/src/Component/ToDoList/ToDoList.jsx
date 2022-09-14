@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import ItemTitle from '../ItemTitle.jsx'
 import ToDoItems from './ToDoItems.jsx'
 import './TextArea.css'
+import '../ButtonSet/button.css'
 
 class ToDoList extends Component{
     constructor(){
@@ -27,7 +28,8 @@ class ToDoList extends Component{
         display: "flex",
         flexDirection: "column",
         justifyContent: "space-between",
-        padding: "5px"
+        padding: "5px",
+        borderRadius: "10px"
     }
 
     title = {

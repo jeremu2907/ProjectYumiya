@@ -2,8 +2,8 @@ import React, {Component} from 'react'
 import ItemTitle from "../ItemTitle.jsx"
 import CalendarItem from "./CalendarItem.jsx"
 import {listUpcomingEvents} from "./updateEvent.js"
-import "../ToDoList/TextArea.css"
 import './DailyCard.css'
+import '../ButtonSet/button.css'
 
 class DailyCard extends Component{
     constructor(props){
@@ -23,7 +23,8 @@ class DailyCard extends Component{
         backgroundColor: "rgba(20, 20, 20, 0.77)",
         border: "solid 2px #262524",
         padding: "10px",
-        minWidth: "189px"
+        minWidth: "189px",
+        borderRadius: "10px"
     }
 
     flexBoxStyle = {
@@ -113,7 +114,11 @@ class DailyCard extends Component{
     //This funciton is for updating the calendar automatically every 1s
     componentDidMount(){
         setInterval(() => {
-            listUpcomingEvents()
+            try{
+                listUpcomingEvents()
+            } catch {
+                console.log("Not logged in")
+            }
             this.forceUpdate()
         },1000)
     }
