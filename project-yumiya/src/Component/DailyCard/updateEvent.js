@@ -1,7 +1,5 @@
 // This function invoked seconds once the calendar is loaded
 
-import { clear } from "@testing-library/user-event/dist/clear";
-
 export async function listUpcomingEvents() {
     /* global gapi */
     let response;
