@@ -5,8 +5,8 @@ body {
     overflow-x: hidden;
     overflow-y: hidden;
     min-height: calc(100vh - 0px);
-    background-image: linear-gradient(-45deg,#03fc9d,#740c87);
-    /* background-image: linear-gradient(45deg,#03d3fc,#870c21) */
+    /* background-image: linear-gradient(-45deg,#03fc9d,#740c87); */
+    background-image: linear-gradient(45deg,#03d3fc,#870c21)
     /* animation: start 3s infinite linear */
 }
 

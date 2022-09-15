@@ -45,12 +45,13 @@ function handleAuthClick() {
 }
 
 function unlockPage(){
-  document.getElementById('authorize_button').innerText = 'Refresh';
-  document.getElementById('authorize_button').style.top = "0px";
-  document.getElementById('authorize_button').style.left = "0px";
-  document.getElementById('authorize_button').style.transform = "translate(0,0)"
-  document.getElementById('authorize_button').style.fontSize = "20px"
-  document.getElementById('authorize_button').style.padding = "5px"
+  // document.getElementById('authorize_button').innerText = 'Refresh';
+  // document.getElementById('authorize_button').style.top = "0px";
+  // document.getElementById('authorize_button').style.left = "0px";
+  // document.getElementById('authorize_button').style.transform = "translate(0,0)"
+  // document.getElementById('authorize_button').style.fontSize = "20px"
+  // document.getElementById('authorize_button').style.padding = "5px"
+  document.getElementById('authorize_button').style.visibility = 'hidden'
 }
 
 
