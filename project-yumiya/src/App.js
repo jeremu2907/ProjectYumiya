@@ -19,6 +19,7 @@ function App() {
       </div>
       <div id="addEvent" style = {{position: "fixed",top: "0px", height: "100vh", width: "100vw", backgroundColor: "rgba(20, 20, 20, 0.8)", visibility: "hidden"}}>
         {NewEvent()};
+        {console.log(process.env.API_KEY)}
       </div>
     </div>
   );

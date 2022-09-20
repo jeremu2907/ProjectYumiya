@@ -57,7 +57,7 @@ export function NewEvent() {
       dateTime += appendTimeZone();
       let dateTimeEnd = (parseInt(dateTime.substr(11, 2)) + 1) % 24
       //If end date is a new day, add day
-      let temp
+      let temp = dateTime
       if(dateTimeEnd === 0){
         temp = dateTime.substr(0,8) + (parseInt(dateTime.substr(8, 2)) + 1) % 31 + dateTime.substr(10,15)
       }

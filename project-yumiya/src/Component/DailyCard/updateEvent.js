@@ -16,7 +16,7 @@ export async function listUpcomingEvents() {
         response = await gapi.client.calendar.events.list(request);
         
     } catch {
-        console.clear()
+        // console.clear()
         return;
     }
 

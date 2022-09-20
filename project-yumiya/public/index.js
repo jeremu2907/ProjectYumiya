@@ -4,8 +4,8 @@
 /* exported handleSignoutClick */
 
 // TODO(developer): Set to client ID and API key from the Developer Console
-const CLIENT_ID = '461862675457-a3lrck82d2d9j0jq9srot6es33gsq86u.apps.googleusercontent.com';
-const API_KEY = 'AIzaSyC_kenObLSxyH_DyPx2nIV5eQIsNHDZtW0';
+// const CLIENT_ID = process.env.CLIENT_ID;
+// const API_KEY = process.env.API_KEY;
 
 // Discovery doc URL for APIs used by the quickstart
 const DISCOVERY_DOC = 'https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest';
@@ -18,22 +18,26 @@ let tokenClient;
 let gapiInited = false;
 let gisInited = false;
 
+const CLIENT_ID = "461862675457-a3lrck82d2d9j0jq9srot6es33gsq86u.apps.googleusercontent.com"
+const API_KEY = "AIzaSyC_kenObLSxyH_DyPx2nIV5eQIsNHDZtW0"
+
 // document.getElementById('authorize_button').style.visibility = 'hidden';
 // document.getElementById('signout_button').style.visibility = 'hidden';
 
 // Signs user in
-function handleAuthClick() {
-  tokenClient.callback = async (resp) => {
-    if (resp.error !== undefined) {
-      throw (resp);
-    }
-    //document.getElementById('signout_button').style.visibility = 'visible';
-    unlockPage();
-    console.log("App Start")
-    document.getElementById("root").style.visibility = "visible";
-    document.getElementById("logo").style.visibility = "hidden"
-    window.localStorage.setItem("eventList",JSON.stringify(await listUpcomingEvents()));
-  };
+function handleAuthClick() { 
+    tokenClient.callback = async (resp) => {
+      if (resp.error !== undefined) {
+        throw (resp);
+      }
+      //document.getElementById('signout_button').style.visibility = 'visible';
+      unlockPage();
+      console.log("App Start")
+      document.getElementById("root").style.visibility = "visible";
+      document.getElementById("logo").style.visibility = "hidden";
+      window.localStorage.setItem("eventList",JSON.stringify(await listUpcomingEvents()));
+      window.localStorage.setItem("userLogIn",JSON.stringify({status: "logged"})); 
+    };
 
   if (gapi.client.getToken() === null) {
     // Prompt the user to select a Google Account and ask for consent to share their data
