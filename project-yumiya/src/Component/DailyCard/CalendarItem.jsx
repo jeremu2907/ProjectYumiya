@@ -31,7 +31,8 @@ class CalendarItem extends Component{
         marginBottom: "10px",
         overflowX: "hidden",
         color: "white",
-        padding: "15px"
+        padding: "15px",
+        minHeight: "100px"
     }
 
     title = {
