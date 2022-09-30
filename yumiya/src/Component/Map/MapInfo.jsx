@@ -1,7 +1,28 @@
 import React, {Component} from 'react'
 import ItemTitle from '../ItemTitle.jsx'
+import './weather.js'
 
 class MapInfo extends Component{
+    constructor(){
+        super();
+        this.state = {
+            weatherData: ""
+        }
+        fetch("https://api.openweathermap.org/data/3.0/onecall?lat=33.44&lon=-94.04&exclude=minutely,daily,alerts&appid=413c4ae08ad7457250848cc6fc7a7fe4")
+            .then(response => {
+            // indicates whether the response is successful (status code 200-299) or not
+            if (!response.ok) {
+                throw new Error(`Request failed with status ${response.status}`)
+            }
+            return response.json()
+            })
+            .then(data => {
+                // console.log(data)
+                this.state.weatherData = data.hourly
+            })
+            .catch(error => console.log(error))
+
+    }
     styles={
         position: 'relative',
         width: "30%",

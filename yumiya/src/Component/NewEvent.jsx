@@ -6,6 +6,11 @@ import './NewEvent.css'
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
+// import PlacesAutocomplete, {
+//   geocodeByAddress,
+//   getLatLng
+// } from 'react-places-autocomplete';
+
 //Function will be called everytime user create new event
 //Used to add local GMT to fit api time format
 function appendTimeZone(){
@@ -97,6 +102,7 @@ export function NewEvent() {
         
     }
     const [startDate, setStartDate] = useState(new Date());
+
     return(
             <div style = {styles} className="globalFont">
                 <ItemTitlte color="#01b1da" text="Create New Event" />
