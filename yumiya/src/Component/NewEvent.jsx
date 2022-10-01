@@ -6,6 +6,12 @@ import './NewEvent.css'
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
+import PlacesAutocomplete, {
+  geocodeByAddress,
+  getLatLng
+} from "react-places-autocomplete";
+
+
 //Function will be called everytime user create new event
 //Used to add local GMT to fit api time format
 function appendTimeZone(){
@@ -39,7 +45,7 @@ export function NewEvent() {
         justifyContent: "space-evenly",
         padding: "30px",
         fontSize: "24px",
-        borderRadius: "30px"
+        borderRadius: "10px"
     }
 
     // function to put all details to localStorage to be included in http request
@@ -93,10 +99,24 @@ export function NewEvent() {
         });
       
       //Close NewEvent componenet
-      document.getElementById("addEvent").style.visibility = "hidden"
-        
+      document.getElementById("addEvent").style.visibility = "hidden";
     }
+    const [address, setAddress] = React.useState("");
+    const [setCoordinates] = React.useState({
+      lat: null,
+      lng: null
+    });
+
+    const handleSelect = async value => {
+      const results = await geocodeByAddress(value);
+      const latLng = await getLatLng(results[0]);
+      setAddress(value);
+      setCoordinates(latLng);
+    };
+
+
     const [startDate, setStartDate] = useState(new Date());
+
     return(
             <div style = {styles} className="globalFont">
                 <ItemTitlte color="#01b1da" text="Create New Event" />
@@ -108,7 +128,37 @@ export function NewEvent() {
                 <DatePicker dateFormat = "yyyy-MM-dd'  'HH:mm:ss" className = "newEventBox" name="createEventDateTime" style = {{border: "0", width: "auto"}} selected={startDate} onChange={(date) => setStartDate(date)} showTimeSelect/>
                 
                 <h5>Location</h5>
-                <input name="createEventLocation" type="text" className = "newEventBox"></input>
+                <PlacesAutocomplete
+                  value={address}
+                  onChange={setAddress}
+                  onSelect={handleSelect}>
+                  {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
+                    <div>
+
+                      <input {...getInputProps({ placeholder: "Type address" })} name="createEventLocation" className = "newEventBox"/>
+
+                      <div>
+                        {loading ? <div>...loading</div> : null}
+
+                        {suggestions.map(suggestion => {
+                          // console.log(suggestions)
+                          const style = {
+                            backgroundColor: suggestion.active ? "#41b6e6" : "#fff",
+                            width: "500px",
+                            position: "float",
+                            padding: "2px"
+                          };
+
+                          return (
+                            <div {...getSuggestionItemProps(suggestion, { style })} key = {Math.random()*100000000}>
+                              {suggestion.description}
+                            </div>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  )}
+                </PlacesAutocomplete>
                 
                 <h5>Notes</h5>
                 <textarea name="createEventNotes" style = {{height: "200px"}} className = "newEventBox"></textarea>

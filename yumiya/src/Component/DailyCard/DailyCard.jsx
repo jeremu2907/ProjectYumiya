@@ -65,7 +65,6 @@ class DailyCard extends Component{
                 }
             });
         };
-        
         //Reset selected events to 0
         this.setState({selectedEvents: new Set()});
     }

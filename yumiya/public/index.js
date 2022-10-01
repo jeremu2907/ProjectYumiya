@@ -37,6 +37,7 @@ function handleAuthClick() {
       document.getElementById("logo").style.visibility = "hidden";
       window.localStorage.setItem("eventList",JSON.stringify(await listUpcomingEvents()));
       window.localStorage.setItem("userLogIn",JSON.stringify({status: "logged"})); 
+      console.clear();
     };
 
   if (gapi.client.getToken() === null) {

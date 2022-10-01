@@ -17,9 +17,9 @@ function App() {
           <MapGUI className="noteArea"/>
         </div>
       </div>
-      <div id="addEvent" style = {{position: "fixed",top: "0px", height: "100vh", width: "100vw", backgroundColor: "rgba(20, 20, 20, 0.8)", visibility: "hidden"}}>
+      <div id="addEvent" style = {{position: "fixed",top: "0px", height: "100vh", width: "100vw", backgroundColor: "rgba(20, 20, 20, 0.8)", visibility: "hidden", backdropFilter: "blur(2px)"}}>
         {NewEvent()};
-        {console.log(process.env.API_KEY)}
+        {/* {console.log(process.env.API_KEY)} */}
       </div>
     </div>
   );
