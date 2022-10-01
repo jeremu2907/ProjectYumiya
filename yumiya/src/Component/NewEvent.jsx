@@ -99,8 +99,7 @@ export function NewEvent() {
         });
       
       //Close NewEvent componenet
-      document.getElementById("addEvent").style.visibility = "hidden"
-        
+      document.getElementById("addEvent").style.visibility = "hidden";
     }
     const [address, setAddress] = React.useState("");
     const [setCoordinates] = React.useState({
@@ -129,7 +128,6 @@ export function NewEvent() {
                 <DatePicker dateFormat = "yyyy-MM-dd'  'HH:mm:ss" className = "newEventBox" name="createEventDateTime" style = {{border: "0", width: "auto"}} selected={startDate} onChange={(date) => setStartDate(date)} showTimeSelect/>
                 
                 <h5>Location</h5>
-                {/* <input name="createEventLocation" type="text" className = "newEventBox"></input> */}
                 <PlacesAutocomplete
                   value={address}
                   onChange={setAddress}
