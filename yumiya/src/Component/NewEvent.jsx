@@ -45,7 +45,7 @@ export function NewEvent() {
         justifyContent: "space-evenly",
         padding: "30px",
         fontSize: "24px",
-        borderRadius: "30px"
+        borderRadius: "10px"
     }
 
     // function to put all details to localStorage to be included in http request
@@ -103,7 +103,7 @@ export function NewEvent() {
         
     }
     const [address, setAddress] = React.useState("");
-    const [coordinates, setCoordinates] = React.useState({
+    const [setCoordinates] = React.useState({
       lat: null,
       lng: null
     });
@@ -136,24 +136,23 @@ export function NewEvent() {
                   onSelect={handleSelect}>
                   {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
                     <div>
-                      {/* <p>Latitude: {coordinates.lat}</p>
-                      <p>Longitude: {coordinates.lng}</p> */}
 
-                      <input {...getInputProps({ placeholder: "Type address" })} className = "newEventBox"/>
+                      <input {...getInputProps({ placeholder: "Type address" })} name="createEventLocation" className = "newEventBox"/>
 
                       <div>
                         {loading ? <div>...loading</div> : null}
 
                         {suggestions.map(suggestion => {
-                          console.log(suggestions)
+                          // console.log(suggestions)
                           const style = {
                             backgroundColor: suggestion.active ? "#41b6e6" : "#fff",
-                            position: "fixed",
-                            zIndex: "100"
+                            width: "500px",
+                            position: "float",
+                            padding: "2px"
                           };
 
                           return (
-                            <div {...getSuggestionItemProps(suggestion, { style })}>
+                            <div {...getSuggestionItemProps(suggestion, { style })} key = {Math.random()*100000000}>
                               {suggestion.description}
                             </div>
                           );
