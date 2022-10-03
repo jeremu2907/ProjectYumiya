@@ -32,7 +32,8 @@ class CalendarItem extends Component{
         overflowX: "hidden",
         color: "white",
         padding: "15px",
-        minHeight: "100px"
+        minHeight: "100px",
+        border: "solid 2px rgba(0,0,0,0)"
     }
 
     title = {
