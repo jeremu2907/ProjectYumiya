@@ -4,8 +4,8 @@
 /* exported handleSignoutClick */
 
 // TODO(developer): Set to client ID and API key from the Developer Console
-// const CLIENT_ID = process.env.CLIENT_ID;
-// const API_KEY = process.env.API_KEY;
+// const CLIENT_ID = process.env.REACT_APP_CLIENT_ID;
+// const API_KEY = process.env.REACT_APP_API_KEY;
 
 // Discovery doc URL for APIs used by the quickstart
 const DISCOVERY_DOC = 'https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest';
