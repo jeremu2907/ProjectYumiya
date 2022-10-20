@@ -1146,18 +1146,22 @@ class MapInfo extends Component{
         this.state = {
             weatherData: "",
             currentWeatherData: "",
-            desc: ""
+            desc: "",
+            nodata: false,
+            locationData: "No Event Selected",
         }
 
         console.log(this.state.weatherData)
 
+        //Get Current Location via geolocation then display data,
+        //Else display nothing
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition((LatLon) => {
                 
                 let lat = LatLon.coords.latitude;
                 let lon = LatLon.coords.longitude;
                 let apiCall = "https://api.openweathermap.org/data/3.0/onecall?lat="+lat+"&lon="+lon+"&exclude=minutely,daily,alerts&appid=413c4ae08ad7457250848cc6fc7a7fe4"
-                // fetch("https://api.openweathermap.org/data/3.0/onecall?lat=33.44&lon=-94.04&exclude=minutely,daily,alerts&appid=413c4ae08ad7457250848cc6fc7a7fe4")
+                
                 fetch(apiCall)
                 .then(response => {
                 // indicates whether the response is successful (status code 200-299) or not
@@ -1175,6 +1179,7 @@ class MapInfo extends Component{
                 .catch(error => console.log(error))
             });
         } else {
+            this.setState({nodata: true})
             console.log("Geolocation is not supported by this browser.");
         }
 
@@ -1190,20 +1195,21 @@ class MapInfo extends Component{
             <div style={this.styles}>
                 <ItemTitle color={"#03d3fc"} text={'Map'} />
                 <div style={{justifyContent:"center"}}>
-                    <ul style={{color:"white"}} className = "globalFont">
-                        <li>Place</li>
-                        <li>ETA</li>
-                        <li>Distance</li>
-                        <li>Duration</li>
-                        <li>Traffic Condition</li>
-                    </ul>
+                    <div style={{color:"white"}} className = "globalFont">
+                        <p id="EventLocationName">No Event Selected</p>
+                        <p id="EventLocation"></p>
+                    </div>
+                        
                 </div>
                 <ItemTitle color={"#03d3fc"} text={'Weather'} />
                 <div style={{justifyContent:"center"}}>
-                    <ul style={{color:"white"}} className = "globalFont">
-                        <li>{this.temperatureString()}</li>
-                        <li>{this.getWeatherDesc()}</li>
-                    </ul>
+                    {this.state.nodata ?
+                        <p style={{color:"white"}} className = "globalFont">{this.state.nodata}</p>
+                    :   <ul style={{color:"white"}} className = "globalFont">
+                            <li>{this.temperatureString()}</li>
+                            <li>{this.getWeatherDesc()}</li>
+                        </ul>
+                    }
                 </div>
                 {/* <button style={{height: "50px", width: "100px", backgroundColor: "white"}} onClick={this.handleClick}>Button</button> */}
             </div>
@@ -1227,6 +1233,7 @@ class MapInfo extends Component{
     //     fetch("http://127.0.0.1:5000/")
     //         .then(response => { console.log(response)})
     // }
+
 }
 
 export default MapInfo

@@ -19,7 +19,8 @@ class CalendarItem extends Component{
     // }
 
     state = {
-        status : false
+        status : false,
+        detail : false
     }
 
     styles = {
@@ -48,9 +49,9 @@ class CalendarItem extends Component{
 
     render(){
         return(
-            <div style = {this.styles} className="box" onClick={this.selectItem}>
+            <div style = {this.styles} className="box" onClick={this.selectDetail}>
                 {/* Selection indicator */}
-                <div id = {this.props.id} style = {{height: "20px", width: "20px", borderRadius: "10px",backgroundColor: "rgba(255, 255, 255, 0.05)"}}></div>
+                <div id = {this.props.id} style = {{height: "20px", width: "20px", borderRadius: "10px",backgroundColor: "rgba(255, 255, 255, 0.05)"}} onClick={this.selectItemAction}></div>
                 <h3 style = {this.title} className = "globalFont">{this.props.name}</h3>
                 {/* Props passed in from DailyCard.jsx */}
                 <div className = "globalFont" style={{paddingLeft: "10px"}}>
@@ -64,7 +65,7 @@ class CalendarItem extends Component{
     }
 
     // When the event is clicked mark the event and pass signal to DailyCard, waiting to be removed
-    selectItem = () => {
+    selectItemAction = () => {
         this.props.parentCallback(this.props.id, this.state.status)
         if(!this.state.status)
             document.getElementById(this.props.id).style.backgroundColor = "#03d3fc"
@@ -72,6 +73,24 @@ class CalendarItem extends Component{
             document.getElementById(this.props.id).style.backgroundColor = "rgba(255, 255, 255, 0.05)"
         
         this.setState({status: !this.state.status})
+    }
+
+    selectDetail = () => {
+        //When selecting an event, map info will display information
+        console.log(this.props.name)
+        if(this.props.name !== undefined){
+            document.getElementById("EventLocationName").innerHTML = this.props.name;
+        }
+        else{
+            document.getElementById("EventLocationName").innerHTML = "Event Has No Name";
+        }
+
+        if(this.props.location !== undefined){
+            document.getElementById("EventLocation").innerHTML = this.props.location;
+        }
+        else{
+            document.getElementById("EventLocation").innerHTML = "No Location Information"
+        }
     }
 }
 
