@@ -1,0 +1,51 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200&display=swap');
+
+textarea { 
+    font-family: 'Montserrat', sans-serif;
+    font-size: 24px;
+    
+    resize: none; 
+    border: none;
+    overflow: auto;
+    outline: none;
+
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+
+}
+
+input {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 24px;
+    height: 30px;
+    
+    resize: none; 
+    border: none;
+    overflow: auto;
+    outline: none;
+}
+
+textarea::-webkit-scrollbar{
+    width: 8px;
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 4px;
+}
+
+textarea::-webkit-scrollbar-thumb{
+    background-color:#870c20da;
+    border-radius: 4px;
+}
+
+.NoteContainer:hover{
+    animation: focus 0.3s ease-in-out forwards;
+}
+
+@keyframes focus {
+    0% {
+        backdrop-filter: blur(0px);
+    }
+    100% {
+        backdrop-filter: blur(10px);
+    }
+}

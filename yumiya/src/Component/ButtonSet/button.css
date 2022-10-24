@@ -1,0 +1,19 @@
+.AddSubButton{
+    scale: .5;
+    border-radius: 20%;
+    border: solid 5px rgba(0,0,0,0);
+    background-color: rgba(0,0,0,0);
+}
+
+.AddSubButton:hover{
+    animation: buttonHover 0.5s forwards ease-in-out
+}
+
+@keyframes buttonHover {
+    0%{
+        background-color: rgba(0,0,0,0);
+    }
+    100%{
+        background-color: rgba(62, 163, 235, 0.526)
+    }
+}
