@@ -1200,6 +1200,7 @@ class MapInfo extends Component{
                         <p id="EventLocation"></p>
                         <p id="EventDistance"></p>
                         <p id="EventETA"></p>
+
                     </div>
                         
                 </div>
@@ -1207,6 +1208,7 @@ class MapInfo extends Component{
                 <div style={{justifyContent:"center"}}>
                     {this.state.nodata ?
                         <p style={{color:"white"}} className = "globalFont">{this.state.nodata}</p>
+
                     :   <div style={{color:"white"}} className = "globalFont">
                             <p>{this.temperatureString()}</p>
                             <p>{this.getWeatherDesc()}</p>
