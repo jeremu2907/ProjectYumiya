@@ -36,7 +36,7 @@ export function NewEvent() {
     let styles = { position: "fixed",
         height: "auto",
         width: "auto",
-        backgroundColor: "rgba(255, 255, 255, 0.8)",
+        backgroundColor: "rgba(255, 255, 255, 0.7)",
         top: "50%",
         left: "50%",
         transform: "translate(-50%, -50%)",
@@ -102,6 +102,7 @@ export function NewEvent() {
       document.getElementById("addEvent").style.visibility = "hidden";
     }
     const [address, setAddress] = React.useState("");
+    // const [coordinates, setCoordinates] = React.useState({    For use when coordinate is needed
     const [setCoordinates] = React.useState({
       lat: null,
       lng: null
@@ -134,11 +135,13 @@ export function NewEvent() {
                   onSelect={handleSelect}>
                   {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
                     <div>
+                      {/* {console.log(coordinates.lat)}
+                      {console.log(coordinates.lng)} */}
 
                       <input {...getInputProps({ placeholder: "Type address" })} name="createEventLocation" className = "newEventBox"/>
 
                       <div>
-                        {loading ? <div>...loading</div> : null}
+                        {loading ? <div>...Loading</div> : null}
 
                         {suggestions.map(suggestion => {
                           // console.log(suggestions)

@@ -1198,6 +1198,9 @@ class MapInfo extends Component{
                     <div style={{color:"white"}} className = "globalFont">
                         <p id="EventLocationName">No Event Selected</p>
                         <p id="EventLocation"></p>
+                        <p id="EventDistance"></p>
+                        <p id="EventETA"></p>
+
                     </div>
                         
                 </div>
@@ -1205,10 +1208,11 @@ class MapInfo extends Component{
                 <div style={{justifyContent:"center"}}>
                     {this.state.nodata ?
                         <p style={{color:"white"}} className = "globalFont">{this.state.nodata}</p>
-                    :   <ul style={{color:"white"}} className = "globalFont">
-                            <li>{this.temperatureString()}</li>
-                            <li>{this.getWeatherDesc()}</li>
-                        </ul>
+
+                    :   <div style={{color:"white"}} className = "globalFont">
+                            <p>{this.temperatureString()}</p>
+                            <p>{this.getWeatherDesc()}</p>
+                        </div>
                     }
                 </div>
                 {/* <button style={{height: "50px", width: "100px", backgroundColor: "white"}} onClick={this.handleClick}>Button</button> */}

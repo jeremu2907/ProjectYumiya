@@ -37,25 +37,15 @@ textarea::-webkit-scrollbar-thumb{
     border-radius: 4px;
 }
 
-/* .AddSubButton{
-    scale: .5;
-    border-radius: 20%;
-    border: solid 5px rgba(0,0,0,0);
-    background-color: rgba(0,0,0,0);
+.NoteContainer:hover{
+    animation: focus 0.3s ease-in-out forwards;
 }
 
-.AddSubButton:hover{
-    animation: buttonHover 3s infinite ease-in-out
+@keyframes focus {
+    0% {
+        backdrop-filter: blur(0px);
+    }
+    100% {
+        backdrop-filter: blur(10px);
+    }
 }
-
-@keyframes buttonHover {
-    0%{
-        background-color: rgba(0,0,0,0);
-    }
-    50%{
-        background-color: rgba(62, 163, 235, 0.526)
-    }
-    100%{
-        background-color: rgba(0,0,0,0);
-    }
-} */

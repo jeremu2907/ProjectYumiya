@@ -77,7 +77,6 @@ class CalendarItem extends Component{
 
     selectDetail = () => {
         //When selecting an event, map info will display information
-        console.log(this.props.name)
         if(this.props.name !== undefined){
             document.getElementById("EventLocationName").innerHTML = this.props.name;
         }

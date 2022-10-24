@@ -22,7 +22,7 @@ class ToDoList extends Component{
         this.eventModifySub = this.eventModifySub.bind(this);
     }
     styles = {
-        height: "calc(48vh - 10px)",
+        height: "47vh",
         width: "calc(48vw - 10px)",
         backgroundColor: "rgba(20, 20, 20, 0.77)",
         display: "flex",
@@ -63,7 +63,7 @@ class ToDoList extends Component{
 
     render(){
         return(
-            <div style={this.styles}>
+            <div style={this.styles} className="NoteContainer">
                 {/* Title and add, subtract page */}
                 <div style={this.title}>
                     <ItemTitle styleChoice={0} color="#03d3fc" text={"My Notes today"}/>

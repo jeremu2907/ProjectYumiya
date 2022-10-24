@@ -4,7 +4,7 @@ import Gmap from './Gmap.jsx'
 
 class MapGUI extends Component{
     styles = {
-        height: "48vh",
+        height: "47vh",
         width: "calc(48vw)",
         backgroundColor: "rgba(20, 20, 20, 0.77)",
         display: "flex",
