@@ -4,8 +4,8 @@ import sys
 os.system("git add .")
 try:
     s = ""
-    for i in sys.argv:
-        s += i + ' '
+    for i in len(sys.argv + 1):
+        s += sys.argv[i] + ' '
     print(s)
     os.system('git commit -m "' + s + '"')
 except:
