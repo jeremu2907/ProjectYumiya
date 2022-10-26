@@ -15,14 +15,14 @@
     }
     100%{
         border: white solid 2px;
-        backdrop-filter: blur(5px);
+        backdrop-filter: blur(10px);
     }
 }
 
 @keyframes noboxHover {
     0%{
         border: white solid 2px;
-        backdrop-filter: blur(5px);
+        backdrop-filter: blur(10px);
     }
     100% {
         border:solid 2px rgba(0,0,0,0);
