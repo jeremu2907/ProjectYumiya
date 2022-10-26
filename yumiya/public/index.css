@@ -78,9 +78,26 @@ body {
     }
 }
 
-/* .changeBackground{
+#image-input{
     position: absolute;
     height: 30px;
     top: calc(100% - 30px);
-    width:auto;
-} */
+    width:fit-content;
+  
+}
+
+input[type="file"] {
+    display: none;
+}
+.custom-file-upload {
+    position: absolute;
+    top: 0;
+    width:28px;
+    height:28px;
+    margin-top: 10px;
+    margin-left: 10px;
+    background-image: url('bg1.png');
+    background-position: center center;
+    opacity: 0.2;
+    background-color: rgb(0, 0, 0)
+}

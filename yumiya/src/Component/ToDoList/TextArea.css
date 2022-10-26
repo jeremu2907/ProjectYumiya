@@ -41,11 +41,23 @@ textarea::-webkit-scrollbar-thumb{
     animation: focus 0.3s ease-in-out forwards;
 }
 
+.NoteContainer:not(:hover){
+    animation: nofocus 0.3s ease-in-out forwards;
+}
+
 @keyframes focus {
     0% {
         backdrop-filter: blur(0px);
     }
     100% {
         backdrop-filter: blur(10px);
+    }
+}
+@keyframes nofocus {
+    0% {
+        backdrop-filter: blur(10px);
+    }
+    100% {
+        backdrop-filter: blur(0px);
     }
 }

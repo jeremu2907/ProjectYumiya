@@ -24,12 +24,12 @@ class DailyCard extends Component{
         border: "solid 2px #262524",
         padding: "10px",
         minWidth: "189px",
-        borderRadius: "10px"
+        borderRadius: "10px",
     }
 
     flexBoxStyle = {
         position: "relative",
-        height: "calc(90% - 60px)",
+        height: "calc(90% - 20px)",
         width: "calc(100%-20px)",
         overflow: "auto",
         borderTopLeftRadius: "30px",
@@ -41,8 +41,8 @@ class DailyCard extends Component{
         flexDirection: "row",
         alignItems: "center",
         justifyContent:"center",
-        marginBottom: "30px",
-        marginTop: "30px"
+        marginBottom: "10px",
+        marginTop: "10px",
     }
 
     eventModifyAdd = () => {
