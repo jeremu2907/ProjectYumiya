@@ -60,7 +60,7 @@ function unlockPage(){
   document.getElementById('authorize_button').style.visibility = 'hidden';
   document.getElementById('login-container').style.top = '0';
   document.getElementById('login-container').style.left = '0';
-  document.getElementById('login-container').style.margin = '10px';
+  document.getElementById('login-container').style.marginLeft = '2px';
   document.getElementById('logo').style.fontSize = '10px';
   document.getElementById('login-container').style.transform = 'translate(0,0)'
 }

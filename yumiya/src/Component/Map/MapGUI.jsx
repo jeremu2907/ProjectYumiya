@@ -5,13 +5,15 @@ import Gmap from './Gmap.jsx'
 class MapGUI extends Component{
     styles = {
         height: "47vh",
-        width: "calc(48vw)",
+        // width: "calc(48vw)",
+        width: "95%",
         backgroundColor: "rgba(20, 20, 20, 0.77)",
         display: "flex",
         flexDirection: "row",
         alignItems: "center",
         justifyContent: "space-evenly",
-        borderRadius: "10px"
+        borderRadius: "10px",
+        padding: "5px"
     }
     render(){
         return(

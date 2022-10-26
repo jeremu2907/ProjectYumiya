@@ -19,10 +19,8 @@ class ToDoItems extends Component{
         border: "none",
         color: "white",
         backgroundColor: "rgba(0,0,0,0)",
-        fontSize: "20px",
         left: "50%",
         transform: "translate(-50%)",
-        // marginBottom: "30px"
     }
                                 
     //Used to persist state of what is written in Note area
