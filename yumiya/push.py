@@ -13,4 +13,3 @@ except:
     os.system("git commit -m 'Commit new changes'")
 finally:
     os.system("git push")
-
