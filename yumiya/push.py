@@ -1,3 +1,8 @@
+# Syntax 1: python push.py [type in message without quotes]
+# Syntax 2: python push.py
+# Syntax 1 pushes with custom commit message
+# Syntax 2 pushes with general commit message
+
 import os
 import sys
 
