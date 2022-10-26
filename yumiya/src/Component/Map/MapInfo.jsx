@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import ItemTitle from '../ItemTitle.jsx'
 import './weather.js'
+import './map.css'
 
 class MapInfo extends Component{
     constructor(){
@@ -51,11 +52,14 @@ class MapInfo extends Component{
         position: 'relative',
         width: "30%",
         height: "calc(100% - 30px)",
+
         // alignSelf: "flex-end",
+        overflowWrap: "break-word",
+        overflowY: "auto"
     }
     render(){
         return(
-            <div style={this.styles}>
+            <div style={this.styles} className="infoArea">
                 <ItemTitle color={"#03d3fc"} text={'Map'} />
                 <div style={{justifyContent:"center"}}>
                     <div style={{color:"white"}} className = "globalFont">
