@@ -12,4 +12,4 @@ except:
     print('No argument, using standard commit message')
     os.system('git commit -m "Commit new changes"')
 finally:
-    os.system("git push")
+    os.system("git push") 
