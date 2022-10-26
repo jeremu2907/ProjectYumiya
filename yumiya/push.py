@@ -2,14 +2,14 @@ import os
 import sys
 
 os.system("git add .")
-try:
+if len(sys.argv) > 1:
     s = ""
-    for i in len(sys.argv + 1):
+    for i in range(1,len(sys.argv)):
         s += sys.argv[i] + ' '
     print(s)
     os.system('git commit -m "' + s + '"')
-except:
+else:
     print('No argument, using standard commit message')
     os.system('git commit -m "Commit new changes"')
-finally:
-    os.system("git push") 
+
+os.system("git push") 
