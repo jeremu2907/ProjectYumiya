@@ -9,7 +9,7 @@ try:
     print(s)
     os.system('git commit -m "' + s + '"')
 except:
-    print("No argument, using standard commit message")
-    os.system("git commit -m 'Commit new changes'")
+    print('No argument, using standard commit message')
+    os.system('git commit -m "Commit new changes"')
 finally:
     os.system("git push")
