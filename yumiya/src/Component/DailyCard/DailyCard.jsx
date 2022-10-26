@@ -74,7 +74,7 @@ class DailyCard extends Component{
     render(){
         // const d = new Date();
         // let cardTitle = "Today " + (d.getMonth() + 1) + " | " + d.getDate();
-        let cardTitle = "Upcoming events";
+        let cardTitle = "Events";
         return(
             <div style = {this.styles}>
                 <div style = {this.title}>
@@ -110,16 +110,20 @@ class DailyCard extends Component{
         )
     }
 
+    rret = () => {
+        listUpcomingEvents().then((value) => {
+            if(value !== 1){
+                this.forceUpdate();
+            } else {
+                console.clear();
+            }
+        })
+    }
     //This funciton is for updating the calendar automatically every 1s
     componentDidMount(){
-        setInterval(() => {
-            try{
-                listUpcomingEvents()
-            } catch {
-                console.log("Not logged in")
-            }
-            this.forceUpdate()
-        },1000)
+        setInterval(()=>{
+            this.rret()
+        },1500)
     }
     handleUserSelection = (selected, status) => {
         if(!status)
