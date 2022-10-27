@@ -121,7 +121,7 @@ class DailyCard extends Component{
     }
     //This funciton is for updating the calendar automatically every 1s
     componentDidMount(){
-        setInterval(()=>{
+        setInterval(()=>{ 
             this.rret()
         },1500)
     }
