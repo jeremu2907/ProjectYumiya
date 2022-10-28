@@ -18,10 +18,9 @@ class DailyCard extends Component{
     }
 
     styles = {
-        height: "94vh",
+        height: "calc(94vh + 10px)",
         width: "80%",
         backgroundColor: "rgba(20, 20, 20, 0.77)",
-        border: "solid 2px #262524",
         padding: "10px",
         minWidth: "189px",
         borderRadius: "10px",

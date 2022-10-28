@@ -84,11 +84,27 @@ class CalendarItem extends Component{
             document.getElementById("EventLocationName").innerHTML = "Event Has No Name";
         }
 
+        document.getElementById("EventDistance").innerHTML = "No distance info";
+        document.getElementById("EventETA").innerHTML = "No estimated travel duration";
+
         if(this.props.location !== undefined){
             document.getElementById("EventLocation").innerHTML = this.props.location;
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition((coord) => {
+                    fetch("http://localhost:5000/eta?destination=" + this.props.location + "&lat=" + coord.coords.latitude + "&lon=" + coord.coords.longitude)
+                    .then((resp) => {
+                        return resp.json();
+                    }).then((data) => {
+                        document.getElementById("EventDistance").innerHTML = "Distance to event: " + data.rows[0].elements[0].distance.text;
+                        document.getElementById("EventETA").innerHTML = "Est. travel time: " + data.rows[0].elements[0].duration.text;
+                    })
+                });
+            } else {
+                document.getElementById("map").innerHTML = "Geolocation is not supported by this browser.";
+            }
         }
         else{
-            document.getElementById("EventLocation").innerHTML = "No Location Information"
+            document.getElementById("EventLocation").innerHTML = "No Location Information";
         }
     }
 }

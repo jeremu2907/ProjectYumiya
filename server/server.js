@@ -6,6 +6,7 @@ const cors = require('cors');
 require('dotenv').config();
 
 app.use(cors())
+console.log("Server Up and Running!")
 
 app.get('/', (req,res) => {
     res.sendStatus(200);
@@ -15,7 +16,9 @@ app.get('/', (req,res) => {
 })
 
 app.get('/eta', async (req, res) => {
-    let apiCall = "https://maps.googleapis.com/maps/api/distancematrix/json?destinations=Richardson,%20800%20Custer%20Parkway,%20Richardson,%20TX,%20USA&origins=5218BarcelonaDr,Garland,TX&key=AIzaSyC_kenObLSxyH_DyPx2nIV5eQIsNHDZtW0"
+    let lat = req.query.lat;
+    let lon = req.query.lon;
+    let apiCall = "https://maps.googleapis.com/maps/api/distancematrix/json?destinations=" + req.query.destination + "&origins=" + lat + "%2C" + lon + "&key=AIzaSyC_kenObLSxyH_DyPx2nIV5eQIsNHDZtW0";
     fetch(apiCall).then((response)=>{
         return response.json()
     }).then(data =>{
