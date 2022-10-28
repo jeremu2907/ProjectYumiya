@@ -114,7 +114,7 @@ class DailyCard extends Component{
             if(value !== 1){
                 this.forceUpdate();
             } else {
-                // console.clear();
+                console.clear();
             }
         })
     }

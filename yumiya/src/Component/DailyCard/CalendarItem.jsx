@@ -77,6 +77,7 @@ class CalendarItem extends Component{
 
     selectDetail = () => {
         //When selecting an event, map info will display information
+        //And eta, distance
         if(this.props.name !== undefined){
             document.getElementById("EventLocationName").innerHTML = this.props.name;
         }
@@ -84,6 +85,7 @@ class CalendarItem extends Component{
             document.getElementById("EventLocationName").innerHTML = "Event Has No Name";
         }
 
+        //Default value if there is no infomation
         document.getElementById("EventDistance").innerHTML = "No distance info";
         document.getElementById("EventETA").innerHTML = "No estimated travel duration";
 
@@ -95,9 +97,17 @@ class CalendarItem extends Component{
                     .then((resp) => {
                         return resp.json();
                     }).then((data) => {
-                        document.getElementById("EventDistance").innerHTML = "Distance to event: " + data.rows[0].elements[0].distance.text;
-                        document.getElementById("EventETA").innerHTML = "Est. travel time: " + data.rows[0].elements[0].duration.text;
+                        if(data.rows[0].elements[0].distance !== undefined)
+                            document.getElementById("EventDistance").innerHTML = "Distance to event: " + data.rows[0].elements[0].distance.text;
+                        else
+                            document.getElementById("EventDistance").innerHTML = ""
+                        if(data.rows[0].elements[0].duration !== undefined)
+                            document.getElementById("EventETA").innerHTML = "Est. travel time: " + data.rows[0].elements[0].duration.text;
                     })
+                    
+                    //While fetching from server, display loading
+                    document.getElementById("EventDistance").innerHTML = "Loading...";
+                    document.getElementById("EventETA").innerHTML = "";
                 });
             } else {
                 document.getElementById("map").innerHTML = "Geolocation is not supported by this browser.";
