@@ -19,17 +19,17 @@ class DailyCard extends Component{
 
     styles = {
         height: "94vh",
-        width: "60%",
+        width: "80%",
         backgroundColor: "rgba(20, 20, 20, 0.77)",
         border: "solid 2px #262524",
         padding: "10px",
         minWidth: "189px",
-        borderRadius: "10px"
+        borderRadius: "10px",
     }
 
     flexBoxStyle = {
         position: "relative",
-        height: "calc(90% - 60px)",
+        height: "calc(90% - 20px)",
         width: "calc(100%-20px)",
         overflow: "auto",
         borderTopLeftRadius: "30px",
@@ -41,8 +41,8 @@ class DailyCard extends Component{
         flexDirection: "row",
         alignItems: "center",
         justifyContent:"center",
-        marginBottom: "30px",
-        marginTop: "30px"
+        marginBottom: "10px",
+        marginTop: "10px",
     }
 
     eventModifyAdd = () => {
@@ -74,7 +74,7 @@ class DailyCard extends Component{
     render(){
         // const d = new Date();
         // let cardTitle = "Today " + (d.getMonth() + 1) + " | " + d.getDate();
-        let cardTitle = "Upcoming events";
+        let cardTitle = "Events";
         return(
             <div style = {this.styles}>
                 <div style = {this.title}>
@@ -110,16 +110,20 @@ class DailyCard extends Component{
         )
     }
 
+    rret = () => {
+        listUpcomingEvents().then((value) => {
+            if(value !== 1){
+                this.forceUpdate();
+            } else {
+                // console.clear();
+            }
+        })
+    }
     //This funciton is for updating the calendar automatically every 1s
     componentDidMount(){
-        setInterval(() => {
-            try{
-                listUpcomingEvents()
-            } catch {
-                console.log("Not logged in")
-            }
-            this.forceUpdate()
-        },1000)
+        setInterval(()=>{ 
+            this.rret()
+        },1500)
     }
     handleUserSelection = (selected, status) => {
         if(!status)

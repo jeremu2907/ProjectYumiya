@@ -4,8 +4,6 @@
 /* exported handleSignoutClick */
 
 // TODO(developer): Set to client ID and API key from the Developer Console
-// const CLIENT_ID = process.env.REACT_APP_CLIENT_ID;
-// const API_KEY = process.env.REACT_APP_API_KEY;
 
 // Discovery doc URL for APIs used by the quickstart
 const DISCOVERY_DOC = 'https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest';
@@ -17,9 +15,6 @@ const SCOPES = 'https://www.googleapis.com/auth/calendar https://www.googleapis.
 let tokenClient;
 let gapiInited = false;
 let gisInited = false;
-
-const CLIENT_ID = "461862675457-a3lrck82d2d9j0jq9srot6es33gsq86u.apps.googleusercontent.com"
-const API_KEY = "AIzaSyC_kenObLSxyH_DyPx2nIV5eQIsNHDZtW0"
 
 // document.getElementById('authorize_button').style.visibility = 'hidden';
 // document.getElementById('signout_button').style.visibility = 'hidden';
@@ -36,7 +31,6 @@ function handleAuthClick() {
       document.getElementById("root").style.visibility = "visible";
       // document.getElementById("logo").style.visibility = "hidden";
       window.localStorage.setItem("eventList",JSON.stringify(await listUpcomingEvents()));
-      window.localStorage.setItem("userLogIn",JSON.stringify({status: "logged"})); 
       console.clear();
     };
 
@@ -57,7 +51,12 @@ function unlockPage(){
   // document.getElementById('authorize_button').style.transform = "translate(0,0)"
   // document.getElementById('authorize_button').style.fontSize = "20px"
   // document.getElementById('authorize_button').style.padding = "5px"
-  document.getElementById('authorize_button').style.visibility = 'hidden'
+  document.getElementById('authorize_button').style.visibility = 'hidden';
+  document.getElementById('login-container').style.top = '0';
+  document.getElementById('login-container').style.left = '0';
+  document.getElementById('login-container').style.marginLeft = '2px';
+  document.getElementById('logo').style.fontSize = '10px';
+  document.getElementById('login-container').style.transform = 'translate(0,0)'
 }
 
 
@@ -77,33 +76,49 @@ function gapiLoaded() {
 * discovery doc to initialize the API.
 */
 async function intializeGapiClient() {
-  try{
-    await gapi.client.init({
-    apiKey: API_KEY,
-    discoveryDocs: [DISCOVERY_DOC],
-    });
-    gapiInited = true;
-    maybeEnableButtons();
-  } catch {
-    console.log("User not logged in")
-  }
+  var API_KEY = "x";
+
+  fetch("http://localhost:5000/id").then(resp => {
+    return resp.json();
+  }).then((data) => {
+    API_KEY = data.val2;
+  }).then(async () => {
+    try{
+      await gapi.client.init({
+      apiKey: API_KEY,
+      discoveryDocs: [DISCOVERY_DOC],
+      });
+      gapiInited = true;
+      maybeEnableButtons();
+    } catch {
+      console.log("User not logged in")
+    }
+  })
 }
 
 /**
 * Callback after Google Identity Services are loaded.
 */
 function gisLoaded() {
-  try {
-    tokenClient = google.accounts.oauth2.initTokenClient({
-    client_id: CLIENT_ID,
-    scope: SCOPES,
-    callback: '', // defined later
-    });
-    gisInited = true;
-    maybeEnableButtons();
-  } catch {
+  var CLIENT_ID = "x";
 
-  }
+  fetch("http://localhost:5000/id").then(resp => {
+    return resp.json();
+  }).then((data) => {
+    CLIENT_ID = data.val1;
+  }).then(() => {
+    try {
+      tokenClient = google.accounts.oauth2.initTokenClient({
+      client_id: CLIENT_ID,
+      scope: SCOPES,
+      callback: '', // defined later
+      });
+      gisInited = true;
+      maybeEnableButtons();
+    } catch {
+  
+    }
+  })
 }
 
 /**

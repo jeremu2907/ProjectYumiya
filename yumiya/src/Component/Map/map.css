@@ -1,0 +1,10 @@
+.infoArea::-webkit-scrollbar{
+    width: 8px;
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 4px;
+}
+
+.infoArea::-webkit-scrollbar-thumb{
+    background-color:#870c20da;
+    border-radius: 4px;
+}

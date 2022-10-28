@@ -9,26 +9,26 @@
     <title>yumiya</title>
      
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC_kenObLSxyH_DyPx2nIV5eQIsNHDZtW0&libraries=places"></script>
-    <script  defer src="https://apis.google.com/js/api.js" onload="gapiLoaded()"></script>
-    <script  defer src="https://accounts.google.com/gsi/client" onload="gisLoaded()"></script>
+    <script defer src="https://apis.google.com/js/api.js" onload="gapiLoaded()"></script>
+    <script defer src="https://accounts.google.com/gsi/client" onload="gisLoaded()"></script>
     <script src="./index.js"></script>  
+    <script src="./functional.js" defer></script>
   </head>
   <body id="body">
 
     <noscript>You need to enable JavaScript to run this app.</noscript>
 
     <div id="root" style="visibility: hidden"></div>
-    <!-- <img id="logo" src="./iconLogin.png" class="logo"> -->
-    <button  id="authorize_button" class="googleSignInOut" onclick="handleAuthClick()">
-      Connect to Google
-      <img src="googleIcon.png" alt="Google Icon" style="height: 25px;width: 25px; margin-left:20px">
-    </button>
-    
-    <!-- change wallpaper -->
-    <!-- <form class="changeBackground" action="/action_page.php">
-      <input type="file" id="myFile" name="filename">
-      <input type="submit">
-    </form> -->
+    <label for="file-upload" class="custom-file-upload">
+    </label>
+    <input id="file-upload" type="file" accept="image/jpeg, image/png, image/jpg" enctype="multipart/form-data"/>
+    <div id="login-container" class="login-container">
+      <div id="logo" class = "logo">.yumiya</div>
+      <button id="authorize_button" class="googleSignInOut" onclick="handleAuthClick()">
+        <img src="googleIcon.png" alt="Google Icon" style="height: 15px;width: 15px; margin-right:5px;">
+        Connect to Google
+      </button>
+    </div>
     
     
   </body>
