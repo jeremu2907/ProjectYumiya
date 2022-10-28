@@ -24,23 +24,27 @@ class MapInfo extends Component{
                 
                 let lat = LatLon.coords.latitude;
                 let lon = LatLon.coords.longitude;
-                let apiCall = "https://api.openweathermap.org/data/3.0/onecall?lat="+lat+"&lon="+lon+"&exclude=minutely,daily,alerts&appid=413c4ae08ad7457250848cc6fc7a7fe4"
-                
-                fetch(apiCall)
-                .then(response => {
-                // indicates whether the response is successful (status code 200-299) or not
-                if (!response.ok) {
-                    throw new Error(`Request failed with status ${response.status}`)
-                }
-                return response.json()
+                let apiCall = `https://api.openweathermap.org/data/3.0/onecall?lat=`+lat+`&lon=`+lon+`&exclude=minutely,daily,alerts&appid=`
+                fetch("http://localhost:5000/wkey").then(resp => {
+                    return resp.json();
+                }).then(data => {
+                    apiCall += data.val
+                }).then(() => {
+                    fetch(apiCall)
+                    .then(response => {
+                    // indicates whether the response is successful (status code 200-299) or not
+                    if (!response.ok) {
+                        throw new Error(`Request failed with status ${response.status}`)
+                    }
+                    return response.json()
+                    })
+                    .then(data => {
+                        this.setState({weatherData: data.hourly.slice(0, 24)});
+                        this.setState({currentWeatherData: data.current});
+                        this.setState({desc: data.current.weather[0].description});
+                    })
+                    .catch(error => console.log(error))
                 })
-                .then(data => {
-                    this.setState({weatherData: data.hourly.slice(0, 24)});
-                    this.setState({currentWeatherData: data.current});
-                    this.setState({desc: data.current.weather[0].description});
-                    console.log(this.state.desc);
-                })
-                .catch(error => console.log(error))
             });
         } else {
             this.setState({nodata: true})
@@ -98,13 +102,6 @@ class MapInfo extends Component{
         let desc = this.state.desc;
         return desc.charAt(0).toUpperCase() + desc.slice(1);
     }
-
-    // handleClick = () => {
-    //     console.log("hello");
-    //     fetch("http://127.0.0.1:5000/")
-    //         .then(response => { console.log(response)})
-    // }
-
 }
 
 export default MapInfo
