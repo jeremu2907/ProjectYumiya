@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import ItemTitle from '../ItemTitle.jsx'
 import './weather.js'
 import './map.css'
+import {expandWeather} from './weather'
 
 class MapInfo extends Component{
     constructor(){
@@ -13,9 +14,8 @@ class MapInfo extends Component{
             desc: "",
             nodata: false,
             locationData: "No Event Selected",
+            expanded: false
         }
-
-        // console.log(this.state.weatherData)
 
         //Get Current Location via geolocation then display data,
         //Else display nothing
@@ -65,7 +65,10 @@ class MapInfo extends Component{
     render(){
         return(
             <div style={this.styles} className="infoArea">
-                <ItemTitle color={"#03d3fc"} text={'Map'} />
+                <div style={{display:"flex", flexDirection:"row", justifyContent:"space-between"}}>
+                    <ItemTitle color={"#03d3fc"} text={'Map'} />
+                    <button style={{position: "relative", color:"white",alignSelf:"end"}} id="expandWeather" onClick={this.expandPanel}>◯</button>
+                </div>
                 <div style={{justifyContent:"center"}}>
                     <div style={{color:"white"}} className = "globalFont">
                         <p id="EventLocationName">No Event Selected</p>
@@ -102,6 +105,22 @@ class MapInfo extends Component{
     getWeatherDesc(){
         let desc = this.state.desc;
         return desc.charAt(0).toUpperCase() + desc.slice(1);
+    }
+
+    expandPanel = () => {
+        if(!this.state.expanded){
+            console.log("expand");
+            this.setState({expanded: true});
+            document.getElementById("mapGUI").style.height = "78vh";
+            document.getElementById("NoteContainer").style.height = "16vh";
+            // document.getElementById("NoteContainer").style.opacity = "0";
+        } else {
+            console.log("collapse");
+            this.setState({expanded: false});
+            // document.getElementById("NoteContainer").style.opacity = "1";
+            document.getElementById("mapGUI").style.height = "47vh";
+            document.getElementById("NoteContainer").style.height = "47vh";
+        }
     }
 }
 

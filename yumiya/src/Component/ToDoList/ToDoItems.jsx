@@ -15,7 +15,7 @@ class ToDoItems extends Component{
     styles = {
         position: "relative",
         width: "95%",
-        height: "calc(80%)",
+        height: "calc(100% - 23px - 40px)",
         border: "none",
         color: "white",
         backgroundColor: "rgba(0,0,0,0)",

@@ -64,7 +64,7 @@ class ToDoList extends Component{
 
     render(){
         return(
-            <div style={this.styles} className="NoteContainer">
+            <div id="NoteContainer" style={this.styles} className="NoteContainer">
                 {/* Title and add, subtract page */}
                 <div style={this.title}>
                     <ItemTitle styleChoice={0} color="#03d3fc" text={"My Notes today"}/>

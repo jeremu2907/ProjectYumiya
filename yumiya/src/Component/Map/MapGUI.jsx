@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import MapInfo from './MapInfo.jsx'
 import Gmap from './Gmap.jsx'
+import './mapGUI.css'
 
 class MapGUI extends Component{
     styles = {
@@ -13,11 +14,11 @@ class MapGUI extends Component{
         alignItems: "center",
         justifyContent: "space-evenly",
         borderRadius: "10px",
-        padding: "5px"
+        padding: "5px",
     }
     render(){
         return(
-            <div style = {this.styles}>
+            <div id="mapGUI" style = {this.styles}>
                 <Gmap />
                 <MapInfo />
             </div>
