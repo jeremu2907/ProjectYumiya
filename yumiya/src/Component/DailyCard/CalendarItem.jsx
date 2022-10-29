@@ -87,7 +87,8 @@ class CalendarItem extends Component{
 
         //Default value if there is no infomation
         document.getElementById("EventDistance").innerHTML = "No distance info";
-        document.getElementById("EventETA").innerHTML = "No estimated travel duration";
+        document.getElementById("EventDuration").innerHTML = "No estimated travel duration";
+        document.getElementById("EventETA").innerHTML = "No ETA"
 
         if(this.props.location !== undefined){
             document.getElementById("EventLocation").innerHTML = this.props.location;
@@ -98,16 +99,24 @@ class CalendarItem extends Component{
                         return resp.json();
                     }).then((data) => {
                         if(data.rows[0].elements[0].distance !== undefined)
-                            document.getElementById("EventDistance").innerHTML = "Distance to event: " + data.rows[0].elements[0].distance.text;
+                            document.getElementById("EventDistance").innerHTML = "Distance: " + data.rows[0].elements[0].distance.text;
                         else
                             document.getElementById("EventDistance").innerHTML = ""
-                        if(data.rows[0].elements[0].duration !== undefined)
-                            document.getElementById("EventETA").innerHTML = "Est. travel time: " + data.rows[0].elements[0].duration.text;
+                        if(data.rows[0].elements[0].duration !== undefined){
+                            document.getElementById("EventDuration").innerHTML = "Duration: " + data.rows[0].elements[0].duration.text;
+        
+                            let eta = Date.now() + parseFloat(data.rows[0].elements[0].duration.text) * 60000;
+                            eta = new Date(eta);
+                            let hour = eta.getHours();
+                            let minute = eta.getMinutes();
+                            document.getElementById("EventETA").innerHTML = "ETA: " + hour + ":" + minute;
+                        }
                     })
                     
                     //While fetching from server, display loading
                     document.getElementById("EventDistance").innerHTML = "Loading...";
-                    document.getElementById("EventETA").innerHTML = "";
+                    document.getElementById("EventDuration").innerHTML = "";
+                    document.getElementById("EventETA").innerHTML = ""
                 });
             } else {
                 document.getElementById("map").innerHTML = "Geolocation is not supported by this browser.";

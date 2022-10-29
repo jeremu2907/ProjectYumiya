@@ -56,11 +56,12 @@ class MapInfo extends Component{
         position: 'relative',
         width: "30%",
         height: "calc(100% - 30px)",
-
+        fontSize : "14px",
         // alignSelf: "flex-end",
         overflowWrap: "break-word",
-        overflowY: "auto"
+        overflowY: "auto",
     }
+
     render(){
         return(
             <div style={this.styles} className="infoArea">
@@ -70,8 +71,8 @@ class MapInfo extends Component{
                         <p id="EventLocationName">No Event Selected</p>
                         <p id="EventLocation"></p>
                         <p id="EventDistance"></p>
+                        <p id="EventDuration"></p>
                         <p id="EventETA"></p>
-
                     </div>
                         
                 </div>
