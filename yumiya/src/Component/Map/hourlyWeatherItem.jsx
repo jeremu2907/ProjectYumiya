@@ -13,7 +13,7 @@ export default class HourlyItem extends Component{
         return(
             <div style={this.styles}>
                 <div style={{ marginTop:'0px',fontSize: '20px',width: '250px'}}>{this.props.time}</div>
-                <p style={{fontSize: '10px', marginTop: '0'}}>{this.props.date}</p>
+                <p style={{fontSize: '13px', marginTop: '0', color: '#03d3fc'}}>{this.props.date}</p>
                 <p>Temp: {this.tempString()}</p>
                 {(this.props.rain !== "")? <p>Rain: {this.props.rain}</p> : <p>No rain</p>}
                 <p>Humidity: {this.props.humid}%</p>
