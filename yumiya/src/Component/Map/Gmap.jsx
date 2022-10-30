@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import './map.css'
 
 export default class Gmap extends Component{
     constructor(){
@@ -10,7 +11,7 @@ export default class Gmap extends Component{
       
     render(){
         return(
-            <div id="map"style={{height: "95%", width : "65%"}}>
+            <div id="map"style={{height: "95%", width : "65%", alignSelf: "center"}}>
                 {(this.state.url !== "")? <iframe src={this.state.url} 
                 width="100%" height="100%" style={{border:0}}
                 title="temporary map"></iframe>

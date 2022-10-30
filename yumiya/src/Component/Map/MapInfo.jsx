@@ -2,7 +2,6 @@ import React, {Component} from 'react'
 import ItemTitle from '../ItemTitle.jsx'
 import './weather.js'
 import './map.css'
-import {expandWeather} from './weather'
 
 class MapInfo extends Component{
     constructor(){
@@ -17,40 +16,50 @@ class MapInfo extends Component{
             expanded: false
         }
 
-        //Get Current Location via geolocation then display data,
-        //Else display nothing
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition((LatLon) => {
-                
-                let lat = LatLon.coords.latitude;
-                let lon = LatLon.coords.longitude;
-                let apiCall = `https://api.openweathermap.org/data/3.0/onecall?lat=`+lat+`&lon=`+lon+`&exclude=minutely,daily,alerts&appid=`
-                fetch("http://localhost:5000/wkey").then(resp => {
-                    return resp.json();
-                }).then(data => {
-                    apiCall += data.val
-                }).then(() => {
-                    fetch(apiCall)
-                    .then(response => {
-                    // indicates whether the response is successful (status code 200-299) or not
-                    if (!response.ok) {
-                        throw new Error(`Request failed with status ${response.status}`)
-                    }
-                    return response.json()
-                    })
-                    .then(data => {
-                        this.setState({weatherData: data.hourly.slice(0, 24)});
-                        this.setState({currentWeatherData: data.current});
-                        this.setState({desc: data.current.weather[0].description});
-                    })
-                    .catch(error => console.log(error))
-                })
-            });
-        } else {
-            this.setState({nodata: true})
-            console.log("Geolocation is not supported by this browser.");
-        }
+        fetch("http://localhost:5000/sampleWeatherData").then(resp => {
+            return resp.json();
+        }).then(data => {
+            console.log(data)
+            this.setState({currentWeatherData: data.current})
+        })
 
+        ////////////////////////////////////////////////////////////////////////////////////
+        //                            PRODUCTION CODE
+        ////////////////////////////////////////////////////////////////////////////////////
+
+        // Get Current Location via geolocation then display data,
+        // Else display nothing
+        // if (navigator.geolocation) {
+        //     navigator.geolocation.getCurrentPosition((LatLon) => {
+                
+        //         let lat = LatLon.coords.latitude;
+        //         let lon = LatLon.coords.longitude;
+        //         let apiCall = `https://api.openweathermap.org/data/3.0/onecall?lat=`+lat+`&lon=`+lon+`&exclude=minutely,daily,alerts&appid=`
+        //         fetch("http://localhost:5000/wkey").then(resp => {
+        //             return resp.json();
+        //         }).then(data => {
+        //             apiCall += data.val
+        //         }).then(() => {
+        //             fetch(apiCall)
+        //             .then(response => {
+        //             // indicates whether the response is successful (status code 200-299) or not
+        //             if (!response.ok) {
+        //                 throw new Error(`Request failed with status ${response.status}`)
+        //             }
+        //             return response.json()
+        //             })
+        //             .then(data => {
+        //                 this.setState({weatherData: data.hourly.slice(0, 24)});
+        //                 this.setState({currentWeatherData: data.current});
+        //                 this.setState({desc: data.current.weather[0].description});
+        //             })
+        //             .catch(error => console.log(error))
+        //         })
+        //     });
+        // } else {
+        //     this.setState({nodata: true})
+        //     console.log("Geolocation is not supported by this browser.");
+        // }
     }
     styles={
         position: 'relative',
@@ -67,7 +76,7 @@ class MapInfo extends Component{
             <div style={this.styles} className="infoArea">
                 <div style={{display:"flex", flexDirection:"row", justifyContent:"space-between"}}>
                     <ItemTitle color={"#03d3fc"} text={'Map'} />
-                    <button style={{position: "relative", color:"white",alignSelf:"end"}} id="expandWeather" onClick={this.expandPanel}>◯</button>
+                    <button id="expandWeather" onClick={this.expandPanel}>⛅</button>
                 </div>
                 <div style={{justifyContent:"center"}}>
                     <div style={{color:"white"}} className = "globalFont">
@@ -113,13 +122,23 @@ class MapInfo extends Component{
             this.setState({expanded: true});
             document.getElementById("mapGUI").style.height = "78vh";
             document.getElementById("NoteContainer").style.height = "16vh";
-            // document.getElementById("NoteContainer").style.opacity = "0";
+            document.getElementById("NoteContainer").style.opacity = "0.5";
+            document.getElementById("firstRow").style.height = "calc(100% - 250px)";
+            document.getElementById("dailyWeather").style.height = '250px';
+            setTimeout(() => {
+                document.getElementById("weatherContainer").style.paddingTop = '20px';
+                document.getElementById("weatherContainer").style.paddingBottom = '20px';
+            },200)
         } else {
             console.log("collapse");
             this.setState({expanded: false});
-            // document.getElementById("NoteContainer").style.opacity = "1";
+            document.getElementById("NoteContainer").style.opacity = "1";
             document.getElementById("mapGUI").style.height = "47vh";
             document.getElementById("NoteContainer").style.height = "47vh";
+            document.getElementById("dailyWeather").style.height = '0px';
+            document.getElementById("firstRow").style.height = "100%";
+            document.getElementById("weatherContainer").style.paddingTop = '0px';
+            document.getElementById("weatherContainer").style.paddingBottom = '0px';
         }
     }
 }
