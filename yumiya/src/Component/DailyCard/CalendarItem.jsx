@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import '../ItemTitle.css'
 import './CalendarItem.css'
+/*global moment*/
 
 class CalendarItem extends Component{
     // constructor(props){
@@ -99,17 +100,13 @@ class CalendarItem extends Component{
                         return resp.json();
                     }).then((data) => {
                         if(data.rows[0].elements[0].distance !== undefined)
-                            document.getElementById("EventDistance").innerHTML = "Distance: " + data.rows[0].elements[0].distance.text;
+                            document.getElementById("EventDistance").innerHTML = "Distance: " + (data.rows[0].elements[0].distance.value/1000).toFixed(2) + " km | " + (data.rows[0].elements[0].distance.value/1609).toFixed(2) + " mi";
                         else
                             document.getElementById("EventDistance").innerHTML = ""
                         if(data.rows[0].elements[0].duration !== undefined){
                             document.getElementById("EventDuration").innerHTML = "Duration: " + data.rows[0].elements[0].duration.text;
-        
-                            let eta = Date.now() + parseFloat(data.rows[0].elements[0].duration.text) * 60000;
-                            eta = new Date(eta);
-                            let hour = eta.getHours();
-                            let minute = eta.getMinutes();
-                            document.getElementById("EventETA").innerHTML = "ETA: " + hour + ":" + minute;
+                            let eta = Date.now() + data.rows[0].elements[0].duration.value * 1000; //In millisecond
+                            document.getElementById("EventETA").innerHTML = "ETA: " + moment(eta).format('hh:mm A')
                         }
                     })
                     

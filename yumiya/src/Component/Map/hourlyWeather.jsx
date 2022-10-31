@@ -84,6 +84,7 @@ export default class HourlyWeather extends Component {
                             date={moment.unix(hourData.dt).format("MMM/DD")}
                             humid={hourData.humidity}
                             desc={hourData.weather[0].description}
+                            icon={hourData.weather[0].icon}
                         />)
                     }
                 </div>

@@ -12,7 +12,10 @@ export default class HourlyItem extends Component{
     render(){
         return(
             <div style={this.styles}>
-                <div style={{ marginTop:'0px',fontSize: '20px',width: '250px'}}>{this.props.time}</div>
+                <div style={{display: 'flex', flexDirection: 'row'}}>
+                <div style={{ marginTop:'0px',fontSize: '20px',width: '230px'}}>{this.props.time}</div>
+                <img src={"http://openweathermap.org/img/wn/"+ this.props.icon +".png"} style={{height: '20px', width: '20px', scale: '2', marginRight: '10px'}}/>
+                </div>
                 <p style={{fontSize: '13px', marginTop: '0', color: '#03d3fc'}}>{this.props.date}</p>
                 <p>Temp: {this.tempString()}</p>
                 {(this.props.rain !== "")? <p>Rain: {this.props.rain}</p> : <p>No rain</p>}
