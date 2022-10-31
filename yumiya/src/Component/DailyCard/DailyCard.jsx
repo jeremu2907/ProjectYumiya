@@ -75,7 +75,7 @@ class DailyCard extends Component{
         // let cardTitle = "Today " + (d.getMonth() + 1) + " | " + d.getDate();
         let cardTitle = "Events";
         return(
-            <div style = {this.styles}>
+            <div id="DailyCardContainer" style = {this.styles}>
                 <div style = {this.title}>
                     <ItemTitle color="#03d3fc" text= {cardTitle}/>
                     <img src={require("../ButtonSet/subButton.png")} alt="sub button"  
