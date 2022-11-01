@@ -29,19 +29,19 @@ class ToDoList extends Component{
         display: "flex",
         flexDirection: "column",
         justifyContent: "space-between",
-        padding: "5px",
+        padding: "10px",
         borderRadius: "10px"
     }
 
     title = {
         position:"relative",
         // top: "30px",
-        left: "20px",
+        // left: "20px",
         display: "flex",
         flexDirection: "row",
         alignItems: "center",
-        justifyContent:"center",
-        width:"calc(100% - 40px)"
+        justifyContent:"space-between",
+        width:"calc(100%)"
     }
 
     pageSelector = {
@@ -68,13 +68,15 @@ class ToDoList extends Component{
                 {/* Title and add, subtract page */}
                 <div style={this.title}>
                     <ItemTitle styleChoice={0} color="#03d3fc" text={"My Notes today"}/>
-                    <img src={require("../ButtonSet/subButton.png")} alt="sub button"  
-                            style={{marginLeft:"auto", marginRight:"10px"}}
-                            className='AddSubButton'
-                            onClick={this.eventModifySub}/>
-                    <img src={require("../ButtonSet/addButton.png")} alt="add button" 
-                            className='AddSubButton'
-                            onClick={this.eventModifyAdd}/>
+                    <div>
+                        <img src={require("../ButtonSet/subButton.png")} alt="sub button"  
+                                style={{marginRight:"10px"}}
+                                className='AddSubButton'
+                                onClick={this.eventModifySub}/>
+                        <img src={require("../ButtonSet/addButton.png")} alt="add button" 
+                                className='AddSubButton'
+                                onClick={this.eventModifyAdd}/>
+                    </div>
                 </div>
 
                 {/* Note display screen */}

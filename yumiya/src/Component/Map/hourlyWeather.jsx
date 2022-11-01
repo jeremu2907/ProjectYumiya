@@ -13,46 +13,46 @@ export default class HourlyWeather extends Component {
         ////////////////////////////////////////////////////////////////////////////////////
         //                            TEST CODE
         ////////////////////////////////////////////////////////////////////////////////////
-        // fetch("http://localhost:5000/sampleWeatherData").then(resp => {
-        //     return resp.json();
-        // }).then(data => {
-        //     console.log(data)
-        //     this.setState({weatherData: data.hourly})
-        // })
+        fetch("http://localhost:5000/sampleWeatherData").then(resp => {
+            return resp.json();
+        }).then(data => {
+            console.log(data)
+            this.setState({weatherData: data.hourly})
+        })
 
         ////////////////////////////////////////////////////////////////////////////////////
         //                            PRODUCTION CODE
         ////////////////////////////////////////////////////////////////////////////////////
 
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition((LatLon) => {
+        // if (navigator.geolocation) {
+        //     navigator.geolocation.getCurrentPosition((LatLon) => {
                 
-                let lat = LatLon.coords.latitude;
-                let lon = LatLon.coords.longitude;
-                let apiCall = `https://api.openweathermap.org/data/3.0/onecall?lat=`+lat+`&lon=`+lon+`&exclude=minutely,daily,current,alerts&appid=`
-                fetch("http://localhost:5000/wkey").then(resp => {
-                    return resp.json();
-                }).then(data => {
-                    apiCall += data.val
-                }).then(() => {
-                    fetch(apiCall)
-                    .then(response => {
-                        // indicates whether the response is successful (status code 200-299) or not
-                        if (!response.ok) {
-                            throw new Error(`Request failed with status ${response.status}`)
-                        }
-                        return response.json()
-                    })
-                    .then(data => {
-                        this.setState({weatherData: data.hourly.slice(0, 24)});
-                    })
-                    .catch(error => console.log(error))
-                })
-            });
-        } else {
-            this.setState({nodata: true})
-            console.log("Geolocation is not supported by this browser.");
-        }
+        //         let lat = LatLon.coords.latitude;
+        //         let lon = LatLon.coords.longitude;
+        //         let apiCall = `https://api.openweathermap.org/data/3.0/onecall?lat=`+lat+`&lon=`+lon+`&exclude=minutely,daily,current,alerts&appid=`
+        //         fetch("http://localhost:5000/wkey").then(resp => {
+        //             return resp.json();
+        //         }).then(data => {
+        //             apiCall += data.val
+        //         }).then(() => {
+        //             fetch(apiCall)
+        //             .then(response => {
+        //                 // indicates whether the response is successful (status code 200-299) or not
+        //                 if (!response.ok) {
+        //                     throw new Error(`Request failed with status ${response.status}`)
+        //                 }
+        //                 return response.json()
+        //             })
+        //             .then(data => {
+        //                 this.setState({weatherData: data.hourly.slice(0, 24)});
+        //             })
+        //             .catch(error => console.log(error))
+        //         })
+        //     });
+        // } else {
+        //     this.setState({nodata: true})
+        //     console.log("Geolocation is not supported by this browser.");
+        // }
     }
     styles = {
         position: 'relative', 

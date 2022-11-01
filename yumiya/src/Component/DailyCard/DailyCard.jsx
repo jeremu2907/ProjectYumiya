@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import ItemTitle from "../ItemTitle.jsx"
+// import ItemTitle from "../ItemTitle.jsx"
 import CalendarItem from "./CalendarItem.jsx"
 import {listUpcomingEvents} from "./updateEvent.js"
 import './DailyCard.css'
@@ -18,10 +18,11 @@ class DailyCard extends Component{
     }
 
     styles = {
-        height: "calc(94vh + 10px)",
+        height: "calc(94vh + 20px)",
         width: "80%",
         backgroundColor: "rgba(20, 20, 20, 0.77)",
         padding: "10px",
+        paddingTop: "0",
         minWidth: "189px",
         borderRadius: "10px",
     }
@@ -73,11 +74,16 @@ class DailyCard extends Component{
     render(){
         // const d = new Date();
         // let cardTitle = "Today " + (d.getMonth() + 1) + " | " + d.getDate();
-        let cardTitle = "Events";
+        // let cardTitle = "Events";
         return(
             <div id="DailyCardContainer" style = {this.styles}>
                 <div style = {this.title}>
-                    <ItemTitle color="#03d3fc" text= {cardTitle}/>
+                    {/* <ItemTitle color="#03d3fc" text= {cardTitle}/> */}
+                    <div style={{position: 'relative'}}>
+                        <h1 style={{fontSize: '30px',color:'white',fontWeight: 'normal',margin: '0'}} 
+                            className="globalFont">{this.getTime().format('hh:mm A')}</h1>
+                        <p style={{margin: '0', color:'#03d3fc'}} className='globalFont'>{this.getTime().format("dddd MMM/DD")}</p>
+                    </div>
                     <img src={require("../ButtonSet/subButton.png")} alt="sub button"  
                             style={{marginLeft:"auto", marginRight:"10px",scale: "0.5"}}
                             onClick={this.eventModifySub}
@@ -107,6 +113,11 @@ class DailyCard extends Component{
                 </div>
             </div>
         )
+    }
+
+    getTime(){
+        /*global moment*/
+        return moment(Date.now())
     }
 
     rret = () => {

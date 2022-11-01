@@ -54,9 +54,9 @@ class ToDoItems extends Component{
     render(){
         this.deletePage();
         return(
-            <textarea style={this.styles} value={ (this.props.currentPage <= this.state.noteContent.length)?
-                this.state.noteContent[this.props.currentPage - 1] : "New Note"} 
-                onChange={this.textChange}/>
+                <textarea style={this.styles} value={ (this.props.currentPage <= this.state.noteContent.length)?
+                    this.state.noteContent[this.props.currentPage - 1] : "New Note"} 
+                    onChange={this.textChange}/>
         )
     }
 }
