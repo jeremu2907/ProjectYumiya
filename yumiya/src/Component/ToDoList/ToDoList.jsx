@@ -24,7 +24,7 @@ class ToDoList extends Component{
     styles = {
         height: "47vh",
         // width: "calc(48vw - 10px)",,
-        width: "95%",
+        width: "calc(95% - 10px)",
         backgroundColor: "rgba(20, 20, 20, 0.77)",
         display: "flex",
         flexDirection: "column",
