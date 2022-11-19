@@ -16,7 +16,7 @@ export default class HourlyWeather extends Component {
         fetch("http://localhost:5000/sampleWeatherData").then(resp => {
             return resp.json();
         }).then(data => {
-            console.log(data)
+            // console.log(data)
             this.setState({weatherData: data.hourly})
         })
 

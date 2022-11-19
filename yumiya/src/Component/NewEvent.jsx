@@ -149,11 +149,13 @@ export function NewEvent() {
                             backgroundColor: suggestion.active ? "#41b6e6" : "#fff",
                             width: "500px",
                             position: "float",
-                            padding: "2px"
+                            paddingLeft: "10px",
+                            fontFamily: `'Montserrat', sans-serif`,
+                            fontSize: '15px'
                           };
 
                           return (
-                            <div {...getSuggestionItemProps(suggestion, { style })} key = {Math.random()*100000000}>
+                            <div {...getSuggestionItemProps(suggestion, { style })} key = {suggestion.description}>
                               {suggestion.description}
                             </div>
                           );

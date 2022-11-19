@@ -90,12 +90,22 @@ class ToDoList extends Component{
                     </div>
 
                     {/* Left right navigation */}
-                    <img src={require("./leftButton.png")} alt="move to left button"  
+                    {/* <img src={require("./leftButton.png")} alt="move to left button"  
                                 style={{ width:"23px", height:"23px",marginRight:"10px"}}
+                                className="navButton"
                                 onClick={this.moveleft}/>
                     <img src={require("./rightButton.png")} alt="move to right button" 
                                 style={{width:"23px", height:"23px"}} 
-                                onClick={this.moveright}/> 
+                                className="navButton"
+                                onClick={this.moveright}/>  */}
+                    <button src={require("./leftButton.png")} alt="move to left button"  
+                                // style={{ width:"23px", height:"23px",marginRight:"10px"}}
+                                className="navButton"
+                                onClick={this.moveleft}>⏴</button>
+                    <button src={require("./rightButton.png")} alt="move to right button" 
+                                // style={{width:"23px", height:"23px"}} 
+                                className="navButton"
+                                onClick={this.moveright}>⏵</button>
                 </div>
             </div>
         );

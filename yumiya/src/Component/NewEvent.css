@@ -1,4 +1,8 @@
 .newEventBox{
     width: 500px;
     /* height: auto; */
+    padding-left: 10px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: normal;
+    font-size: 15px;
 }

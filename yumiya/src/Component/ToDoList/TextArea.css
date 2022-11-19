@@ -75,3 +75,12 @@ textarea::-webkit-scrollbar-thumb{
         backdrop-filter: blur(0px);
     }
 }
+
+.navButton{
+    color:white;
+    transition: color 0.3s;
+}
+
+.navButton:hover{
+    color: rgba(62, 163, 235, 0.526);
+}
