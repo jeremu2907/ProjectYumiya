@@ -78,7 +78,7 @@ class CalendarItem extends Component{
     }
 
     //Still needs to check if we have moved location before assigning html
-    setDetail = (data) => {
+    setDetail = (data, lat, lon) => {
         if(data.rows[0].elements[0].distance.value !== undefined)
             document.getElementById("EventDistance").innerHTML = "Distance: " + (data.rows[0].elements[0].distance.value/1000).toFixed(2) + " km | " + (data.rows[0].elements[0].distance.value/1609).toFixed(2) + " mi";
         else
@@ -92,13 +92,20 @@ class CalendarItem extends Component{
             //Display location on map and route
             var directionsService = new google.maps.DirectionsService();
             var directionsRenderer = new google.maps.DirectionsRenderer();
-            const map = new google.maps.Map(document.getElementById("map"),
-                    {
-                        center: data.origin_addresses[0],
-                        zoom: 15, 
-                        mapTypeId: google.maps.MapTypeId.ROADMAP
-                    }
-                )
+            let map;
+
+           
+            map = new google.maps.Map(document.getElementById("map"),
+                {
+                    center: {
+                        lat: lat,
+                        lng: lon
+                    },
+                    zoom: 15, 
+                    mapTypeId: google.maps.MapTypeId.ROADMAP
+                }
+            )
+
             directionsRenderer.setMap(map);
             let rorigin = data.origin_addresses[0];
             let rdestination = data.destination_addresses[0];
@@ -109,7 +116,7 @@ class CalendarItem extends Component{
             }
             directionsService.route(request, (result, status) => {
                 if (status === 'OK') {
-                  directionsRenderer.setDirections(result);
+                directionsRenderer.setDirections(result);
                 }
             });
         }
@@ -141,7 +148,7 @@ class CalendarItem extends Component{
                     let data = JSON.parse(window.localStorage.getItem(this.props.id));
                     if(data !== null){
                         console.log("Event in cache")
-                        this.setDetail(data);
+                        this.setDetail(data, coord.coords.latitude, coord.coords.longitude);
                         return;
                     } else {
                         console.log("Event not in cache")

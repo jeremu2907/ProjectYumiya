@@ -56,7 +56,9 @@ class ToDoItems extends Component{
         return(
                 <textarea style={this.styles} value={ (this.props.currentPage <= this.state.noteContent.length)?
                     this.state.noteContent[this.props.currentPage - 1] : "New Note"} 
-                    onChange={this.textChange}/>
+                    onChange={this.textChange}
+                    id="noteArea"
+                />
         )
     }
 }

@@ -35,8 +35,8 @@ function appendTimeZone(){
 export function NewEvent() {
     let styles = { position: "fixed",
         height: "auto",
-        width: "auto",
-        backgroundColor: "rgba(255, 255, 255, 0.7)",
+        width: "700px",
+        backgroundColor: "rgba(0,0,0, 0.7)",
         top: "50%",
         left: "50%",
         transform: "translate(-50%, -50%)",
@@ -86,17 +86,21 @@ export function NewEvent() {
             'dateTime': dateTimeEnd
           },
         };
-        
-        var request = gapi.client.calendar.events.insert({
-          'calendarId': 'primary',
-          'resource': event
-        });
-        
-        request.execute(function(event) {
-          if(event.error || event === false){
-            alert("Failed to add event")
-          }
-        });
+
+      
+      console.log(event);
+
+      var request = gapi.client.calendar.events.insert({
+        'calendarId': 'primary',
+        'resource': event
+      });
+      
+      request.execute(function(event) {
+        if(event.error || event === false){
+          alert("Failed to add event")
+          console.log(event)
+        }
+      });
       
       //Close NewEvent componenet
       document.getElementById("addEvent").style.visibility = "hidden";
@@ -119,15 +123,23 @@ export function NewEvent() {
     const [startDate, setStartDate] = useState(new Date());
 
     return(
-            <div style = {styles} className="globalFont">
+            <div id="createNewEvent" style = {styles} className="globalFont">
                 <ItemTitlte color="#01b1da" text="Create New Event" />
+                <div style={{display: "flex", flexDirection: "row", alignItems: "center", marginBottom:"20px",marginTop:"20px"}}>
+                  <h5>Name</h5>
+                  <input name="createEventName" type="text" className = "newEventBox"></input>
+                </div>
 
-                <h5>Name</h5>
-                <input name="createEventName" type="text" className = "newEventBox"></input>
+                <div style={{display: "flex", flexDirection: "row", alignItems: "center",justifyContent: "space-between",marginBottom:"20px"}}>
+                  <h5>Date and Time</h5>
+                  <div style={{width: "514px", overflowX:"hidden"}}>
+                    <DatePicker dateFormat = "yyyy-MM-dd'  'HH:mm:ss" className = "newEventBox" name="createEventDateTime" 
+                      selected={startDate} onChange={(date) => setStartDate(date)} 
+                      showTimeSelect/>
+                  </div>
+                </div>
 
-                <h5>Date and Time</h5>
-                <DatePicker dateFormat = "yyyy-MM-dd'  'HH:mm:ss" className = "newEventBox" name="createEventDateTime" style = {{border: "0", width: "auto"}} selected={startDate} onChange={(date) => setStartDate(date)} showTimeSelect/>
-                
+                <div style={{display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", marginBottom:"20px"}}>
                 <h5>Location</h5>
                 <PlacesAutocomplete
                   value={address}
@@ -146,12 +158,16 @@ export function NewEvent() {
                         {suggestions.map(suggestion => {
                           // console.log(suggestions)
                           const style = {
-                            backgroundColor: suggestion.active ? "#41b6e6" : "#fff",
+                            backgroundColor: suggestion.active ? "rgb(62, 163, 235)" : "rgba(0,0,0,0",
                             width: "500px",
                             position: "float",
-                            paddingLeft: "10px",
+                            padding: "5px 0 5px 10px",
                             fontFamily: `'Montserrat', sans-serif`,
-                            fontSize: '15px'
+                            fontSize: '15px',
+                            color: "white",
+                            borderBottom: "1px solid rgb(67, 67, 67)",
+                            transition: 'background-color 0.3s',
+                            cursor: "default"
                           };
 
                           return (
@@ -164,13 +180,16 @@ export function NewEvent() {
                     </div>
                   )}
                 </PlacesAutocomplete>
-                
-                <h5>Notes</h5>
-                <textarea name="createEventNotes" style = {{height: "200px"}} className = "newEventBox"></textarea>
-                
+                </div>
+
+                <div style={{display: "flex", flexDirection: "row", alignItems: "center", marginBottom:"20px"}}>
+                  <h5>Notes</h5>
+                  <textarea name="createEventNotes" style = {{height: "200px"}} className = "newEventBox"></textarea>
+                </div>
+
                 <div style={{display: 'flex', flexDirection: 'row', justifyContent: "space-evenly", marginTop: "10px"}}>
-                    <button id="setNewEvent" onClick={setEventInfo}>Add Event</button>
-                    <button onClick={() => {document.getElementById("addEvent").style.visibility = "hidden"}}>Cancel</button>
+                    <button id="setNewEvent" onClick={setEventInfo} className="eventAction eventActionAdd">Add Event</button>
+                    <button onClick={() => {document.getElementById("addEvent").style.visibility = "hidden"}} className="eventAction eventActionCancel">Cancel</button>
                 </div>
             </div>
     )
