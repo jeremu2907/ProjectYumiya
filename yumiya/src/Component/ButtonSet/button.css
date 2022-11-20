@@ -1,12 +1,9 @@
 .AddSubButton{
-    scale: .5;
-    border-radius: 20%;
-    border: solid 5px rgba(0,0,0,0);
-    background-color: rgba(0,0,0,0);
-    transition: background-color 0.3s;
+    color: white;
+    transition: color 0.3s;
 }
 
 .AddSubButton:hover{
-    background-color: rgba(62, 163, 235, 0.526)
+    color: rgba(62, 163, 235, 0.526)
 }
 

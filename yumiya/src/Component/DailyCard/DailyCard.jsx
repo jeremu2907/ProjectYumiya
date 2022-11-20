@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 // import ItemTitle from "../ItemTitle.jsx"
+import $ from 'jquery'
 import CalendarItem from "./CalendarItem.jsx"
 import {listUpcomingEvents} from "./updateEvent.js"
 import './DailyCard.css'
@@ -46,10 +47,10 @@ class DailyCard extends Component{
     }
 
     eventModifyAdd = () => {
-        document.getElementById("addEvent").style.visibility = "visible"
+        document.getElementById("addEvent").style.visibility = "visible";
     }
 
-    eventModifySub = () => {
+    eventModifySub = async () => {
         /* global gapi */
         let a = Array.from(this.state.selectedEvents)
         //Perform delete on every event that is selected
@@ -59,10 +60,11 @@ class DailyCard extends Component{
                 'calendarId': 'primary',
                 'eventId': a[i]
             });
-            request.execute(function(response) {
+            request.execute((response) => {
                 if(response.error || response === false){
                     alert("Failed to delete one or more events")
                 }
+                this.rret();
             });
         };
         //Reset selected events to 0
@@ -72,9 +74,6 @@ class DailyCard extends Component{
     
 
     render(){
-        // const d = new Date();
-        // let cardTitle = "Today " + (d.getMonth() + 1) + " | " + d.getDate();
-        // let cardTitle = "Events";
         return(
             <div id="DailyCardContainer" style = {this.styles}>
                 <div style = {this.title}>
@@ -84,14 +83,18 @@ class DailyCard extends Component{
                             className="globalFont">{this.getTime().format('hh:mm A')}</h1>
                         <p style={{margin: '0', color:'#03d3fc'}} className='globalFont'>{this.getTime().format("dddd MMM/DD")}</p>
                     </div>
-                    <img src={require("../ButtonSet/subButton.png")} alt="sub button"  
-                            style={{marginLeft:"auto", marginRight:"10px",scale: "0.5"}}
+
+                    <button style={{marginLeft:"auto", marginRight:"10px"}}
                             onClick={this.eventModifySub}
-                            className = "AddSubButton"/>
-                    <img src={require("../ButtonSet/addButton.png")} alt="add button" 
-                            style={{scale: "0.5"}} 
+                            className = "AddSubButton">
+                            -
+                    </button>
+                    <button 
                             onClick={this.eventModifyAdd}
-                            className = "AddSubButton"/>
+                            className = "AddSubButton">
+                            +
+                    </button>
+                    <button className = "AddSubButton" onClick={this.rret}>↻</button>
                 </div>
 
                 <div style = {this.flexBoxStyle} className="flexBoxStyle">
@@ -120,20 +123,27 @@ class DailyCard extends Component{
         return moment(Date.now())
     }
 
+    
+
     rret = () => {
+        console.log('called')
         listUpcomingEvents().then((value) => {
             if(value !== 1){
                 this.forceUpdate();
-            } else {
-                // console.clear();
             }
         })
     }
-    //This funciton is for updating the calendar automatically every 1s
+    //This funciton is for updating the calendar automatically every 1minute
     componentDidMount(){
+        $("#setNewEvent").on('click',() => {
+            setTimeout(() => {
+                this.rret();
+            },2000);
+        });
+
         setInterval(()=>{ 
             this.rret()
-        },1500)
+        },1000 * 60)
     }
     handleUserSelection = (selected, status) => {
         if(!status)

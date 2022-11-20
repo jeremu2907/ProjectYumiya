@@ -169,7 +169,7 @@ export function NewEvent() {
                 <textarea name="createEventNotes" style = {{height: "200px"}} className = "newEventBox"></textarea>
                 
                 <div style={{display: 'flex', flexDirection: 'row', justifyContent: "space-evenly", marginTop: "10px"}}>
-                    <button onClick={setEventInfo}>Add Event</button>
+                    <button id="setNewEvent" onClick={setEventInfo}>Add Event</button>
                     <button onClick={() => {document.getElementById("addEvent").style.visibility = "hidden"}}>Cancel</button>
                 </div>
             </div>

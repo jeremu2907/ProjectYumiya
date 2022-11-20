@@ -69,13 +69,16 @@ class ToDoList extends Component{
                 <div style={this.title}>
                     <ItemTitle styleChoice={0} color="#03d3fc" text={"My Notes today"}/>
                     <div>
-                        <img src={require("../ButtonSet/subButton.png")} alt="sub button"  
-                                style={{marginRight:"10px"}}
-                                className='AddSubButton'
-                                onClick={this.eventModifySub}/>
-                        <img src={require("../ButtonSet/addButton.png")} alt="add button" 
-                                className='AddSubButton'
-                                onClick={this.eventModifyAdd}/>
+                        <button style={{marginLeft:"auto", marginRight:"10px"}}
+                                onClick={this.eventModifySub}
+                                className = "AddSubButton">
+                                -
+                        </button>
+                        <button 
+                                onClick={this.eventModifyAdd}
+                                className = "AddSubButton">
+                                +
+                        </button>
                     </div>
                 </div>
 
@@ -90,14 +93,6 @@ class ToDoList extends Component{
                     </div>
 
                     {/* Left right navigation */}
-                    {/* <img src={require("./leftButton.png")} alt="move to left button"  
-                                style={{ width:"23px", height:"23px",marginRight:"10px"}}
-                                className="navButton"
-                                onClick={this.moveleft}/>
-                    <img src={require("./rightButton.png")} alt="move to right button" 
-                                style={{width:"23px", height:"23px"}} 
-                                className="navButton"
-                                onClick={this.moveright}/>  */}
                     <button src={require("./leftButton.png")} alt="move to left button"  
                                 // style={{ width:"23px", height:"23px",marginRight:"10px"}}
                                 className="navButton"
