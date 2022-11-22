@@ -25,12 +25,12 @@ class ToDoList extends Component{
         height: "47vh",
         // width: "calc(48vw - 10px)",,
         width: "calc(95% - 10px)",
-        backgroundColor: "rgba(20, 20, 20, 0.77)",
+        backgroundColor: "rgba(0,0,0, 0.7)",
         display: "flex",
         flexDirection: "column",
         justifyContent: "space-between",
-        padding: "10px",
-        borderRadius: "10px"
+        padding: "5px",
+        // borderRadius: "10px"
     }
 
     title = {

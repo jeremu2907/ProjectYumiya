@@ -8,12 +8,12 @@ class MapGUI extends Component{
 
     styles = {
         height: "47vh",
-        width: "95%",
-        backgroundColor: "rgba(20, 20, 20, 0.77)",
+        width: "calc(95% - 10px)",
+        backgroundColor: "rgba(0,0,0, 0.7)",
         display: "flex",
         flexDirection: "column",
         justifyContent: "space-evenly",
-        borderRadius: "10px",
+        // borderRadius: "10px",
         padding: "5px",
     }
     row = {

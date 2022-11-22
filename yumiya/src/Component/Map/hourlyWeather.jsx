@@ -10,7 +10,9 @@ export default class HourlyWeather extends Component {
         this.state = {
             weatherData: "",
         }
+    }
 
+    componentDidMount(){
         ////////////////////////////////////////////////////////////////////////////////////
         //                            TEST CODE
         ////////////////////////////////////////////////////////////////////////////////////
@@ -24,7 +26,6 @@ export default class HourlyWeather extends Component {
         ////////////////////////////////////////////////////////////////////////////////////
         //                            PRODUCTION CODE
         ////////////////////////////////////////////////////////////////////////////////////
-
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition((LatLon) => {
                 
@@ -54,7 +55,6 @@ export default class HourlyWeather extends Component {
                 })
             });
         } else {
-            this.setState({nodata: true})
             console.log("Geolocation is not supported by this browser.");
         }
     }
@@ -92,6 +92,7 @@ export default class HourlyWeather extends Component {
                 <div id="weatherContainer" style={this.weatherInfoStyle}>
                     {(this.state.weatherData === "")? <h1>Loading...</h1> : 
                         this.state.weatherData.map(hourData => <HourlyItem 
+                            key={hourData.dt}
                             temp={hourData.temp}
                             time={moment.unix(hourData.dt).format('hh:mm A')}
                             date={moment.unix(hourData.dt).format("MMM/DD")}

@@ -45,7 +45,7 @@ export function NewEvent() {
         justifyContent: "space-evenly",
         padding: "30px",
         fontSize: "24px",
-        borderRadius: "10px"
+        // borderRadius: "10px"
     }
 
     // function to put all details to localStorage to be included in http request

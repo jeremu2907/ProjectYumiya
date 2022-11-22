@@ -14,18 +14,16 @@ class DailyCard extends Component{
             selectedEvents: new Set(),
             eventList: {}
         }
-
-        
     }
 
     styles = {
         height: "calc(94vh + 20px)",
-        width: "80%",
-        backgroundColor: "rgba(20, 20, 20, 0.77)",
+        width: "calc(95% - 20px)",
+        backgroundColor: "rgba(0,0,0, 0.7)",
         padding: "10px",
         paddingTop: "0",
         minWidth: "189px",
-        borderRadius: "10px",
+        // borderRadius: "10px",
     }
 
     flexBoxStyle = {
@@ -126,7 +124,7 @@ class DailyCard extends Component{
     
 
     rret = () => {
-        console.log('called')
+        console.log('Calendar Refresh')
         listUpcomingEvents().then((value) => {
             if(value !== 1){
                 this.forceUpdate();
