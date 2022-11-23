@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
-import ItemTitle from "../ItemTitle.jsx"
+// import ItemTitle from "../ItemTitle.jsx"
+import $ from 'jquery'
 import CalendarItem from "./CalendarItem.jsx"
 import {listUpcomingEvents} from "./updateEvent.js"
 import './DailyCard.css'
@@ -13,18 +14,16 @@ class DailyCard extends Component{
             selectedEvents: new Set(),
             eventList: {}
         }
-
-        
     }
 
     styles = {
-        height: "94vh",
-        width: "80%",
-        backgroundColor: "rgba(20, 20, 20, 0.77)",
-        border: "solid 2px #262524",
+        height: "calc(94vh + 20px)",
+        width: "calc(95% - 20px)",
+        backgroundColor: "rgba(0,0,0, 0.7)",
         padding: "10px",
+        paddingTop: "0",
         minWidth: "189px",
-        borderRadius: "10px",
+        // borderRadius: "10px",
     }
 
     flexBoxStyle = {
@@ -46,10 +45,10 @@ class DailyCard extends Component{
     }
 
     eventModifyAdd = () => {
-        document.getElementById("addEvent").style.visibility = "visible"
+        document.getElementById("addEvent").style.visibility = "visible";
     }
 
-    eventModifySub = () => {
+    eventModifySub = async () => {
         /* global gapi */
         let a = Array.from(this.state.selectedEvents)
         //Perform delete on every event that is selected
@@ -59,10 +58,11 @@ class DailyCard extends Component{
                 'calendarId': 'primary',
                 'eventId': a[i]
             });
-            request.execute(function(response) {
+            request.execute((response) => {
                 if(response.error || response === false){
                     alert("Failed to delete one or more events")
                 }
+                this.rret();
             });
         };
         //Reset selected events to 0
@@ -72,21 +72,27 @@ class DailyCard extends Component{
     
 
     render(){
-        // const d = new Date();
-        // let cardTitle = "Today " + (d.getMonth() + 1) + " | " + d.getDate();
-        let cardTitle = "Events";
         return(
-            <div style = {this.styles}>
+            <div id="DailyCardContainer" style = {this.styles}>
                 <div style = {this.title}>
-                    <ItemTitle color="#03d3fc" text= {cardTitle}/>
-                    <img src={require("../ButtonSet/subButton.png")} alt="sub button"  
-                            style={{marginLeft:"auto", marginRight:"10px",scale: "0.5"}}
+                    {/* <ItemTitle color="#03d3fc" text= {cardTitle}/> */}
+                    <div style={{position: 'relative'}}>
+                        <h1 style={{fontSize: '30px',color:'white',fontWeight: 'normal',margin: '0'}} 
+                            className="globalFont">{this.getTime().format('hh:mm A')}</h1>
+                        <p style={{margin: '0', color:'#03d3fc'}} className='globalFont'>{this.getTime().format("dddd MMM/DD")}</p>
+                    </div>
+
+                    <button style={{marginLeft:"auto", marginRight:"10px"}}
                             onClick={this.eventModifySub}
-                            className = "AddSubButton"/>
-                    <img src={require("../ButtonSet/addButton.png")} alt="add button" 
-                            style={{scale: "0.5"}} 
+                            className = "AddSubButton">
+                            -
+                    </button>
+                    <button 
                             onClick={this.eventModifyAdd}
-                            className = "AddSubButton"/>
+                            className = "AddSubButton">
+                            +
+                    </button>
+                    <button className = "AddSubButton" onClick={this.rret}>↻</button>
                 </div>
 
                 <div style = {this.flexBoxStyle} className="flexBoxStyle">
@@ -110,20 +116,32 @@ class DailyCard extends Component{
         )
     }
 
+    getTime(){
+        /*global moment*/
+        return moment(Date.now())
+    }
+
+    
+
     rret = () => {
+        console.log('Calendar Refresh')
         listUpcomingEvents().then((value) => {
             if(value !== 1){
                 this.forceUpdate();
-            } else {
-                // console.clear();
             }
         })
     }
-    //This funciton is for updating the calendar automatically every 1s
+    //This funciton is for updating the calendar automatically every 1minute
     componentDidMount(){
+        $("#setNewEvent").on('click',() => {
+            setTimeout(() => {
+                this.rret();
+            },2000);
+        });
+
         setInterval(()=>{ 
             this.rret()
-        },1500)
+        },1000 * 60)
     }
     handleUserSelection = (selected, status) => {
         if(!status)

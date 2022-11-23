@@ -15,7 +15,7 @@ class ItemTitle extends Component{
     styles={
         color: this.props.color,
         fontSize: "30px",
-        fontWeight: "bold",
+        fontWeight: "normal",
         position: "relative",
         height: "40px",
         backgroundColor: 'rgba(0,0,0,0)'

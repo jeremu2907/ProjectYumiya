@@ -24,24 +24,24 @@ class ToDoList extends Component{
     styles = {
         height: "47vh",
         // width: "calc(48vw - 10px)",,
-        width: "95%",
-        backgroundColor: "rgba(20, 20, 20, 0.77)",
+        width: "calc(95% - 10px)",
+        backgroundColor: "rgba(0,0,0, 0.7)",
         display: "flex",
         flexDirection: "column",
         justifyContent: "space-between",
         padding: "5px",
-        borderRadius: "10px"
+        // borderRadius: "10px"
     }
 
     title = {
         position:"relative",
         // top: "30px",
-        left: "20px",
+        // left: "20px",
         display: "flex",
         flexDirection: "row",
         alignItems: "center",
-        justifyContent:"center",
-        width:"calc(100% - 40px)"
+        justifyContent:"space-between",
+        width:"calc(100%)"
     }
 
     pageSelector = {
@@ -64,17 +64,22 @@ class ToDoList extends Component{
 
     render(){
         return(
-            <div style={this.styles} className="NoteContainer">
+            <div id="NoteContainer" style={this.styles} className="NoteContainer">
                 {/* Title and add, subtract page */}
                 <div style={this.title}>
                     <ItemTitle styleChoice={0} color="#03d3fc" text={"My Notes today"}/>
-                    <img src={require("../ButtonSet/subButton.png")} alt="sub button"  
-                            style={{marginLeft:"auto", marginRight:"10px"}}
-                            className='AddSubButton'
-                            onClick={this.eventModifySub}/>
-                    <img src={require("../ButtonSet/addButton.png")} alt="add button" 
-                            className='AddSubButton'
-                            onClick={this.eventModifyAdd}/>
+                    <div>
+                        <button style={{marginLeft:"auto", marginRight:"10px"}}
+                                onClick={this.eventModifySub}
+                                className = "AddSubButton">
+                                -
+                        </button>
+                        <button 
+                                onClick={this.eventModifyAdd}
+                                className = "AddSubButton">
+                                +
+                        </button>
+                    </div>
                 </div>
 
                 {/* Note display screen */}
@@ -88,12 +93,14 @@ class ToDoList extends Component{
                     </div>
 
                     {/* Left right navigation */}
-                    <img src={require("./leftButton.png")} alt="move to left button"  
-                                style={{ width:"23px", height:"23px",marginRight:"10px"}}
-                                onClick={this.moveleft}/>
-                    <img src={require("./rightButton.png")} alt="move to right button" 
-                                style={{width:"23px", height:"23px"}} 
-                                onClick={this.moveright}/> 
+                    <button src={require("./leftButton.png")} alt="move to left button"  
+                                // style={{ width:"23px", height:"23px",marginRight:"10px"}}
+                                className="navButton"
+                                onClick={this.moveleft}>⏴</button>
+                    <button src={require("./rightButton.png")} alt="move to right button" 
+                                // style={{width:"23px", height:"23px"}} 
+                                className="navButton"
+                                onClick={this.moveright}>⏵</button>
                 </div>
             </div>
         );

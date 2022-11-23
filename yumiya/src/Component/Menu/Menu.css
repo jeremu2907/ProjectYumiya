@@ -1,0 +1,94 @@
+#menuContainer{
+    left: calc(-25vw + 10px);
+    z-index: 1;
+    position: fixed;
+    background-color: rgba(0,0,0, 0.7);
+    backdrop-filter: blur(10px);
+    width: 25vw;
+    height: 100vh;
+    display:flex;
+    flex-direction: column;
+    transition: left 0.5s cubic-bezier(0.215, 0.610, 0.355, 1);
+    cursor: default;
+}
+
+#menuLogo{
+    font-size: 20px;
+    padding: 10px 0 0 10px
+}
+
+#menuContainer:hover{
+    left: 0px;
+}
+
+.shortCutEdit{
+    margin-top: 20px;
+    transition: color 0.3s;
+    color: white;
+    font-size: 15px;
+}
+
+#shortCutAdd:hover{
+    color: rgb(62, 163, 235);
+}
+
+#shortCutCancel:hover{
+    color: #870c20da;
+}
+
+#shortcutURL, #shortcutName {
+    margin-left:auto;
+    background-color:rgba(0,0,0,0);
+    border:1px solid rgb(67, 67, 67);
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 15px;
+    font-weight: normal;
+    width: 80%;
+    border-radius: 5px
+}
+
+.no-hover{
+    position:relative;
+    width: calc(100% - 15px);
+    padding: 20px 10px 20px 5px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 15px;
+    color: rgb(255, 255, 255);
+    text-align: center;
+    justify-content: center;
+    background-color: rgba(0,0,0,0);
+}
+.menuItem{
+    position:relative;
+    width: calc(100% - 15px);
+    padding: 20px 10px 20px 5px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 20px;
+    color: rgb(255, 255, 255);
+    text-align: center;
+    justify-content: center;
+    background-color: rgba(0,0,0,0);
+    transition: background-color 1s, color 1s;
+}
+
+.menuItem:hover{
+    background-color: rgb(67, 67, 67);
+    /* color: rgb(62, 163, 235); */
+}
+
+.menuItem::after{
+    content: "";
+    position: absolute;
+    top:100%;
+    width: 80%;
+    left:10%;
+    border-bottom: 1px solid #870c20da;
+}
+
+input[type="file"] {
+    display: none;
+}
+.custom-file-upload {
+    position: relative;
+}

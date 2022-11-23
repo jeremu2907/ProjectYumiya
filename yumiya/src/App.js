@@ -4,10 +4,12 @@ import ToDoList from './Component/ToDoList/ToDoList.jsx'
 import MapGUI from './Component/Map/MapGUI.jsx'
 import DailyCard from './Component/DailyCard/DailyCard.jsx'
 import {NewEvent} from "./Component/NewEvent.jsx"
+import Menu from './Component/Menu/Menu.jsx'
 
 function App() {
   return (
     <div>
+      <Menu/>
       <div className = "content-area">
         <div id="dailyCard" className = "content-area-left">
           <DailyCard />

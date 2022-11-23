@@ -8,3 +8,18 @@
     background-color:#870c20da;
     border-radius: 4px;
 }
+
+#map{
+    transition: height 0.3s ease-in-out
+}
+
+#expandWeather{
+    position: relative;
+    align-self:end;
+    opacity: 0.6;
+    transition: opacity 0.3s ease-in-out
+}
+
+#expandWeather:hover{
+    opacity: 1;
+}

@@ -15,7 +15,7 @@ class ToDoItems extends Component{
     styles = {
         position: "relative",
         width: "95%",
-        height: "calc(80%)",
+        height: "calc(100% - 23px - 40px)",
         border: "none",
         color: "white",
         backgroundColor: "rgba(0,0,0,0)",
@@ -54,9 +54,11 @@ class ToDoItems extends Component{
     render(){
         this.deletePage();
         return(
-            <textarea style={this.styles} value={ (this.props.currentPage <= this.state.noteContent.length)?
-                this.state.noteContent[this.props.currentPage - 1] : "New Note"} 
-                onChange={this.textChange}/>
+                <textarea style={this.styles} value={ (this.props.currentPage <= this.state.noteContent.length)?
+                    this.state.noteContent[this.props.currentPage - 1] : "New Note"} 
+                    onChange={this.textChange}
+                    id="noteArea"
+                />
         )
     }
 }
