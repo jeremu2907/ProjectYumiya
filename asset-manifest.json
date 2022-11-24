@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "/jeremu2907/ProjectYumiya/static/css/main.ec744bd3.css",
+    "main.js": "/jeremu2907/ProjectYumiya/static/js/main.fca4120b.js",
+    "static/js/787.be60414f.chunk.js": "/jeremu2907/ProjectYumiya/static/js/787.be60414f.chunk.js",
+    "static/media/leftButton.png": "/jeremu2907/ProjectYumiya/static/media/leftButton.13aab974f9dfc5a0b777.png",
+    "static/media/rightButton.png": "/jeremu2907/ProjectYumiya/static/media/rightButton.0fe1c3ed6c0c43040a5f.png",
+    "index.html": "/jeremu2907/ProjectYumiya/index.html",
+    "main.ec744bd3.css.map": "/jeremu2907/ProjectYumiya/static/css/main.ec744bd3.css.map",
+    "main.fca4120b.js.map": "/jeremu2907/ProjectYumiya/static/js/main.fca4120b.js.map",
+    "787.be60414f.chunk.js.map": "/jeremu2907/ProjectYumiya/static/js/787.be60414f.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.ec744bd3.css",
+    "static/js/main.fca4120b.js"
+  ]
+}
