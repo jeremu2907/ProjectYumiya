@@ -41,5 +41,7 @@ export async function listUpcomingEvents() {
     }
     
     //Pushing to localStorage
-    window.localStorage.setItem("eventList",JSON.stringify(eventList))
+    // window.localStorage.setItem("eventList",JSON.stringify(eventList))
+    return eventList
+
 }

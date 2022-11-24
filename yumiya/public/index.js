@@ -15,6 +15,7 @@ const SCOPES = 'https://www.googleapis.com/auth/calendar https://www.googleapis.
 let tokenClient;
 let gapiInited = false;
 let gisInited = false;
+let logged = false;
 
 // document.getElementById('authorize_button').style.visibility = 'hidden';
 // document.getElementById('signout_button').style.visibility = 'hidden';
@@ -29,8 +30,9 @@ function handleAuthClick() {
       unlockPage();
       console.log("App Start")
       document.getElementById("root").style.visibility = "visible";
+      logged = true;
       // document.getElementById("logo").style.visibility = "hidden";
-      window.localStorage.setItem("eventList",JSON.stringify(await listUpcomingEvents()));
+      // window.localStorage.setItem("eventList",JSON.stringify(await listUpcomingEvents()));
       console.clear();
     };
 
