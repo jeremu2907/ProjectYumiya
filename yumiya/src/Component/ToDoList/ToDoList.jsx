@@ -10,7 +10,8 @@ class ToDoList extends Component{
         this.state = JSON.parse(window.localStorage.getItem('ToDoList')) || {
             pages: 1,
             currentPage: 1,
-            navigateStatus: []
+            navigateStatus: [],
+            extend: false
         }
         this.state.navigateStatus = Array(this.state.pages)
         this.state.navigateStatus.fill("rgba(255, 255, 255, 0.05)");
@@ -83,10 +84,11 @@ class ToDoList extends Component{
                 </div>
 
                 {/* Note display screen */}
-                <ToDoItems pages={this.state.pages} currentPage={this.state.currentPage}/>
+                <ToDoItems id="ToDoItems" pages={this.state.pages} currentPage={this.state.currentPage}/>
 
                 {/* Note navigation */}
                 <div style={this.pageSelector}>
+                    <button id="expandButton" className="navButton" style={{marginRight: "auto"}} onClick={this.extendNote}>◣</button>
                     {/* Note navigation */}
                     <div style = {{display: "flex", flexDirection: "row", alignItems: "flexStart"}}>
                         {this.state.navigateStatus.map(navigateStatus => <div key={Math.random()} style={{...this.pageCircle, backgroundColor: navigateStatus}}></div>)}
@@ -155,6 +157,31 @@ class ToDoList extends Component{
         temp[this.state.currentPage - 1] = "#870c20da"
         this.setState({navigateStatus: temp})
         this.setStorage()
+    }
+
+    extendNote = () => {
+        this.setState({extend: (this.state.extend)? false : true}, () => {
+            if(this.state.extend){
+                document.getElementById("NoteContainer").style.opacity = "1";
+                document.getElementById("NoteContainer").style.height = "80%";
+                document.getElementById("mapGUI").style.height = "15%";
+                document.getElementById("mapGUI").style.opacity = "0.5";
+                document.getElementById("content-area-right").style.width = "80vw";
+                document.getElementById("expandButton").style.rotate = "180deg";
+                
+                document.getElementById("dailyWeather").style.height = '0px';
+                document.getElementById("firstRow").style.height = "100%";
+                document.getElementById("weatherContainer").style.paddingTop = '0px';
+                document.getElementById("weatherContainer").style.paddingBottom = '0px';
+            } else {
+                
+                document.getElementById("NoteContainer").style.height = "47vh";
+                document.getElementById("mapGUI").style.height = "47vh";
+                document.getElementById("mapGUI").style.opacity = "1";
+                document.getElementById("content-area-right").style.width = "60vw";
+                document.getElementById("expandButton").style.rotate = "0deg"
+            }
+        })
     }
 }
 

@@ -7,9 +7,9 @@ export default class Menu extends Component{
         super();
 
         let shortcutJSON = JSON.parse(window.localStorage.getItem("shortcuts"));
-
+        
         this.state = {
-            shortcuts: shortcutJSON
+            shortcuts: (shortcutJSON === null)? []:shortcutJSON
         }
     }
 
@@ -35,15 +35,20 @@ export default class Menu extends Component{
                     }}>
                 </div>
 
-                {this.state.shortcuts.map(pair =>
+                {
+                    (this.state.shortcuts === undefined || this.state.shortcuts === null)? 
+                    null
+                    :
+                    this.state.shortcuts.map(pair =>
                     <div className="menuItem" key={pair[0]}>
                         <button className="deleteButton" onClick={event => this.deleteShortcut(pair)}>✕</button>
                         <div style={this.linkButton} onClick={() => {window.open(pair[1])}}>
                             <img style={{height:"20px",width:"20px", marginRight: "20px"}} src={"https://s2.googleusercontent.com/s2/favicons?domain_url=" + pair[1]} alt="link icon"/>
                             {pair[0]}
                         </div>
-                    </div>
-                )}
+                    </div>)
+                
+                }
 
                 <div id="addShortcut" className="menuItem" onClick={this.addShortCut} style={{fontSize: "50px", padding: "5px 10px 5px 5px"}}>+</div>
                 <div id="shortcutField" className="no-hover" style={{height: "auto", display:"none"}}>

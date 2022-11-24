@@ -71,6 +71,7 @@ class MapInfo extends Component{
         if(!this.state.expanded){
             console.log("expand");
             this.setState({expanded: true});
+            document.getElementById("mapGUI").style.opacity = "1";
             document.getElementById("mapGUI").style.height = "78vh";
             document.getElementById("NoteContainer").style.height = "16vh";
             document.getElementById("NoteContainer").style.opacity = "0.5";

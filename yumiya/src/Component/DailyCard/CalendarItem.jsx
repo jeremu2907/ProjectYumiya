@@ -5,20 +5,6 @@ import './CalendarItem.css'
 /*global google*/
 
 class CalendarItem extends Component{
-    // constructor(props){
-    //     super(props);
-
-    //     // this.state = {
-    //     //     id: props.id,
-    //     //     time: props.time,
-    //     //     location: props.location,
-    //     //     description: props.description,
-    //     //     name: props.name
-    //     //     // Place: "1234 N Road, City, State Zip",
-    //     //     // Link: "somewhere.com",
-    //     //     // Note: "This is a test",
-    //     // }
-    // }
 
     state = {
         status : false,

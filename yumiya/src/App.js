@@ -14,7 +14,7 @@ function App() {
         <div id="dailyCard" className = "content-area-left">
           <DailyCard />
         </div>
-        <div className = "content-area-right">
+        <div id="content-area-right" className = "content-area-right">
           <ToDoList className="noteArea"/>
           <MapGUI className="noteArea"/>
         </div>
