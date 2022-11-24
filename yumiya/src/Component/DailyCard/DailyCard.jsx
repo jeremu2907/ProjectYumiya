@@ -12,7 +12,7 @@ class DailyCard extends Component{
 
         this.state = {
             selectedEvents: new Set(),
-            eventList: {}
+            eventList: []
         }
     }
 
@@ -98,8 +98,13 @@ class DailyCard extends Component{
                 <div style = {this.flexBoxStyle} className="flexBoxStyle">
                     {/* This will keep updating if there promise is not resolved (called at ../../public/index.js when
                     user log in) */}
-                    {   !JSON.parse(window.localStorage.getItem("eventList")) ||
-                        JSON.parse(window.localStorage.getItem("eventList"))   
+                    {/* {   !JSON.parse(window.localStorage.getItem("eventList")) ||
+                        JSON.parse(window.localStorage.getItem("eventList"))    */}
+                    {
+                        (this.state.eventList.length === 0)?
+                        <CalendarItem name="Loading Events..."/>
+                        :
+                        this.state.eventList
                             .map(event => <CalendarItem 
                                 key={event.id} 
                                 name={event.name}
@@ -121,18 +126,27 @@ class DailyCard extends Component{
         return moment(Date.now())
     }
 
-    
-
     rret = () => {
         console.log('Calendar Refresh')
         listUpcomingEvents().then((value) => {
             if(value !== 1){
-                this.forceUpdate();
+                // this.forceUpdate();
+                this.setState({eventList: value})
             }
         })
     }
+
     //This funciton is for updating the calendar automatically every 1minute
     componentDidMount(){
+        /*global logged*/
+        let tryLoad = setInterval(() => {
+            if(logged === true)
+                this.rret()
+            if(this.state.eventList.length !== 0)
+                clearInterval(tryLoad)
+        },2000)
+
+        //query in newEvent.jsx
         $("#setNewEvent").on('click',() => {
             setTimeout(() => {
                 this.rret();
@@ -146,11 +160,8 @@ class DailyCard extends Component{
     handleUserSelection = (selected, status) => {
         if(!status)
             this.state.selectedEvents.add(selected)
-            // console.log("add")
         else
             this.state.selectedEvents.delete(selected)
-            // console.log("sub")
-        // this.setState({selectedEvents: new Set(this.state.selectedEvents)})
     }
 }
 

@@ -51,7 +51,7 @@ textarea::-webkit-scrollbar-thumb{
 }
 
 .NoteContainer{
-    transition: height 0.5s, opacity 0.3s ease-in-out;
+    transition: height 0.8s ease-in-out,width 0.8s ease-in-out, opacity 0.8s ease-in-out;
 }
 
 @keyframes focus {
@@ -73,9 +73,9 @@ textarea::-webkit-scrollbar-thumb{
 
 .navButton{
     color:white;
-    transition: color 0.3s;
+    transition: color 0.3s, rotate 0.3s ease-in-out;
 }
 
 .navButton:hover{
-    color: rgba(62, 163, 235, 0.526);
+    color: rgb(62, 163, 235);
 }

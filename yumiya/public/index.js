@@ -15,6 +15,7 @@ const SCOPES = 'https://www.googleapis.com/auth/calendar https://www.googleapis.
 let tokenClient;
 let gapiInited = false;
 let gisInited = false;
+let logged = false;
 
 // document.getElementById('authorize_button').style.visibility = 'hidden';
 // document.getElementById('signout_button').style.visibility = 'hidden';
@@ -29,8 +30,9 @@ function handleAuthClick() {
       unlockPage();
       console.log("App Start")
       document.getElementById("root").style.visibility = "visible";
+      logged = true;
       // document.getElementById("logo").style.visibility = "hidden";
-      window.localStorage.setItem("eventList",JSON.stringify(await listUpcomingEvents()));
+      // window.localStorage.setItem("eventList",JSON.stringify(await listUpcomingEvents()));
       console.clear();
     };
 
@@ -78,7 +80,7 @@ function gapiLoaded() {
 async function intializeGapiClient() {
   var API_KEY = "x";
 
-  fetch("http://localhost:5000/id").then(resp => {
+  fetch("https://calendar-342103.uc.r.appspot.com/id").then(resp => {
     return resp.json();
   }).then((data) => {
     API_KEY = data.val2;
@@ -102,7 +104,7 @@ async function intializeGapiClient() {
 function gisLoaded() {
   var CLIENT_ID = "x";
 
-  fetch("http://localhost:5000/id").then(resp => {
+  fetch("https://calendar-342103.uc.r.appspot.com/id").then(resp => {
     return resp.json();
   }).then((data) => {
     CLIENT_ID = data.val1;

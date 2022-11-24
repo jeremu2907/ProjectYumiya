@@ -3,22 +3,22 @@ const { listenerCount } = require('process');
 const app = express();
 const fetch = require('node-fetch');
 const cors = require('cors');
+const normalizePort = require('normalize-port');
 require('dotenv').config();
 
 app.use(cors())
 console.log("Server Up and Running!")
 
+const port = normalizePort(process.env.PORT || 5000)
+
 app.get('/', (req,res) => {
     res.sendStatus(200);
-    // console.log(process.env.CLIENT_ID)
-    // console.log(process.env.API_KEY)
-    // console.log(process.env.W_KEY)
 })
 
 app.get('/eta', async (req, res) => {
     let lat = req.query.lat;
     let lon = req.query.lon;
-    let apiCall = "https://maps.googleapis.com/maps/api/distancematrix/json?destinations=" + req.query.destination + "&origins=" + lat + "%2C" + lon + "&key=AIzaSyC_kenObLSxyH_DyPx2nIV5eQIsNHDZtW0";
+    let apiCall = "https://maps.googleapis.com/maps/api/distancematrix/json?destinations=" + req.query.destination + "&origins=" + lat + "%2C" + lon + "&key=" + process.env.API_KEY;
     fetch(apiCall).then((response)=>{
         return response.json()
     }).then(data =>{
@@ -1176,4 +1176,4 @@ app.get('/sampleWeatherData', (req,res)=>{
     res.json(sample)
 })
 
-app.listen(5000);
+app.listen(port);

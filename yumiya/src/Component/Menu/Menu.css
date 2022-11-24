@@ -48,6 +48,19 @@
     border-radius: 5px
 }
 
+.deleteButton{
+    position: absolute;
+    top: 5px;
+    left: 0px;
+    color: white;
+    font-size: 10px;
+    transition: color 0.3s
+}
+
+.deleteButton:hover{
+    color: #870c20da;
+}
+
 .no-hover{
     position:relative;
     width: calc(100% - 15px);
@@ -67,7 +80,6 @@
     font-size: 20px;
     color: rgb(255, 255, 255);
     text-align: center;
-    justify-content: center;
     background-color: rgba(0,0,0,0);
     transition: background-color 1s, color 1s;
 }

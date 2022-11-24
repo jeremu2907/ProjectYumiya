@@ -1,12 +1,12 @@
 import React, {Component} from 'react';
 import './TextArea.css'
 
-class ToDoItems extends Component{
+export default class ToDoItems extends Component{
     constructor(props) {
         super(props);
 
         this.state = JSON.parse(window.localStorage.getItem('state')) || {
-            noteContent: Array(props.pages).fill("")
+            noteContent: Array(props.pages).fill(""),
         }
 
         this.textChange = this.textChange.bind(this);
@@ -41,6 +41,7 @@ class ToDoItems extends Component{
             temp.push(event.target.value);
         else
             temp[this.props.currentPage - 1] = event.target.value;
+
         this.setState({noteContent: temp})
     }
 
@@ -61,6 +62,5 @@ class ToDoItems extends Component{
                 />
         )
     }
+    
 }
-
-export default ToDoItems;
