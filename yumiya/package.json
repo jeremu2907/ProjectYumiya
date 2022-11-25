@@ -22,7 +22,6 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build"
   },
@@ -43,9 +42,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "devDependencies": {
-    "react-error-overlay": "^6.0.9"
-  },
-  "homepage": "https://github.com/jeremu2907/ProjectYumiya"
+  }
 }
