@@ -88,7 +88,7 @@ class ToDoList extends Component{
 
                 {/* Note navigation */}
                 <div style={this.pageSelector}>
-                    <button id="expandButton" className="navButton" style={{marginRight: "auto"}} onClick={this.extendNote}>◣</button>
+                    <button id="expandButton" className="navButton" style={{marginRight: "auto"}} onClick={this.extendNote}>∟</button>
                     {/* Note navigation */}
                     <div style = {{display: "flex", flexDirection: "row", alignItems: "flexStart"}}>
                         {this.state.navigateStatus.map(navigateStatus => <div key={Math.random()} style={{...this.pageCircle, backgroundColor: navigateStatus}}></div>)}
@@ -98,11 +98,11 @@ class ToDoList extends Component{
                     <button src={require("./leftButton.png")} alt="move to left button"  
                                 // style={{ width:"23px", height:"23px",marginRight:"10px"}}
                                 className="navButton"
-                                onClick={this.moveleft}>⏴</button>
+                                onClick={this.moveleft}>&lt;</button>
                     <button src={require("./rightButton.png")} alt="move to right button" 
                                 // style={{width:"23px", height:"23px"}} 
                                 className="navButton"
-                                onClick={this.moveright}>⏵</button>
+                                onClick={this.moveright}>&gt;</button>
                 </div>
             </div>
         );
@@ -164,16 +164,20 @@ class ToDoList extends Component{
             if(this.state.extend){
                 document.getElementById("NoteContainer").style.opacity = "1";
                 document.getElementById("NoteContainer").style.height = "80%";
-                document.getElementById("mapGUI").style.height = "15%";
+                document.getElementById("mapGUI").style.height = "14%";
                 document.getElementById("mapGUI").style.opacity = "0.5";
                 document.getElementById("content-area-right").style.width = "80vw";
                 document.getElementById("expandButton").style.rotate = "180deg";
+                document.getElementById("NoteContainer").style.width = "calc(98%)";
+                document.getElementById("mapGUI").style.width = "calc(98%)";
                 
                 document.getElementById("dailyWeather").style.height = '0px';
                 document.getElementById("firstRow").style.height = "100%";
                 document.getElementById("weatherContainer").style.paddingTop = '0px';
                 document.getElementById("weatherContainer").style.paddingBottom = '0px';
             } else {
+                document.getElementById("NoteContainer").style.width = "calc(95% - 10px)";
+                document.getElementById("mapGUI").style.width = "calc(95% - 10px)";
                 
                 document.getElementById("NoteContainer").style.height = "47vh";
                 document.getElementById("mapGUI").style.height = "47vh";

@@ -17,7 +17,7 @@ class DailyCard extends Component{
     }
 
     styles = {
-        height: "calc(94vh + 20px)",
+        height: "calc(96vh + 5px)",
         width: "calc(95% - 20px)",
         backgroundColor: "rgba(0,0,0, 0.7)",
         padding: "10px",
@@ -31,8 +31,8 @@ class DailyCard extends Component{
         height: "calc(90% - 20px)",
         width: "calc(100%-20px)",
         overflow: "auto",
-        borderTopLeftRadius: "30px",
-        borderBottomLeftRadius: "30px",
+        // borderTopLeftRadius: "30px",
+        // borderBottomLeftRadius: "30px",
     }
 
     title = {

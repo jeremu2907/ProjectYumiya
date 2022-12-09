@@ -6,7 +6,7 @@ export default class HourlyItem extends Component{
         marginLeft:'40px',
         color: 'white',
         width: 'auto',
-        borderRight: '2px solid white'
+        borderRight: '1px solid grey'
     }
 
     render(){

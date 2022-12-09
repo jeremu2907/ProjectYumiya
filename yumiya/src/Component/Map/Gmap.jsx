@@ -6,7 +6,7 @@ import './map.css'
 export default class Gmap extends Component{
     render(){
         return(
-            <div id="map"style={{height: "95%", width : "65%", alignSelf: "center"}}>
+            <div id="map"style={{position: "relative", height: "90%", width : "100%", alignSelf: "center"}}>
             </div>
         )
     }

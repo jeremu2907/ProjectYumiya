@@ -6,14 +6,14 @@ const cors = require('cors');
 const normalizePort = require('normalize-port');
 require('dotenv').config();
 
-var allowedOrigin = ['https://yumiya.netlify.app','http://192.168.56.1:3000']
+var allowedOrigin = ['https://yumiya.netlify.app','http://192.168.1.140:3000/jeremu2907/ProjectYumiya','http://localhost:3000','http://192.168.1.140:3000']
 app.use(cors({
     origin: allowedOrigin
 }))
 
 console.log("Server Up and Running!")
 
-const port = normalizePort(process.env.PORT || 5000)
+const port = normalizePort(process.env.PORT || 5050)
 
 //Public accessible
 
@@ -1195,8 +1195,9 @@ app.get('/wkey', (req, res) => {
 })
 
 function checkOrigin(r){
-    console.log(r)
-    return (r !== undefined)? true:false
+    // console.log(r)
+    // return (r !== undefined)? true:false
+    return true;
 }
 
 app.listen(port);
