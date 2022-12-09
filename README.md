@@ -6,3 +6,7 @@ Run back end server first
 
 Then run yumiya
 ### `npm start`
+
+// "devDependencies": {
+  //   "react-error-overlay": "^6.0.9"
+  // },

@@ -6,33 +6,19 @@ const cors = require('cors');
 const normalizePort = require('normalize-port');
 require('dotenv').config();
 
-app.use(cors())
+var allowedOrigin = ['https://yumiya.netlify.app','http://192.168.1.140:3000/jeremu2907/ProjectYumiya','http://localhost:3000','http://192.168.1.140:3000']
+app.use(cors({
+    origin: allowedOrigin
+}))
+
 console.log("Server Up and Running!")
 
-const port = normalizePort(process.env.PORT || 5000)
+const port = normalizePort(process.env.PORT || 5050)
+
+//Public accessible
 
 app.get('/', (req,res) => {
     res.sendStatus(200);
-})
-
-app.get('/eta', async (req, res) => {
-    let lat = req.query.lat;
-    let lon = req.query.lon;
-    let apiCall = "https://maps.googleapis.com/maps/api/distancematrix/json?destinations=" + req.query.destination + "&origins=" + lat + "%2C" + lon + "&key=" + process.env.API_KEY;
-    fetch(apiCall).then((response)=>{
-        return response.json()
-    }).then(data =>{
-        console.log(data)
-        res.json(data)
-    })
-})
-
-app.get('/id', (req, res) => {
-    res.send({val1: process.env.CLIENT_ID, val2: process.env.API_KEY})
-})
-
-app.get('/wkey', (req, res) => {
-    res.send({val: process.env.W_KEY})
 })
 
 app.get('/sampleWeatherData', (req,res)=>{
@@ -1175,5 +1161,43 @@ app.get('/sampleWeatherData', (req,res)=>{
     console.log("Sample weather data requested")
     res.json(sample)
 })
+
+//Private Routes
+
+app.get('/eta', async (req, res) => {
+    if(checkOrigin(req.get('origin'))){
+        let lat = req.query.lat;
+        let lon = req.query.lon;
+        let apiCall = "https://maps.googleapis.com/maps/api/distancematrix/json?destinations=" + req.query.destination + "&origins=" + lat + "%2C" + lon + "&key=" + process.env.API_KEY;
+        fetch(apiCall).then((response)=>{
+            return response.json()
+        }).then(data =>{
+            console.log(data)
+            res.json(data)
+        }) 
+    } 
+    else
+        res.send(401)
+})
+
+app.get('/id', (req, res) => {
+    if(checkOrigin(req.get('origin')))
+        res.send({val1: process.env.CLIENT_ID, val2: process.env.API_KEY})
+    else
+        res.send(401)
+})
+
+app.get('/wkey', (req, res) => {
+    if(checkOrigin(req.get('origin')))
+        res.send({val: process.env.W_KEY})
+    else
+        res.send(401)
+})
+
+function checkOrigin(r){
+    // console.log(r)
+    // return (r !== undefined)? true:false
+    return true;
+}
 
 app.listen(port);

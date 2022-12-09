@@ -15,19 +15,20 @@ class CalendarItem extends Component{
         position: "relative",
         height: "auto",
         width: "calc(97% - 30px)",
-        backgroundColor: "rgba(255, 255, 255, 0.05)",
-        borderRadius: "30px",
-        marginBottom: "10px",
+        backgroundColor: "rgba(0,0,0, 0.7)",
+        // borderRadius: "30px",
+        // marginBottom: "10px",
+        overflowWrap: "anywhere",
         overflowX: "hidden",
         color: "white",
         padding: "15px",
         minHeight: "100px",
-        border: "solid 1px rgba(0,0,0,0)"
+        borderTop: "solid 1px grey"
     }
 
     title = {
         position: "relative",
-        
+        margin: "0px 0px 0px 20px"
     }
 
     eventDetail = {
@@ -35,16 +36,28 @@ class CalendarItem extends Component{
         
     }
 
+    deleteIndic = {
+        position: "relative",
+        height: "15px", width: "15px",
+        borderRadius: "7.5px",
+        backgroundColor: "rgba(255, 255, 255, 0.05)",
+        border: "solid 1px rgba(255, 255, 255, 0.2)"
+    }
+
     render(){
         return(
             <div style = {this.styles} className="box" onClick={this.selectDetail}>
                 {/* Selection indicator */}
-                <div id = {this.props.id} style = {{height: "20px", width: "20px", borderRadius: "10px",backgroundColor: "rgba(255, 255, 255, 0.05)"}} onClick={this.selectItemAction}></div>
+                <div style = {{display: "flex", flexDirection: "row"}}>
+                <div id = {this.props.id} style = {this.deleteIndic} onClick={this.selectItemAction}></div>
                 <h3 style = {this.title} className = "globalFont">{this.props.name}</h3>
+                </div>
                 {/* Props passed in from DailyCard.jsx */}
                 <div className = "globalFont" style={{paddingLeft: "10px"}}>
-                    {(this.props.time === undefined)? <p>{this.props.date}</p> : ((this.props.time.indexOf("T") === -1)? <p>{this.props.time}</p> : <p>{this.props.time.substr(0, this.props.time.indexOf("T"))}</p>)}
-                    {(this.props.time === undefined || this.props.time.indexOf("T") === -1)? "" : <p>{this.props.time.substr(this.props.time.indexOf("T") + 1, 5)}</p>}
+                    <div style={{color: "#03d3fc"}}>
+                        {(this.props.time === undefined)? <p>{this.props.date}</p> : ((this.props.time.indexOf("T") === -1)? <p style={{marginBottom: "0px"}}>{this.props.time}</p> : <p style={{marginBottom: "0px"}}>{this.props.time.substr(0, this.props.time.indexOf("T"))}</p>)}
+                    </div>
+                    {(this.props.time === undefined || this.props.time.indexOf("T") === -1)? "" : <p style={{marginTop: "0px", fontSize: "12px"}}>{this.props.time.substr(this.props.time.indexOf("T") + 1, 5)}</p>}
                     {(this.props.location === "")? "" : <p>{this.props.location}</p>}
                     {(this.props.description === "")? "" : <p>{this.props.description}</p>}
                 </div>
@@ -125,6 +138,11 @@ class CalendarItem extends Component{
 
         if(this.props.location !== undefined){
 
+            //While fetching from server, display loading
+            document.getElementById("EventDistance").innerHTML = "Loading...";
+            document.getElementById("EventDuration").innerHTML = "";
+            document.getElementById("EventETA").innerHTML = "";
+
             document.getElementById("EventLocation").innerHTML = this.props.location;
 
             if (navigator.geolocation) {
@@ -141,19 +159,13 @@ class CalendarItem extends Component{
                     }
 
                     //Calling API if geolocation is enabled
-                    fetch("https://calendar-342103.uc.r.appspot.com/eta?destination=" + this.props.location + "&lat=" + coord.coords.latitude + "&lon=" + coord.coords.longitude)
+                    fetch("http://localhost:5050/eta?destination=" + this.props.location + "&lat=" + coord.coords.latitude + "&lon=" + coord.coords.longitude)
                     .then((resp) => {
                         return resp.json();
                     }).then((data) => {
                         window.localStorage.setItem(this.props.id, JSON.stringify(data));
                         this.setDetail(data);
                     })
-
-                    
-                    //While fetching from server, display loading
-                    document.getElementById("EventDistance").innerHTML = "Loading...";
-                    document.getElementById("EventDuration").innerHTML = "";
-                    document.getElementById("EventETA").innerHTML = "";
                 });
             } else {
                 document.getElementById("map").innerHTML = "Geolocation is not supported by this browser.";

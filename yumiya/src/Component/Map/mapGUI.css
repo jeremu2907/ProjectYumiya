@@ -24,3 +24,32 @@
     background-color:#870c20da;
     border-radius: 4px;
 }
+
+.searchPlace{
+    position: relative;
+    width: calc(100% - 30px);
+    /* height: 10%; */
+    background-color: rgba(0,0,0,0);
+    color: white;
+    font-size: 15px;
+    border-bottom: 1px grey solid;
+    font-family: 'Montserrat', sans-serif;
+}
+
+#searchBox{
+    width: auto;
+    height: 20px;
+    margin-right: 10px;
+    background-color: rgba(0,0,0,0);
+    padding: 2px 5px 2px 5px;
+    border: grey 1px solid;
+    font-family: 'Montserrat', sans-serif;
+    border-radius: 2px;
+    color: white;
+    cursor: default;
+    transition: background-color 0.3s;
+}
+
+#searchBox:hover{
+    background-color: rgba(102, 102, 102, 0.462);;
+}

@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import MapInfo from './MapInfo.jsx'
 import Gmap from './Gmap.jsx'
 import HourlyWeather from './hourlyWeather.jsx'
+import {SearchBar} from './SearchBar.jsx'
 import './mapGUI.css'
 
 class MapGUI extends Component{
@@ -23,11 +24,21 @@ class MapGUI extends Component{
         justifyContent: "space-evenly",
         height: '100%'
     }
+    mapUtil = {
+        display: "flex",
+        flexDirection: "column",
+        width:"65%",
+        height: "100%",
+        justifyContent: "space-between"
+    }
     render(){
         return(
             <div id="mapGUI" style = {this.styles}>
                 <div id="firstRow" style={this.row}>
-                    <Gmap />
+                    <div style={this.mapUtil}>
+                        <SearchBar />
+                        <Gmap />
+                    </div>
                     <MapInfo />
                 </div>
                 <HourlyWeather/>

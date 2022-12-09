@@ -98,9 +98,36 @@
     border-bottom: 1px solid #870c20da;
 }
 
+.shortcutItem{
+    position:relative;
+    width: calc(100% - 15px);
+    padding: 20px 10px 20px 5px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 20px;
+    color: rgb(255, 255, 255);
+    text-align: center;
+    background-color: rgba(0,0,0,0);
+    transition: background-color 1s, color 1s;
+}
+
+.shortcutItem:hover{
+    background-color: rgb(67, 67, 67);
+    /* color: rgb(62, 163, 235); */
+}
+
 input[type="file"] {
     display: none;
 }
 .custom-file-upload {
     position: relative;
+}
+
+#shortcutList::-webkit-scrollbar{
+    width: 2px;
+    background-color: rgba(0,0,0,0);
+}
+
+#shortcutList::-webkit-scrollbar-thumb{
+    width: 2px;
+    background-color: rgb(62, 163, 235);
 }

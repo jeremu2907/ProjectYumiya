@@ -35,7 +35,7 @@ class MapInfo extends Component{
                 </div>
                 <div style={{justifyContent:"center"}}>
                     <div style={{color:"white"}} className = "globalFont">
-                        <p id="EventLocationName">No Event Selected</p>
+                        <p style={{color: "#03d3fc"}} id="EventLocationName">No Event Selected</p>
                         <p id="EventLocation"></p>
                         <p id="EventDistance"></p>
                         <p id="EventDuration"></p>
