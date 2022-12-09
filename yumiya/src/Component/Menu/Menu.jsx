@@ -34,7 +34,7 @@ export default class Menu extends Component{
                         borderRadius: "1px"
                     }}>
                 </div> */}
-                <div id="shortcutList" style={{height: "calc(100% - 120px", overflowY: "auto"}}>
+                <div id="shortcutList" style={{height: "calc(100% - 120px", overflowY: "scroll"}}>
                 {
                     (this.state.shortcuts === undefined || this.state.shortcuts === null)? 
                     null
