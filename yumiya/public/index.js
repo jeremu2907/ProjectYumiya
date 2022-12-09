@@ -80,7 +80,7 @@ function gapiLoaded() {
 async function intializeGapiClient() {
   var API_KEY = "x";
 
-  fetch("http://localhost:5050/id").then(resp => {
+  fetch("https://calendar-342103.uc.r.appspot.com/id").then(resp => {
     return resp.json();
   }).then((data) => {
     API_KEY = data.val2;
@@ -104,7 +104,7 @@ async function intializeGapiClient() {
 function gisLoaded() {
   var CLIENT_ID = "x";
 
-  fetch("http://localhost:5050/id").then(resp => {
+  fetch("https://calendar-342103.uc.r.appspot.com/id").then(resp => {
     return resp.json();
   }).then((data) => {
     CLIENT_ID = data.val1;
