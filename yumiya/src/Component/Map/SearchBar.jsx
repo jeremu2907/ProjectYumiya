@@ -27,7 +27,7 @@ export function SearchBar() {
 
     return(
         <div style = {{display: "flex", flexDirection: "row", alignItems: "center"}}>
-            <div id="searchBox" onClick={() => {displayToMap(document.getElementsByName("searchLocation")[0].value)}}>Search</div>
+            <div id="searchBox" style={{alignSelf:"flex-start",marginTop: "5px"}} onClick={() => {displayToMap(document.getElementsByName("searchLocation")[0].value)}}>Search</div>
             <PlacesAutocomplete
                 value={address}
                 onChange={setAddress}
@@ -37,7 +37,7 @@ export function SearchBar() {
                     {/* {console.log(coordinates.lat)}
                     {console.log(coordinates.lng)} */}
 
-                    <input {...getInputProps({ placeholder: "🔍 Search a place" })} name="searchLocation" className = "searchPlace"/>
+                    <input {...getInputProps({ placeholder: "Search a place" })} name="searchLocation" className = "searchPlace"/>
                     <div>
                     {loading ? <div>...Loading</div> : null}
 

@@ -24,7 +24,7 @@ export default class Menu extends Component{
         return(
             <div id="menuContainer">
                 <div className="logo" id="menuLogo">.yumiya</div>
-                <div style={{
+                {/* <div style={{
                         position: "absolute",
                         backgroundColor: "rgb(62, 163, 235)",
                         height: "10%",
@@ -33,14 +33,14 @@ export default class Menu extends Component{
                         top: "45%",
                         borderRadius: "1px"
                     }}>
-                </div>
-
+                </div> */}
+                <div id="shortcutList" style={{height: "calc(100% - 120px", overflowY: "auto"}}>
                 {
                     (this.state.shortcuts === undefined || this.state.shortcuts === null)? 
                     null
                     :
                     this.state.shortcuts.map(pair =>
-                    <div className="menuItem" key={pair[0]}>
+                    <div className="shortcutItem" key={pair[0]}>
                         <button className="deleteButton" onClick={event => this.deleteShortcut(pair)}>✕</button>
                         <div style={this.linkButton} onClick={() => {window.open(pair[1])}}>
                             <img style={{height:"20px",width:"20px", marginRight: "20px"}} src={"https://s2.googleusercontent.com/s2/favicons?domain_url=" + pair[1]} alt="link icon"/>
@@ -49,8 +49,9 @@ export default class Menu extends Component{
                     </div>)
                 
                 }
+                </div>
 
-                <div id="addShortcut" className="menuItem" onClick={this.addShortCut} style={{fontSize: "50px", padding: "5px 10px 5px 5px"}}>+</div>
+                <div id="addShortcut" className="menuItem" onClick={this.addShortCut}>Add Shortcut</div>
                 <div id="shortcutField" className="no-hover" style={{height: "auto", display:"none"}}>
                     <div style={{display:"flex", alignItems:"center",marginBottom: "5px"}}>Label
                         <input id="shortcutName" type="text"/>
