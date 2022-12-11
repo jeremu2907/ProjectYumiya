@@ -55,8 +55,8 @@ class DailyCard extends Component{
         for(let i = 0; i < a.length; i++){
             console.log(a[i]);
             var request = gapi.client.calendar.events.delete({
-                'calendarId': 'primary',
-                'eventId': a[i]
+                'calendarId': a[i][1],
+                'eventId': a[i][0]
             });
             request.execute((response) => {
                 if(response.error || response === false){
@@ -113,6 +113,7 @@ class DailyCard extends Component{
                                 location={event.location}
                                 description={event.description}
                                 id={event.id}
+                                calID={event.calendarID}
                                 parentCallback = {this.handleUserSelection}
                                 />)
                     }
@@ -139,11 +140,11 @@ class DailyCard extends Component{
     //This funciton is for updating the calendar automatically every 1minute
     componentDidMount(){
         /*global logged*/
-        let tryLoad = setInterval(() => {
+        let tryLoad = setInterval(async () => {
             if(logged === true)
-                this.rret()
+                this.rret();
             if(this.state.eventList.length !== 0)
-                clearInterval(tryLoad)
+                clearInterval(tryLoad);
         },2000)
 
         //query in newEvent.jsx
@@ -157,11 +158,11 @@ class DailyCard extends Component{
             this.rret()
         },1000 * 60)
     }
-    handleUserSelection = (selected, status) => {
+    handleUserSelection = (selected, calID, status) => {
         if(!status)
-            this.state.selectedEvents.add(selected)
+            this.state.selectedEvents.add([selected, calID])
         else
-            this.state.selectedEvents.delete(selected)
+            this.state.selectedEvents.delete([selected, calID])
     }
 }
 

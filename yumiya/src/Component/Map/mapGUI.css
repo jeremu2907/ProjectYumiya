@@ -1,5 +1,5 @@
 #mapGUI{
-    transition: height 0.8s ease-in-out, width 0.8s ease-in-out, backdrop-filter 0.3s ease-in-out, opacity 0.8s ease-in-out;;
+    transition: height 0.3s cubic-bezier(0.215, 0.610, 0.355, 1), width 0.3s cubic-bezier(0.215, 0.610, 0.355, 1), backdrop-filter 0.3s cubic-bezier(0.215, 0.610, 0.355, 1), opacity 0.8s cubic-bezier(0.215, 0.610, 0.355, 1);;
 }
 
 #mapGUI:hover{
@@ -7,11 +7,11 @@
 }
 
 #firstRow{
-    transition: height 0.5s ease-in-out;
+    transition: height 0.3s cubic-bezier(0.215, 0.610, 0.355, 1);
 }
 
 #dailyWeather{
-    transition: height 0.8s ease-in-out, display 0.8s ease-in-out;
+    transition: height 0.3s cubic-bezier(0.215, 0.610, 0.355, 1), display 0.3s cubic-bezier(0.215, 0.610, 0.355, 1);
 }
 
 #weatherContainer::-webkit-scrollbar{
