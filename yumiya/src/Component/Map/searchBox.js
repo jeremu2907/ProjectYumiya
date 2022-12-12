@@ -57,8 +57,8 @@ export function displayToMap(destination){
             });
 
             //Calling API if geolocation is enabled
-            // fetch("http://localhost:5050/eta?destination=" + destination + "&lat=" + coord.coords.latitude + "&lon=" + coord.coords.longitude)
-            fetch("https://calendar-342103.uc.r.appspot.com/eta?destination=" + destination + "&lat=" + coord.coords.latitude + "&lon=" + coord.coords.longitude)
+            fetch("http://localhost:5050/eta?destination=" + destination + "&lat=" + coord.coords.latitude + "&lon=" + coord.coords.longitude)
+            // fetch("https://calendar-342103.uc.r.appspot.com/eta?destination=" + destination + "&lat=" + coord.coords.latitude + "&lon=" + coord.coords.longitude)
             .then((resp) => {
                 return resp.json();
             }).then((data) => {

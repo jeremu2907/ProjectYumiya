@@ -51,7 +51,7 @@ export async function listUpcomingEvents() {
     
         const events = response.result.items;
         if (!events || events.length === 0) {
-            console.log( 'No events found.');
+            // console.log( 'No events found.');
         }
         
         
@@ -72,6 +72,6 @@ export async function listUpcomingEvents() {
     }
 
     eventList.sort( compare )
-    console.log(eventList)
+    // console.log(eventList)
     return eventList
 }

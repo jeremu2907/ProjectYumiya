@@ -53,17 +53,20 @@ class DailyCard extends Component{
         let a = Array.from(this.state.selectedEvents)
         //Perform delete on every event that is selected
         for(let i = 0; i < a.length; i++){
-            console.log(a[i]);
-            var request = gapi.client.calendar.events.delete({
-                'calendarId': a[i][1],
-                'eventId': a[i][0]
-            });
-            request.execute((response) => {
-                if(response.error || response === false){
-                    alert("Failed to delete one or more events")
-                }
-                this.rret();
-            });
+            // console.log(a[i]);
+            setTimeout(() => {
+                var request = gapi.client.calendar.events.delete({
+                    'calendarId': a[i][1],
+                    'eventId': a[i][0]
+                });
+                request.execute((response) => {
+                    if(response.error || response === false){
+                        console.log(response.error)
+                        alert("Failed to delete one or more events")
+                    }
+                    this.rret();
+                });
+            }, Math.pow(2,i) * 100)
         };
         //Reset selected events to 0
         this.setState({selectedEvents: new Set()});
@@ -128,7 +131,7 @@ class DailyCard extends Component{
     }
 
     rret = () => {
-        console.log('Calendar Refresh')
+        // console.log('Calendar Refresh')
         listUpcomingEvents().then((value) => {
             if(value !== 1){
                 // this.forceUpdate();
