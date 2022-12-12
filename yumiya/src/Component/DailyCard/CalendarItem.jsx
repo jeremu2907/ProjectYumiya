@@ -67,7 +67,7 @@ class CalendarItem extends Component{
 
     // When the event is clicked mark the event and pass signal to DailyCard, waiting to be removed
     selectItemAction = () => {
-        this.props.parentCallback(this.props.id, this.state.status)
+        this.props.parentCallback(this.props.id, this.props.calID, this.state.status)
         if(!this.state.status)
             document.getElementById(this.props.id).style.backgroundColor = "#03d3fc"
         else
@@ -160,6 +160,7 @@ class CalendarItem extends Component{
 
                     //Calling API if geolocation is enabled
                     fetch("http://localhost:5050/eta?destination=" + this.props.location + "&lat=" + coord.coords.latitude + "&lon=" + coord.coords.longitude)
+                    // fetch("https://calendar-342103.uc.r.appspot.com/eta?destination=" + this.props.location + "&lat=" + coord.coords.latitude + "&lon=" + coord.coords.longitude)
                     .then((resp) => {
                         return resp.json();
                     }).then((data) => {

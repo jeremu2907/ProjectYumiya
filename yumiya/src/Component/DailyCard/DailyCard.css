@@ -15,5 +15,5 @@
 }
 
 #DailyCardContainer{
-    transition: height 0.8s ease-in-out;
+    transition: height 0.3s cubic-bezier(0.215, 0.610, 0.355, 1), width 0.3s cubic-bezier(0.215, 0.610, 0.355, 1);
 }

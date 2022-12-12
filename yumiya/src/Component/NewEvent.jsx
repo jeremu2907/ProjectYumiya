@@ -63,16 +63,10 @@ export function NewEvent() {
       dateTime += appendTimeZone();
       let dateTimeEnd = (parseInt(dateTime.substr(11, 2)) + 1) % 24
       //If end date is a new day, add day
-      let temp = dateTime
-      if(dateTimeEnd === 0){
-        temp = dateTime.substr(0,8) + (parseInt(dateTime.substr(8, 2)) + 1) % 31 + dateTime.substr(10,15)
-      }
-      if(Math.log10(dateTimeEnd) < 1)
-      dateTimeEnd = '0' + dateTimeEnd
-      // console.log(dateTime)
-      // console.log(dateTimeEnd)
-      dateTimeEnd = temp.substr(0,11) + dateTimeEnd + temp.substr(13,12)
-      // console.log(dateTimeEnd)
+      dateTimeEnd = Date.parse(dateTime) + 1000*60*60;
+      // console.log(Date.parse(dateTime));
+      dateTimeEnd = new Date(dateTimeEnd);
+      // console.log(dateTimeEnd.toISOString());
 
 
       var event = {
