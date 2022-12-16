@@ -146,8 +146,10 @@ class DailyCard extends Component{
         let tryLoad = setInterval(async () => {
             if(logged === true)
                 this.rret();
-            if(this.state.eventList.length !== 0)
+            if(this.state.eventList.length !== 0){
                 clearInterval(tryLoad);
+                console.clear()
+            }
         },2000)
 
         //query in newEvent.jsx
