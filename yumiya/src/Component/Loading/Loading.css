@@ -1,0 +1,35 @@
+.loading{
+    position: absolute;
+    height: 20%;
+    /* width: 50%; */
+    background-repeat: no-repeat;
+    animation: loadingScreen 3s ease-in-out infinite;
+}
+
+@keyframes loadingScreen {
+    0%{
+        transform: rotate(0deg);
+        opacity: 100%;
+    }
+    16.6666666667%{
+        opacity: 30%;
+    }
+    33.3333333333%{
+        transform: rotate(120deg);
+        opacity: 100%;
+    }
+    50%{
+        opacity: 30%;
+    }
+    66.666666667%{
+        transform: rotate(240deg);
+        opacity: 100%;
+    }
+    83.3333333333%{
+        opacity: 30%;
+    }
+    100%{
+        transform: rotate(360deg);
+        opacity: 100%;
+    }
+}

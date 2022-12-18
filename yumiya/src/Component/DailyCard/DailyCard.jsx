@@ -5,6 +5,7 @@ import CalendarItem from "./CalendarItem.jsx"
 import {listUpcomingEvents} from "./updateEvent.js"
 import './DailyCard.css'
 import '../ButtonSet/button.css'
+import Loading from '../Loading/Loading.jsx'
 
 class DailyCard extends Component{
     constructor(props){
@@ -105,7 +106,7 @@ class DailyCard extends Component{
                         JSON.parse(window.localStorage.getItem("eventList"))    */}
                     {
                         (this.state.eventList.length === 0)?
-                        <CalendarItem name="Loading Events..."/>
+                        <Loading />
                         :
                         this.state.eventList
                             .map(event => <CalendarItem 
