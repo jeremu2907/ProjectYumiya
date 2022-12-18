@@ -143,14 +143,18 @@ class DailyCard extends Component{
     //This funciton is for updating the calendar automatically every 1minute
     componentDidMount(){
         /*global logged*/
-        let tryLoad = setInterval(async () => {
-            if(logged === true)
-                this.rret();
-            if(this.state.eventList.length !== 0){
-                clearInterval(tryLoad);
-                console.clear()
-            }
-        },2000)
+        try {
+            let tryLoad = setInterval(async () => {
+                if(logged === true)
+                    this.rret();
+                if(this.state.eventList.length !== 0){
+                    clearInterval(tryLoad);
+                    // console.clear()
+                }
+            },2000)
+        } catch (e) {
+            console.log(e)
+        }
 
         //query in newEvent.jsx
         $("#setNewEvent").on('click',() => {

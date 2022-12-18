@@ -1162,8 +1162,6 @@ app.get('/sampleWeatherData', (req,res)=>{
     res.json(sample)
 })
 
-//Private Routes
-
 app.get('/eta', async (req, res) => {
     if(checkOrigin(req.get('origin'))){
         let lat = req.query.lat;
@@ -1179,6 +1177,8 @@ app.get('/eta', async (req, res) => {
     else
         res.send(401)
 })
+
+//Private Routes
 
 app.get('/id', (req, res) => {
     if(checkOrigin(req.get('origin')))
@@ -1196,8 +1196,13 @@ app.get('/wkey', (req, res) => {
 
 function checkOrigin(r){
     // console.log(r)
-    // return (r !== undefined)? true:false
-    return true;
+    return (r !== undefined)? true:false
 }
+
+
+//User data base
+
+const dataBase = require("./dataBase")
+app.use('/db', dataBase)
 
 app.listen(port);

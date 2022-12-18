@@ -91,7 +91,7 @@ export default class Menu extends Component{
     }
 
     resetApp = () => {
-        if(window.confirm("This will erase your notes, background, and any other items on this app. (It doesn't tamper with your Google Calendar Events)")){
+        if(window.confirm("This will refresh the application. Any un-sync changes will be lost")){
             window.localStorage.clear();
             window.location.reload();
         }
@@ -100,7 +100,7 @@ export default class Menu extends Component{
     handleSignoutClick() {
         /*global gapi*/
         /*global google*/
-        if(window.confirm("This will erase your notes, background, and any other items on this app")){
+        if(window.confirm("Are you sure you want to log out? Any un-sync changes will be lost")){
             window.localStorage.clear();
             window.location.reload();
             const token = gapi.client.getToken();
@@ -131,6 +131,10 @@ export default class Menu extends Component{
         this.setState({shortcuts: r},() => {
             window.localStorage.setItem("shortcuts", JSON.stringify(this.state.shortcuts));
             this.cancel();
+            // eslint-disable-next-line
+            /* global syncDB */
+            // eslint-disable-next-line
+            syncDB = true   //Signaling to sync w database
         });
     }
 

@@ -25,6 +25,10 @@ export default class ToDoItems extends Component{
                                 
     //Used to persist state of what is written in Note area
     setState(state){
+        // eslint-disable-next-line
+        /* global syncDB */
+        // eslint-disable-next-line
+        syncDB = true   //Signaling to sync w database
         window.localStorage.setItem('state', JSON.stringify(state));
         super.setState(state)
     }

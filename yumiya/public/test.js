@@ -1,28 +1,84 @@
 
-var logged = false
-const SCOPES = "https://www.googleapis.com/auth/calendar https://www.googleapis.com/auth/calendar.events";
-const DISCOVERY_DOC = ['https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest'];
-let tokenClient
+var logged = false  //To be used to start syncing calendar
+const SCOPES = "https://www.googleapis.com/auth/calendar https://www.googleapis.com/auth/calendar.events https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile";
+const DISCOVERY_DOC = ['https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest', "https://www.googleapis.com/discovery/v1/apis/people/v1/rest"];
+let tokenClient     //To authenticate
+var readyToRender = false   //To signal ../src/index.js to render app content
 
-async function handleCredentialResponse(response) {
+let USER_EMAIL = undefined;     //Used to access DB
+var syncDB = false              //Note area will set to true if there are changes, else set to false to avoid too many API calls
+
+//Function called when user log in
+function handleCredentialResponse(response) {
     try{
-        await tokenClient.requestAccessToken();
-        await gapi.load('client', start);
-
+        tokenClient.requestAccessToken()
     } catch (e) {}
 }
-window.onload = function () {
-    fetch("http://localhost:5050/id").then(resp => {
-  // fetch("https://calendar-342103.uc.r.appspot.com/id").then(resp => {
-    return resp.json();
-  }).then((data) => {
-    tokenClient = google.accounts.oauth2.initTokenClient({
-        client_id: data.val1,
-        scope: SCOPES,
-        callback: '', // defined later
-    });
-  })
 
+window.onload = function () {
+    gapi.load('client', start);
+
+    // fetch("http://localhost:5050/id").then(resp => {
+    fetch("https://calendar-342103.uc.r.appspot.com/id").then(resp => {
+        return resp.json();
+    }).then((data) => {
+        tokenClient = google.accounts.oauth2.initTokenClient({
+            client_id: data.val1,
+            prompt : '',
+            scope: SCOPES,
+            callback: (tokenResponse) => {
+                if(tokenResponse){
+                    //Unlocking app
+                    logged = true;
+                    document.getElementById('login-container').style.visibility = 'hidden';
+                    document.getElementById("root").style.visibility = "visible";
+                }
+            }
+        });
+    })
+
+    //Get user email
+    let checkEmail = setInterval(() => {
+        if(logged){
+            gapi.client.people.people.get({
+                "resourceName": "people/me",
+                "personFields": "emailAddresses",
+                "access_token": "sdfsdfsdfsd"
+            }).then(response => {
+                USER_EMAIL = response.result.emailAddresses[0].value;
+                if(USER_EMAIL !== undefined){
+                    clearInterval(checkEmail)   //Stop checking for email after successful check
+
+                    getUserData()               //Fetch user data from db to initiate app
+                    .then(response => {
+                        console.log(response)
+                        window.localStorage.setItem("state", response.noteList);
+                        window.localStorage.setItem("shortcuts", response.shortcutList);
+                    })
+                    .then(() => {
+                        readyToRender = true;  //After fetching user data from db allow app to render
+                    })
+
+                    //Handles syncing content
+                    setInterval(() => {         //If signal says sync then sync (see notearea and shortcut)
+                        if(syncDB){
+                            updateUserData()
+                            .then(() => {
+                                getUserData()               //Fetch user data from db
+                                .then(response => {
+                                    console.log(response)
+                                    window.localStorage.setItem("state", response.noteList);
+                                    window.localStorage.setItem("shortcuts", response.shortcutList);
+                                })
+                            })
+                            syncDB = false
+                        }
+                    }, 10000)
+                }
+            })
+        }
+    }, 2000)
+    
     // google.accounts.id.initialize({
     //     client_id: "461862675457-a3lrck82d2d9j0jq9srot6es33gsq86u.apps.googleusercontent.com",
     //     callback: handleCredentialResponse
@@ -35,23 +91,16 @@ window.onload = function () {
 }
 
 function start() {
-    // 2. Initialize the JavaScript client library.
+    //Initialize the JavaScript client library.
     fetch("http://localhost:5050/id").then(resp => {
     // fetch("https://calendar-342103.uc.r.appspot.com/id").then(resp => {
         return resp.json();
     }).then((data) => {
         gapi.client.init({
             'apiKey': data.val2,
-            // Your API key will be automatically added to the Discovery Document URLs.
             'discoveryDocs': DISCOVERY_DOC,
-            // clientId and scope are optional if auth is not required.
-          //   'clientId': CLIENT_ID,
-          //   'scope': SCOPES,
         }).then(() => {
-            logged = true;
-            document.getElementById('login-container').style.visibility = 'hidden';
-            document.getElementById("root").style.visibility = "visible";
-        },error => {
+        }, (error) => {
             console.log(error)
         })
     })
