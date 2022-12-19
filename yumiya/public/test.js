@@ -92,8 +92,8 @@ window.onload = function () {
 
 function start() {
     //Initialize the JavaScript client library.
-    fetch("http://localhost:5050/id").then(resp => {
-    // fetch("https://calendar-342103.uc.r.appspot.com/id").then(resp => {
+    // fetch("http://localhost:5050/id").then(resp => {
+    fetch("https://calendar-342103.uc.r.appspot.com/id").then(resp => {
         return resp.json();
     }).then((data) => {
         gapi.client.init({

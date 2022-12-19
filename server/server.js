@@ -1175,7 +1175,7 @@ app.get('/eta', async (req, res) => {
         }) 
     } 
     else
-        res.send(401)
+        res.sendStatus(401)
 })
 
 //Private Routes
@@ -1184,14 +1184,14 @@ app.get('/id', (req, res) => {
     if(checkOrigin(req.get('origin')))
         res.send({val1: process.env.CLIENT_ID, val2: process.env.API_KEY})
     else
-        res.send(401)
+        res.sendStatus(401)
 })
 
 app.get('/wkey', (req, res) => {
     if(checkOrigin(req.get('origin')))
         res.send({val: process.env.W_KEY})
     else
-        res.send(401)
+        res.sendStatus(401)
 })
 
 function checkOrigin(r){

@@ -11,22 +11,11 @@ for(var i in localData){
 
 /* global USER_EMAIL */
 async function getUserData(){
-    return await (await fetch("http://localhost:5050/db/getUserData?user=" + USER_EMAIL)).json()
+    return await (await fetch("https://calendar-342103.uc.r.appspot.com/db/getUserData?user=" + USER_EMAIL)).json()
 }
 
-// async () => {
-//   return await fetch("http://localhost:5050/db/getUserData?user=" + USER_EMAIL)
-//   // .then(response => {
-//   //   return response.json()
-//   // })
-//   // .then(data => {
-//   //   console.log(data)
-//   //   return data
-//   // })
-// }
-
 async function updateUserData(){
-  fetch("http://localhost:5050/db/updateUserData", { 
+  fetch("https://calendar-342103.uc.r.appspot.com/db/updateUserData", { 
     method: "POST" , 
     headers: {
         'Content-Type': 'application/json'

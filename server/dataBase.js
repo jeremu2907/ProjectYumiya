@@ -9,45 +9,57 @@ mongoose.connect(`mongodb+srv://jeremu2907:Password2907@cluster0.aaygtng.mongodb
 const db = mongoose.connection;
 db.on("error", console.error.bind(console, "connection error: "));
 db.once("open", function () {
-  console.log("Connected successfully");
+  console.log("Connected DB successfully");
 });
 
 dataBase.use(bodyparser.json())
 
-dataBase.post('/setUserData', async (req,res) => {
-    const user = new userData(req.body)
-    await user.save()
-    console.log(req.body)
-    // res.send(user)
-    res.status(200)
-})
+function checkOrigin(r){
+    // console.log(r)
+    return (r !== undefined)? true:false
+}
+
+// dataBase.post('/setUserData', async (req,res) => {
+//     const user = new userData(req.body)
+//     await user.save()
+//     console.log(req.body)
+//     // res.send(user)
+//     res.status(200)
+// })
 
 dataBase.post('/updateUserData', async (req, res) => {
-    await userData.findOneAndDelete({user: req.body.user})
-    console.log("UPDATING USER DATA_______________")
-    console.log(await new userData(req.body).save())
-    res.status(200)
-})
-
-dataBase.get('/getUserData', async (req, res) => {
-    const r = await userData.find({user:req.query.user});
-    if(r.length === 0){
-        console.log("No user found, creating new user in database")
-        const newUser = new userData({user: req.query.user, shortcutList: "[]", noteList: "{\"noteContent\":[\"\"]}" });
-        await newUser.save();
-        res.json(newUser)
+    if(checkOrigin(req.get('origin'))){
+        await userData.findOneAndDelete({user: req.body.user})
+        console.log("UPDATING USER DATA_______________")
+        console.log(await new userData(req.body).save())
     } else {
-        console.log("GETTING USER DATA________________")
-        console.log(r[0])
-        res.json(r[0])
+        res.sendStatus(401)
     }
 })
 
-dataBase.get('/seeAll', async (req, res) => {
-    const r = await userData.find();
-    console.log(r)
-    res.send(r)
+dataBase.get('/getUserData', async (req, res) => {
+    if(checkOrigin(req.get('origin'))){
+        const r = await userData.find({user:req.query.user});
+        if(r.length === 0){
+            console.log("No user found, creating new user in database")
+            const newUser = new userData({user: req.query.user, shortcutList: "[]", noteList: "{\"noteContent\":[\"\"]}" });
+            await newUser.save();
+            res.json(newUser)
+        } else {
+            console.log("GETTING USER DATA________________")
+            console.log(r[0])
+            res.json(r[0])
+        }
+    } else {
+        res.sendStatus(401)
+    }
 })
+
+// dataBase.get('/seeAll', async (req, res) => {
+//     const r = await userData.find();
+//     console.log(r)
+//     res.send(r)
+// })
 
 module.exports = dataBase;
 

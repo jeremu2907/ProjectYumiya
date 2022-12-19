@@ -146,7 +146,11 @@ export default class Menu extends Component{
         }
 
         this.setState({shortcuts: r}, () => {
-            window.localStorage.setItem("shortcuts", JSON.stringify(this.state.shortcuts))
+            window.localStorage.setItem("shortcuts", JSON.stringify(this.state.shortcuts));
+            // eslint-disable-next-line
+            /* global syncDB */
+            // eslint-disable-next-line
+            syncDB = true   //Signaling to sync w database
         })
     }
 }

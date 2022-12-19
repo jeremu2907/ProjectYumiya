@@ -165,7 +165,8 @@ class DailyCard extends Component{
         });
 
         setInterval(()=>{ 
-            this.rret()
+            if(logged)
+                this.rret()
         },1000 * 60)
     }
     handleUserSelection = (selected, calID, status) => {
