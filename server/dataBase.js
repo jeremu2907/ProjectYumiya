@@ -31,7 +31,7 @@ dataBase.post('/updateUserData', async (req, res) => {
     if(checkOrigin(req.get('origin'))){
         await userData.findOneAndDelete({user: req.body.user})
         console.log("UPDATING USER DATA_______________")
-        console.log(await new userData(req.body).save())
+        await new userData(req.body).save();
     } else {
         res.sendStatus(401)
     }
@@ -47,8 +47,14 @@ dataBase.get('/getUserData', async (req, res) => {
             res.json(newUser)
         } else {
             console.log("GETTING USER DATA________________")
-            console.log(r[0])
-            res.json(r[0])
+            if(r[0].noteList === null){
+                await userData.findOneAndDelete({user: req.query.user})
+                const newUser = new userData({user: r[0].user, shortcutList: r[0].shortcutList, noteList: "{\"noteContent\":[\"\"]}"})
+                await newUser.save();
+                res.json(newUser);
+            }
+            else
+                res.json(r[0])
         }
     } else {
         res.sendStatus(401)

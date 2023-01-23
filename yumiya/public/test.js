@@ -73,7 +73,7 @@ window.onload = function () {
                             })
                             syncDB = false
                         }
-                    }, 10000)
+                    }, 5000)
                 }
             })
         }
