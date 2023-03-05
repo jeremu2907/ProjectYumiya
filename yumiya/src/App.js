@@ -8,7 +8,7 @@ import Menu from './Component/Menu/Menu.jsx'
 
 function App() {
   return (
-    <div>
+    <div style={{height: "100vh", width: "100vw"}}>
       <Menu/>
       <div className = "content-area">
         <div id="dailyCard" className = "content-area-left">

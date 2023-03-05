@@ -9,9 +9,16 @@
     <title>yumiya</title>
      
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC_kenObLSxyH_DyPx2nIV5eQIsNHDZtW0&libraries=places"></script>
-    <script defer src="https://apis.google.com/js/api.js" onload="gapiLoaded()"></script>
-    <script defer src="https://accounts.google.com/gsi/client" onload="gisLoaded()"></script>
-    <script src="./index.js"></script>  
+
+    <!-- <script defer src="https://apis.google.com/js/api.js" onload="gapiLoaded()"></script> -->
+    <!-- <script defer src="https://accounts.google.com/gsi/client" onload="gisLoaded()"></script> -->
+    <!-- <script src="./index.js"></script>   -->
+
+    <script src="https://apis.google.com/js/api.js"></script>
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <script src="./test.js" defer></script>
+
+
     <script src="./functional.js" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script
@@ -30,35 +37,12 @@
     <!-- <input id="file-upload" type="file" accept="image/jpeg, image/png, image/jpg" enctype="multipart/form-data"/> -->
     <div id="login-container" class="login-container">
       <div id="logo" class = "logo">.yumiya</div>
-      <button id="authorize_button" class="googleSignInOut" onclick="handleAuthClick()">
+      <button id="authorize_button" class="googleSignInOut" onclick="handleCredentialResponse()">
         <img src="googleIcon.png" alt="Google Icon" style="height: 15px;width: 15px; margin-right:5px;">
         Connect to Google
       </button>
-    </div>
-    
+      <!-- <div id="buttonDiv" class="googleSignInOut"></div> -->
+    </div>    
     
   </body>
-  <!-- <script type="module">
-    // Import the functions you need from the SDKs you need
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-app.js";
-    import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-analytics.js";
-    // TODO: Add SDKs for Firebase products that you want to use
-    // https://firebase.google.com/docs/web/setup#available-libraries
-  
-    // Your web app's Firebase configuration
-    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-    const firebaseConfig = {
-      apiKey: "AIzaSyBDRS_GoIscQ72lQ4idNoBZVivxDb-j3uU",
-      authDomain: "yumiya-dfc8b.firebaseapp.com",
-      projectId: "yumiya-dfc8b",
-      storageBucket: "yumiya-dfc8b.appspot.com",
-      messagingSenderId: "480112270983",
-      appId: "1:480112270983:web:4f6321eca3891b90b1e222",
-      measurementId: "G-8W5GPDQ2YR"
-    };
-  
-    // Initialize Firebase
-    const app = initializeApp(firebaseConfig);
-    const analytics = getAnalytics(app);
-  </script> -->
 </html>

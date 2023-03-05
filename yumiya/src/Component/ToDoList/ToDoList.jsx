@@ -7,8 +7,9 @@ import '../ButtonSet/button.css'
 class ToDoList extends Component{
     constructor(){
         super();
-        this.state = JSON.parse(window.localStorage.getItem('ToDoList')) || {
-            pages: 1,
+        
+        this.state = {
+            pages: JSON.parse(window.localStorage.getItem("state")).noteContent.length,
             currentPage: 1,
             navigateStatus: [],
             extend: false
@@ -108,10 +109,10 @@ class ToDoList extends Component{
         );
     }
 
-    setStorage(){
-        window.localStorage.setItem('ToDoList', JSON.stringify(this.state));
-        // super.setState(this.state)
-    }
+    // setStorage(){
+    //     window.localStorage.setItem('ToDoList', JSON.stringify(this.state));
+    //     // super.setState(this.state)
+    // }
 
     // Function to add page another page to the back
     eventModifyAdd = () => {
@@ -156,7 +157,7 @@ class ToDoList extends Component{
         temp.fill("rgba(255, 255, 255, 0.05)")
         temp[this.state.currentPage - 1] = "#870c20da"
         this.setState({navigateStatus: temp})
-        this.setStorage()
+        // this.setStorage()
     }
 
     extendNote = () => {

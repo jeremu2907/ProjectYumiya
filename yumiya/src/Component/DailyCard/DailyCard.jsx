@@ -5,6 +5,7 @@ import CalendarItem from "./CalendarItem.jsx"
 import {listUpcomingEvents} from "./updateEvent.js"
 import './DailyCard.css'
 import '../ButtonSet/button.css'
+import Loading from '../Loading/Loading.jsx'
 
 class DailyCard extends Component{
     constructor(props){
@@ -105,7 +106,7 @@ class DailyCard extends Component{
                         JSON.parse(window.localStorage.getItem("eventList"))    */}
                     {
                         (this.state.eventList.length === 0)?
-                        <CalendarItem name="Loading Events..."/>
+                        <Loading />
                         :
                         this.state.eventList
                             .map(event => <CalendarItem 
@@ -143,12 +144,18 @@ class DailyCard extends Component{
     //This funciton is for updating the calendar automatically every 1minute
     componentDidMount(){
         /*global logged*/
-        let tryLoad = setInterval(async () => {
-            if(logged === true)
-                this.rret();
-            if(this.state.eventList.length !== 0)
-                clearInterval(tryLoad);
-        },2000)
+        try {
+            let tryLoad = setInterval(async () => {
+                if(logged === true)
+                    this.rret();
+                if(this.state.eventList.length !== 0){
+                    clearInterval(tryLoad);
+                    // console.clear()
+                }
+            },2000)
+        } catch (e) {
+            console.log(e)
+        }
 
         //query in newEvent.jsx
         $("#setNewEvent").on('click',() => {
@@ -158,7 +165,8 @@ class DailyCard extends Component{
         });
 
         setInterval(()=>{ 
-            this.rret()
+            if(logged)
+                this.rret()
         },1000 * 60)
     }
     handleUserSelection = (selected, calID, status) => {

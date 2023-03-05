@@ -30,7 +30,7 @@ body {
 }
 
 .googleSignInOut{
-    position: relative;
+    position: absolute;
     color: white; 
     background-color: rgba(0,0,0,0.7);
     font-family: 'Montserrat', sans-serif;

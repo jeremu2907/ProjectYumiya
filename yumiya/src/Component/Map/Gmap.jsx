@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import './map.css'
+import Loading from '../Loading/Loading.jsx'
 
 /*global google*/
 
@@ -7,6 +8,7 @@ export default class Gmap extends Component{
     render(){
         return(
             <div id="map"style={{position: "relative", height: "90%", width : "100%", alignSelf: "center"}}>
+                <Loading />
             </div>
         )
     }
@@ -26,7 +28,7 @@ export default class Gmap extends Component{
                     }
                 )
             })
-            document.getElementById("map").innerHTML = "Map Loading..."
+            // document.getElementById("map").innerHTML = "Map Loading..."
 
         } else {
             document.getElementById("map").innerHTML = "Geolocation is not supported by this browser.";
