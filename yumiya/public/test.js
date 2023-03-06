@@ -6,7 +6,8 @@ let tokenClient     //To authenticate
 var readyToRender = false   //To signal ../src/index.js to render app content
 
 let USER_EMAIL = undefined;     //Used to access DB
-var syncDB = false              //Note area will set to true if there are changes, else set to false to avoid too many API calls
+var syncDB = false;              //Note area will set to true if there are changes, else set to false to avoid too many API calls
+var STOP_SYNC = true;
 
 //Function called when user log in
 function handleCredentialResponse(response) {
@@ -15,6 +16,23 @@ function handleCredentialResponse(response) {
     } catch (e) {}
 }
 
+//Check if gapi is still in session
+$(window).focus(function() {
+    gapi.client.people.people.get({
+        "resourceName": "people/me",
+        "personFields": "emailAddresses",
+        "access_token": "sdfsdfsdfsd"
+    }, err => {console.log(err)})
+        .then(response => {
+            STOP_SYNC = false;
+        }, err => {
+            if(err.result.hasOwnProperty('error') && logged){
+                location.reload();
+            }
+        })
+});
+
+ //Handles after gapi logging in
 window.onload = function () {
     gapi.load('client', start);
 
@@ -48,10 +66,10 @@ window.onload = function () {
                 USER_EMAIL = response.result.emailAddresses[0].value;
                 if(USER_EMAIL !== undefined){
                     clearInterval(checkEmail)   //Stop checking for email after successful check
+                    STOP_SYNC = false;
 
                     getUserData()               //Fetch user data from db to initiate app
                     .then(response => {
-                        console.log(response)
                         window.localStorage.setItem("state", response.noteList);
                         window.localStorage.setItem("shortcuts", response.shortcutList);
                     })
@@ -61,12 +79,11 @@ window.onload = function () {
 
                     //Handles syncing content
                     setInterval(() => {         //If signal says sync then sync (see notearea and shortcut)
-                        if(syncDB){
+                        if(syncDB && !STOP_SYNC){
                             updateUserData()
                             .then(() => {
                                 getUserData()               //Fetch user data from db
                                 .then(response => {
-                                    console.log(response)
                                     window.localStorage.setItem("state", response.noteList);
                                     window.localStorage.setItem("shortcuts", response.shortcutList);
                                 })
@@ -101,7 +118,7 @@ function start() {
             'discoveryDocs': DISCOVERY_DOC,
         }).then(() => {
         }, (error) => {
-            console.log(error)
+            // console.log(error)
         })
     })
 };
