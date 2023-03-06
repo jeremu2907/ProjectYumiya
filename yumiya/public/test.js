@@ -15,6 +15,21 @@ function handleCredentialResponse(response) {
     } catch (e) {}
 }
 
+//Check if gapi is still in session
+$(window).focus(function() {
+    gapi.client.people.people.get({
+        "resourceName": "people/me",
+        "personFields": "emailAddresses",
+        "access_token": "sdfsdfsdfsd"
+    }).then(response => {
+        USER_EMAIL = response.result.emailAddresses[0].value;
+        if(!USER_EMAIL){
+            location.reload();
+        }}
+    )
+});
+
+ //Handles after gapi logging in
 window.onload = function () {
     gapi.load('client', start);
 
@@ -51,7 +66,6 @@ window.onload = function () {
 
                     getUserData()               //Fetch user data from db to initiate app
                     .then(response => {
-                        console.log(response)
                         window.localStorage.setItem("state", response.noteList);
                         window.localStorage.setItem("shortcuts", response.shortcutList);
                     })
@@ -66,7 +80,6 @@ window.onload = function () {
                             .then(() => {
                                 getUserData()               //Fetch user data from db
                                 .then(response => {
-                                    console.log(response)
                                     window.localStorage.setItem("state", response.noteList);
                                     window.localStorage.setItem("shortcuts", response.shortcutList);
                                 })
@@ -101,7 +114,7 @@ function start() {
             'discoveryDocs': DISCOVERY_DOC,
         }).then(() => {
         }, (error) => {
-            console.log(error)
+            // console.log(error)
         })
     })
 };
