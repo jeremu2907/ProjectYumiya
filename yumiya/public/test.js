@@ -6,7 +6,8 @@ let tokenClient     //To authenticate
 var readyToRender = false   //To signal ../src/index.js to render app content
 
 let USER_EMAIL = undefined;     //Used to access DB
-var syncDB = false              //Note area will set to true if there are changes, else set to false to avoid too many API calls
+var syncDB = false;              //Note area will set to true if there are changes, else set to false to avoid too many API calls
+var STOP_SYNC = true;
 
 //Function called when user log in
 function handleCredentialResponse(response) {
@@ -25,6 +26,8 @@ $(window).focus(function() {
         USER_EMAIL = response.result.emailAddresses[0].value;
         if(!USER_EMAIL){
             location.reload();
+        } else {
+            STOP_SYNC = false;
         }}
     )
 });
@@ -63,6 +66,7 @@ window.onload = function () {
                 USER_EMAIL = response.result.emailAddresses[0].value;
                 if(USER_EMAIL !== undefined){
                     clearInterval(checkEmail)   //Stop checking for email after successful check
+                    STOP_SYNC = false;
 
                     getUserData()               //Fetch user data from db to initiate app
                     .then(response => {
@@ -75,7 +79,7 @@ window.onload = function () {
 
                     //Handles syncing content
                     setInterval(() => {         //If signal says sync then sync (see notearea and shortcut)
-                        if(syncDB){
+                        if(syncDB && !STOP_SYNC){
                             updateUserData()
                             .then(() => {
                                 getUserData()               //Fetch user data from db
