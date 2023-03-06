@@ -22,14 +22,14 @@ $(window).focus(function() {
         "resourceName": "people/me",
         "personFields": "emailAddresses",
         "access_token": "sdfsdfsdfsd"
-    }).then(response => {
-        USER_EMAIL = response.result.emailAddresses[0].value;
-        if(!USER_EMAIL){
-            location.reload();
-        } else {
+    }, err => {console.log(err)})
+        .then(response => {
             STOP_SYNC = false;
-        }}
-    )
+        }, err => {
+            if(err.result.hasOwnProperty('error') && logged){
+                location.reload();
+            }
+        })
 });
 
  //Handles after gapi logging in
