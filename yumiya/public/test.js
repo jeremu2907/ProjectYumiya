@@ -37,7 +37,7 @@ window.onload = function () {
     gapi.load('client', start);
 
     // fetch("http://localhost:5050/id").then(resp => {
-    fetch("https://calendar-342103.uc.r.appspot.com/id").then(resp => {
+    fetch("https://ymysvr.jeremynguyen.tech/id").then(resp => {
         return resp.json();
     }).then((data) => {
         tokenClient = google.accounts.oauth2.initTokenClient({
@@ -110,7 +110,7 @@ window.onload = function () {
 function start() {
     //Initialize the JavaScript client library.
     // fetch("http://localhost:5050/id").then(resp => {
-    fetch("https://calendar-342103.uc.r.appspot.com/id").then(resp => {
+    fetch("https://ymysvr.jeremynguyen.tech/id").then(resp => {
         return resp.json();
     }).then((data) => {
         gapi.client.init({

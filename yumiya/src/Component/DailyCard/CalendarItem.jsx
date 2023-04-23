@@ -160,7 +160,7 @@ class CalendarItem extends Component{
 
                     //Calling API if geolocation is enabled
                     // fetch("http://localhost:5050/eta?destination=" + this.props.location + "&lat=" + coord.coords.latitude + "&lon=" + coord.coords.longitude)
-                    fetch("https://calendar-342103.uc.r.appspot.com/eta?destination=" + this.props.location + "&lat=" + coord.coords.latitude + "&lon=" + coord.coords.longitude)
+                    fetch("https://ymysvr.jeremynguyen.tech/eta?destination=" + this.props.location + "&lat=" + coord.coords.latitude + "&lon=" + coord.coords.longitude)
                     .then((resp) => {
                         return resp.json();
                     }).then((data) => {
