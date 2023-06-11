@@ -11,11 +11,11 @@ for(var i in localData){
 
 /* global USER_EMAIL */
 async function getUserData(){
-    return await (await fetch("https://calendar-342103.uc.r.appspot.com/db/getUserData?user=" + USER_EMAIL)).json()
+    return await (await fetch("https://ymysvr.jeremynguyen.tech/db/getUserData?user=" + USER_EMAIL)).json()
 }
 
 async function updateUserData(){
-  fetch("https://calendar-342103.uc.r.appspot.com/db/updateUserData", { 
+  fetch("https://ymysvr.jeremynguyen.tech/db/updateUserData", { 
     method: "POST" , 
     headers: {
         'Content-Type': 'application/json'
