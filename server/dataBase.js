@@ -29,9 +29,15 @@ function checkOrigin(r){
 
 dataBase.post('/updateUserData', async (req, res) => {
     if(checkOrigin(req.get('origin'))){
-        await userData.findOneAndDelete({user: req.body.user})
         console.log("UPDATING USER DATA_______________")
-        await new userData(req.body).save();
+        const doc = await userData.findOne({user: req.body.user});
+        doc.user = req.body.user;
+        doc.shortcutList = req.body.shortcutList;
+        doc.noteList = req.body.noteList;
+        await doc.save().then(savedDoc => 
+            {
+                if(savedDoc === doc) res.sendStatus(200);
+            })
     } else {
         res.sendStatus(401)
     }

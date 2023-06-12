@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import './mapGUI.css'
 import HourlyItem from './hourlyWeatherItem'
 import $ from 'jquery'
+import { SERVER_URL } from '../../global'
 /* global moment */
 export default class HourlyWeather extends Component {
     constructor(){
@@ -33,7 +34,7 @@ export default class HourlyWeather extends Component {
                 let lon = LatLon.coords.longitude;
                 let apiCall = `https://api.openweathermap.org/data/3.0/onecall?lat=`+lat+`&lon=`+lon+`&exclude=minutely,daily,current,alerts&appid=`
                 // fetch("http://localhost:5050/wkey").then(resp => {
-                fetch("https://ymysvr.jeremynguyen.tech/wkey").then(resp => {
+                fetch(`${SERVER_URL}/wkey`).then(resp => {
                     return resp.json();
                 }).then(data => {
                     apiCall += data.val
