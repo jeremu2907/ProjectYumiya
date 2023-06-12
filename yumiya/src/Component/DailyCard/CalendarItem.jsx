@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import '../ItemTitle.css'
 import './CalendarItem.css'
+import { SERVER_URL } from '../../global'
 /*global moment*/
 /*global google*/
 
@@ -160,7 +161,7 @@ class CalendarItem extends Component{
 
                     //Calling API if geolocation is enabled
                     // fetch("http://localhost:5050/eta?destination=" + this.props.location + "&lat=" + coord.coords.latitude + "&lon=" + coord.coords.longitude)
-                    fetch("https://ymysvr.jeremynguyen.tech/eta?destination=" + this.props.location + "&lat=" + coord.coords.latitude + "&lon=" + coord.coords.longitude)
+                    fetch(`${SERVER_URL}/eta?destination=` + this.props.location + "&lat=" + coord.coords.latitude + "&lon=" + coord.coords.longitude)
                     .then((resp) => {
                         return resp.json();
                     }).then((data) => {

@@ -1,4 +1,3 @@
-
 var logged = false  //To be used to start syncing calendar
 const SCOPES = "https://www.googleapis.com/auth/calendar https://www.googleapis.com/auth/calendar.events https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile";
 const DISCOVERY_DOC = ['https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest', "https://www.googleapis.com/discovery/v1/apis/people/v1/rest"];
@@ -8,6 +7,9 @@ var readyToRender = false   //To signal ../src/index.js to render app content
 let USER_EMAIL = undefined;     //Used to access DB
 var syncDB = false;              //Note area will set to true if there are changes, else set to false to avoid too many API calls
 var STOP_SYNC = true;
+
+const SERVER_URL = "http://localhost:5050";
+// const SERVER_URL = "https://ymysvr.jeremynguyen.tech";
 
 //Function called when user log in
 function handleCredentialResponse(response) {
@@ -37,7 +39,7 @@ window.onload = function () {
     gapi.load('client', start);
 
     // fetch("http://localhost:5050/id").then(resp => {
-    fetch("https://ymysvr.jeremynguyen.tech/id").then(resp => {
+    fetch(`${SERVER_URL}/id`).then(resp => {
         return resp.json();
     }).then((data) => {
         tokenClient = google.accounts.oauth2.initTokenClient({
@@ -80,17 +82,13 @@ window.onload = function () {
                     //Handles syncing content
                     setInterval(() => {         //If signal says sync then sync (see notearea and shortcut)
                         if(syncDB && !STOP_SYNC){
-                            updateUserData()
-                            .then(() => {
-                                getUserData()               //Fetch user data from db
-                                .then(response => {
-                                    window.localStorage.setItem("state", response.noteList);
-                                    window.localStorage.setItem("shortcuts", response.shortcutList);
+                            updateUserData().then(() => 
+                                {
+                                    console.log("Synced Sucessfully");
                                 })
-                            })
                             syncDB = false
                         }
-                    }, 5000)
+                    }, 2000)
                 }
             })
         }
@@ -110,7 +108,7 @@ window.onload = function () {
 function start() {
     //Initialize the JavaScript client library.
     // fetch("http://localhost:5050/id").then(resp => {
-    fetch("https://ymysvr.jeremynguyen.tech/id").then(resp => {
+    fetch(`${SERVER_URL}/id`).then(resp => {
         return resp.json();
     }).then((data) => {
         gapi.client.init({

@@ -6,7 +6,7 @@ const cors = require('cors');
 const normalizePort = require('normalize-port');
 require('dotenv').config();
 
-var allowedOrigin = ['https://yumiya.netlify.app','http://192.168.1.140:3000/jeremu2907/ProjectYumiya','http://localhost:3001','https://yumiya.jeremynguyen.tech']
+var allowedOrigin = ['https://yumiya.netlify.app','http://192.168.1.140:3000/jeremu2907/ProjectYumiya','http://localhost:3003','https://yumiya.jeremynguyen.tech']
 app.use(cors({
     origin: allowedOrigin
 }))
