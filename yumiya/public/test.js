@@ -82,8 +82,10 @@ window.onload = function () {
                     //Handles syncing content
                     setInterval(() => {         //If signal says sync then sync (see notearea and shortcut)
                         if(syncDB && !STOP_SYNC){
-                            updateUserData().then(() => 
+                            updateUserData().then((response) => 
                                 {
+                                    window.localStorage.setItem("state", response.noteList);
+                                    window.localStorage.setItem("shortcuts", response.shortcutList);
                                     console.log("Synced Sucessfully");
                                 })
                             syncDB = false
