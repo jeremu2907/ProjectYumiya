@@ -5,6 +5,7 @@ services:
   node:
     image: "node:latest"
     user: "node"
+    container_name: "Yumiya_Server"
     working_dir: /home/node/app
     network_mode: host
     environment:
@@ -13,6 +14,7 @@ services:
       - ./:/home/node/app
         #expose:
         # - "5050"
+    restart: unless-stopped
     command: >
       sh -c "npm install &&
              npm start"
