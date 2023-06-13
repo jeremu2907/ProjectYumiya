@@ -36,7 +36,7 @@ dataBase.post('/updateUserData', async (req, res) => {
         doc.noteList = req.body.noteList;
         await doc.save().then(savedDoc => 
             {
-                if(savedDoc === doc) res.sendStatus(200);
+                if(savedDoc === doc) res.send(savedDoc);
             })
     } else {
         res.sendStatus(401)

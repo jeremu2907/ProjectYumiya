@@ -15,7 +15,7 @@ async function getUserData(){
 }
 
 async function updateUserData(){
-  fetch(`${SERVER_URL}/db/updateUserData`, { 
+  const resp = await fetch(`${SERVER_URL}/db/updateUserData`, { 
     method: "POST" , 
     headers: {
         'Content-Type': 'application/json'
@@ -26,4 +26,7 @@ async function updateUserData(){
         noteList: window.localStorage.getItem('state')
     })
   })
+
+  const jsonData = await resp.json();
+  return jsonData;
 }
