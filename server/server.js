@@ -1,12 +1,11 @@
 const express = require('express');
-const { listenerCount } = require('process');
 const app = express();
 const fetch = require('node-fetch');
 const cors = require('cors');
 const normalizePort = require('normalize-port');
 require('dotenv').config();
 
-var allowedOrigin = ['https://yumiya.netlify.app','http://192.168.1.140:3000/jeremu2907/ProjectYumiya','http://localhost:4000','https://yumiya.jeremynguyen.tech']
+var allowedOrigin = ['https://yumiya.jeremynguyen.tech', 'localhost:3003']
 app.use(cors({
     origin: allowedOrigin
 }))

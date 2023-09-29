@@ -8,8 +8,8 @@ let USER_EMAIL = undefined;     //Used to access DB
 var syncDB = false;              //Note area will set to true if there are changes, else set to false to avoid too many API calls
 var STOP_SYNC = true;
 
-const SERVER_URL = "http://localhost:5050";
-// const SERVER_URL = "https://ymysvr.jeremynguyen.tech";
+// const SERVER_URL = "http://localhost:5050";
+const SERVER_URL = "https://ymysvr.jeremynguyen.tech";
 
 //Function called when user log in
 function handleCredentialResponse(response) {

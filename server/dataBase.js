@@ -2,10 +2,11 @@ const express = require('express');
 const dataBase = express.Router();
 const userData = require('./schema.js')
 const bodyparser = require('body-parser')
+require('dotenv').config();
 
 const mongoose = require('mongoose');
 mongoose.set('strictQuery', true);
-mongoose.connect(`mongodb+srv://jeremu2907:Password2907@cluster0.aaygtng.mongodb.net/?retryWrites=true&w=majority`)
+mongoose.connect(`mongodb+srv://${process.env.DB}/?retryWrites=true&w=majority`)
 const db = mongoose.connection;
 db.on("error", console.error.bind(console, "connection error: "));
 db.once("open", function () {
