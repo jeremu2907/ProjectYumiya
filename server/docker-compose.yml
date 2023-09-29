@@ -1,20 +1,10 @@
 version: "3.6"
-
-version: "2"
 services:
   node:
-    image: "node:latest"
-    user: "node"
+    build: .
     container_name: "Yumiya_Server"
-    working_dir: /home/node/app
     network_mode: host
     environment:
       - NODE_ENV=production
-    volumes:
-      - ./:/home/node/app
-        #expose:
-        # - "5050"
+    env_file: .env
     restart: unless-stopped
-    command: >
-      sh -c "npm install &&
-             npm start"

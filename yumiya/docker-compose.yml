@@ -1,16 +1,9 @@
 version: "3.6"
-
-version: "2"
 services:
   node:
-    image: "node:latest"
-    user: "node"
-    working_dir: /home/node/app
+    build: .
+    container_name: "front-end"
     network_mode: host
     environment:
       - NODE_ENV=production
-    volumes:
-      - ./:/home/node/app
-    command: >
-      sh -c "npm install &&
-             npm run build"
+    restart: unless-stopped
